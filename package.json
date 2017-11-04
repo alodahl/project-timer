@@ -1,0 +1,24 @@
+{
+  "name": "project-timer",
+  "version": "1.0.0",
+  "description": "\"This app is a server-side project which creates timers designed to record hours worked on a project.\"",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.16.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alodahl/project-timer.git"
+  },
+  "author": "Alina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alodahl/project-timer/issues"
+  },
+  "homepage": "https://github.com/alodahl/project-timer#readme"
+}
