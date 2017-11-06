@@ -1,0 +1,9 @@
+language: node_js
+node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: Z53/bOoNq+yOQYoTHQ8BotrGRyPsRtCwwm1hYtkFMKv7nnY3cDroTT5XkfFF7dNqNQTxueSmwt+tYJFhF+AAhFHhXW1FAyBpiYJ/hpf/uhHpAljZG+Dln2LgEl+1rqCdktdvLUYjzwobW0PPPRl8Q+kgiL0LwrLyWVTcvFpVqKBkIRNGgZzwKT5KHBc7x0lRRfzEoeCahJAwowGNXA577TjG72MC5STHgz3dCegTAlF5xXUYu8+mgwkdY+BgFXxMo+OcfgPB2iHkTpQucgwraV/EYupBhexnffTuKzgvPp7nwtHG1ZnHkfAb7NW6fZfv65KaCALgmJwOYTehPE60VAJt2vEC30HFnuUBpeKNPqrrYrIu7ZKSBK9xzg2SACkVnW9IUKde9voGe6QUsgWiroN3S/pHyLlHnLydql9/o1E10OKuFXfKshtKGjlxNTcQX7fxbkbV+YVmteCH3oJWqD52aq0wJi0WV1kMXtaGYex4OZOtt4GV3YbAUQ0tyBtaT5dnSOfRS41FOZdMIIiOnSXMyEoHQkpXwGouv/a9Ibd/DY+5LDQLJp6ey8sUrACqpbSmsO1WIuB6l3e+AorYVm3aVaxWGuaP3UH4r94INfnSdXayrhxU7jZGoRETHmQKN1dqz4FaBaIA8Vj5Y1mIzY0BBfTTqv4idYvuoHIGbjQ=
+  app: ancient-atoll-87064
+  on:
+    repo: alodahl/project-timer
