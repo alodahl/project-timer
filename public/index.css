@@ -55,6 +55,8 @@ h1 {
 .rightnav {
   float: right;
   margin: 15px;
+  width: 100px;
+  height: 100%;
 }
 
 .icon-large {
@@ -103,12 +105,31 @@ h1 {
 }
 
 .try-it-out-header {
-  display: inline;
+  display: inline-block;
   font-size: 2.5em;
   padding: 15px;
   font-weight: 600;
   text-align: center;
-  width: 250px;
+  width: 200px;
+  margin: 0 auto;
+}
+
+.add-gray-icon {
+  float: right;
+  position: relative;
+  bottom: 48px;
+}
+
+.add-a-new {
+  position: relative;
+  right: 10px;
+  /*top: 10px;*/
+}
+
+.timer-here {
+  position: relative;
+  bottom: 6px;
+  right: 9px;
 }
 
 .timer-section {
