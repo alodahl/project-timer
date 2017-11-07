@@ -47,31 +47,52 @@ h1 {
 }
 
 .leftnav {
+  display: inline-block;
   float: left;
   margin: 15px;
   height: 38px;
+  width: 100px;
+  /*position: absolute;
+  left: 0;*/
+
 }
 
 .rightnav {
   float: right;
+  display: inline-block;
   margin: 15px;
-  width: 100px;
+  /*width: 100px;*/
   height: 100%;
+  /*position: absolute;
+  right: 0;*/
 }
 
 .icon-large {
+  display: inline-block;
   width: 30px;
+
 }
 
-.nav-text-left {
-  position: relative;
+.left-icon-text {
+  display: inline-block;
+  line-height: 1.0;
+}
+
+.right-icon-text {
+  display: inline-block;
+  line-height: 1.0;
+}
+
+.nav-text{
+  margin: 0;
+  /*position: relative;
   bottom: 17px;
-  right: 2px;
+  right: 2px;*/
 }
 
 .nav-text-left-line-two {
-  top: 0px;
-  right: 30px;
+  /*bottom: 25px;
+  left: 35px;*/
 }
 
 .nav-text-right {
@@ -101,23 +122,32 @@ h1 {
 .try-it-out-section {
   display: block;
   background-color: #FFFFFF;
-  height: 70px;
+  height: 75px;
+  position: relative;
+  text-align: center;
+
 }
 
 .try-it-out-header {
   display: inline-block;
   font-size: 2.5em;
-  padding: 15px;
+  padding: 15px 0;
   font-weight: 600;
-  text-align: center;
-  width: 200px;
+  /*text-align: center;*/
+  /*width: 150px;*/
   margin: 0 auto;
 }
 
+.stopwatch-for-sign-up {
+  margin-top: 6px;
+  /*vertical-align: middle;*/
+}
+
 .add-gray-icon {
-  float: right;
-  position: relative;
-  bottom: 48px;
+  padding-top: 5px;
+  /*float: right;*/
+  /*position: relative;
+  bottom: 48px;*/
 }
 
 .add-a-new {
