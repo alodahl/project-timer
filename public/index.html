@@ -1,10 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Project Timer</title>
-  </head>
-  <body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Timer</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="leftnav">
+        <img class="icon-large" src="images/stopwatch-gray.svg" alt="Log In Stopwatch Icon">
+        <span class="nav-text-left">log</span>
+        <span class="nav-text-left nav-text-left-line-two">in</span>
+      </div>
+      <div class="rightnav">
+        <span class="nav-text-right">try</span>
+        <span class="nav-text-right-line-two">it out</span>
+        <img class="icon-large" src="images/add-gray.svg" alt="Try Out App Icon">
+      </div>
+    </nav>
+    <h1><span class="cursive title-project">Project</span><span class="title-timer">timer</span></h1>
+  </header>
+  <main>
+    <h2 class="tagline"><span class="cursive header2">Project</span><b class="inline-timer">timer</b> IS THE ONLY TIME MANAGEMENT TOOL THAT MAKES YOUR PROJECT THE FOCUS.</h2>
+    <img class="project-example-photo" src="images/drawntothis.png" alt="graphite drawing">
+    <h2 class="tagline"><span class="cursive header2">Know</span> HOW LONG IT TOOK, EVEN WHILE WORKING JUST A FEW MINUTES AT A TIME.</h2>
+    <img class="project-example-photo" src="images/wednesdaycake.png" alt="frosted petite-fours cakes">
 
-  </body>
+    <section class="try-it-out-section">
+      <div class="leftnav">
+        <img class="icon-large" src="images/stopwatch-gray.svg" alt="Sign Up Stopwatch Icon">
+        <span class="nav-text-left">sign</span>
+        <span class="nav-text-left nav-text-left-line-two">up</span>
+      </div>
+      <h2 class="cursive try-it-out-header">Try it out!</h2>
+      <div class="rightnav">
+        <span class="nav-text-right">add a new</span>
+        <span class="nav-text-right-line-two">timer here!</span>
+        <img class="icon-large" src="images/add-gray.svg" alt="Add Timer Icon">
+      </div>
+    </section>
+    <section class="timer-section">
+      <div class="timer">
+        <div class="timer-info">
+          <h3 class="timer-label">LANDSCAPE PASTEL</h3>
+          <p class="timer-stats">Today's Total: 00h 30m</p>
+          <p class="timer-stats">Project Total: 05h 20m</p>
+        </div>
+        <div class="timer-button">00:29:37</div>
+      </div>
+      <div class="timer">
+        <div class="timer-info">
+          <h3 class="timer-label">NEW PROJECT</h3>
+          <p class="timer-stats">Today's Total: 00h 00m</p>
+          <p class="timer-stats">Project Total: 00h 00m</p>
+        </div>
+        <div class="timer-button">00:00:00</div>
+      </div>
+      <span class="save-timers-message">
+        <span class="cursive blue-sign-up">sign up</span>
+        <b>to save timers between sessions!</b>
+      </span>
+    </section>
+  </main>
+</body>
 </html>
