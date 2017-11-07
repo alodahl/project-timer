@@ -36,6 +36,10 @@ h1 {
   padding-top: 10px;
 }
 
+p {
+  font-size: 0.8em;
+}
+
 .tagline {
   font-size: .9em;
   font-weight: 100;
@@ -49,22 +53,15 @@ h1 {
 .leftnav {
   display: inline-block;
   float: left;
-  margin: 15px;
-  height: 38px;
-  width: 100px;
-  /*position: absolute;
-  left: 0;*/
-
+  margin: 10px;
+  /*height: 38px;
+  width: 100px;*/
 }
 
 .rightnav {
   float: right;
   display: inline-block;
-  margin: 15px;
-  /*width: 100px;*/
-  height: 100%;
-  /*position: absolute;
-  right: 0;*/
+  margin: 10px;
 }
 
 .icon-large {
@@ -119,41 +116,42 @@ h1 {
   width: 100%;
 }
 
+.timer-example-photo {
+  box-sizing: border-box;
+  width: 100%;
+  display: block;
+  padding: 20px;
+}
+
 .try-it-out-section {
   display: block;
-  background-color: #FFFFFF;
-  height: 75px;
+  background-color: var(--blue);
+  height: 70px;
   position: relative;
   text-align: center;
-
+  color: white;
 }
 
 .try-it-out-header {
   display: inline-block;
-  font-size: 2.5em;
-  padding: 15px 0;
-  font-weight: 600;
-  /*text-align: center;*/
-  /*width: 150px;*/
+  font-size: 2.0em;
+  padding: 20px 0;
+  font-weight: 500;
   margin: 0 auto;
+  color: white;
 }
 
 .stopwatch-for-sign-up {
   margin-top: 6px;
-  /*vertical-align: middle;*/
 }
 
 .add-gray-icon {
   padding-top: 5px;
-  /*float: right;*/
-  /*position: relative;
-  bottom: 48px;*/
 }
 
 .add-a-new {
   position: relative;
   right: 10px;
-  /*top: 10px;*/
 }
 
 .timer-here {
@@ -171,7 +169,7 @@ h1 {
 .timer {
   background-color: #FFFFFF;
   width: 94%;
-  height: 105px;
+  /*height: 105px;*/
   margin: 15px auto;
   padding: 10px;
   border-radius: 5px;
@@ -186,7 +184,7 @@ h1 {
 
 .timer-label {
   font-weight: 100;
-  font-size: 1.4em;
+  font-size: 1.0em;
   color: var(--blue);
   margin: 15px 0;
   height: 25px;
@@ -219,4 +217,56 @@ h1 {
 .blue-sign-up {
   color: var(--blue);
   font-size: 1.6em;
+}
+
+@media only screen and (min-width: 400px) {
+
+  p {
+    font-size: 1em;
+  }
+
+  .timer-example-photo {
+    width: 400px;
+    margin: 40px auto;
+  }
+
+  .timer-label {
+    font-weight: 100;
+    font-size: 1.4em;
+    color: var(--blue);
+    margin: 15px 0;
+    height: 25px;
+  }
+
+  .leftnav {
+    margin: 15px;
+    height: 38px;
+    width: 100px;
+  }
+
+  .rightnav {
+    margin: 15px;
+    padding-right: 5px;
+    height: 100%;
+  }
+
+}
+
+@media only screen and (min-width: 500px) {
+  .timer-example-photo {
+    width: 500px;
+  }
+
+  .try-it-out-header {
+    font-size: 2.5em;
+    padding: 15px 0;
+    font-weight: 500;
+  }
+  
+}
+
+@media only screen and (min-width: 700px) {
+  .timer-example-photo {
+    margin: 60px auto;
+  }
 }
