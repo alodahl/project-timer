@@ -4,6 +4,7 @@
   --lightgray: #EFEFEF;
   --mediumgray: #B2B2B2;
   --green: #1DC346;
+  --hotgreen: #00FF00;
 }
 
 body {
@@ -85,7 +86,6 @@ input::placeholder {
 
 .form {
   box-sizing: border-box;
-  background-color: white;
   border-radius: 5px;
   text-align: center;
   margin: 40px auto;
@@ -94,11 +94,31 @@ input::placeholder {
   height: 380px;
 }
 
-.sign-up-form-title {
-  font-size: 1.4em;
-  font-weight: 700;
-  margin-bottom: 30px;
+.login-form {
+  background-color: var(--blue);
+  color: white;
+}
+
+.signup-form {
+  background-color: white;
+}
+
+.form-title {
+font-size: 1.4em;
+font-weight: 700;
+margin-bottom: 30px;
+}
+
+.signup-form-title {
   color: var(--darkgray);
+}
+
+.login-form-title {
+  color: white;
+}
+
+.green-text {
+  color: var(--hotgreen);
 }
 
 .form-button {
