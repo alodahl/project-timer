@@ -22,24 +22,45 @@ body {
   height: 580px;
 }
 
-.title-project {
+.landing-title {
+  margin: 0;
+  padding-top: 10px;
+}
+
+.landing-title-project {
   font-size: 2em;
   padding-left: 60px;
 }
 
-.title-timer {
+.landing-title-timer {
   position: relative;
   top: 28px;
   right: 63px;
 }
 
-h1, h2 {
-  text-align: center;
+.title-project {
+  font-size: 2em;
+  font-weight: 400;
 }
 
-h1 {
+.title-timer {
+  position: relative;
+  top: 21px;
+  right: 48px;
+}
+
+.logo {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 120px;
+  height: 70px;
   margin: 0;
-  padding-top: 10px;
+  /*padding: 0;*/
+  padding: 5px 0 5px 5px;
+}
+
+h1, h2 {
+  text-align: center;
 }
 
 p {
@@ -74,9 +95,9 @@ input::placeholder {
 }
 
 .sign-up-form-title {
-  font-size: 2.4em;
-  font-weight: 500;
-  margin-bottom: 40px;
+  font-size: 1.4em;
+  font-weight: 700;
+  margin-bottom: 30px;
   color: var(--darkgray);
 }
 
@@ -91,7 +112,7 @@ input::placeholder {
     width: 220px;
     height: 37px;
     padding: 5px;
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
 .tagline {
@@ -302,6 +323,14 @@ input::placeholder {
     margin: 15px;
     padding-right: 5px;
     height: 100%;
+  }
+
+  .logo {
+    display: inline-block;
+    width: 120px;
+    height: 70px;
+    margin: 0;
+    padding: 5px 0;
   }
 
 }
