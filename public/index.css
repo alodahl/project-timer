@@ -1,0 +1,425 @@
+:root {
+  --blue: #0083DB;
+  --darkgray: #3F3F3F;
+  --lightgray: #EFEFEF;
+  --mediumgray: #B2B2B2;
+  --green: #1DC346;
+  --hotgreen: #00FF00;
+}
+
+body {
+  font-family: "Shree Devanagari 714";
+  margin: 0;
+  color: var(--darkgray);
+}
+
+.gray-background {
+  background-color: var(--lightgray);
+}
+
+.landing-page-header {
+  background-color: #D5EBEB;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%,rgba(0, 0, 0, 0) 70%,rgba(0, 0, 0, 0.7) 100%, transparent), url("images/watercolorCity-700px.png");
+  height: 580px;
+}
+
+.landing-title {
+  margin: 0;
+  padding-top: 10px;
+}
+
+.landing-title-project {
+  font-size: 2em;
+  padding-left: 60px;
+}
+
+.landing-title-timer {
+  position: relative;
+  top: 28px;
+  right: 63px;
+}
+
+.title-project {
+  font-size: 2em;
+  font-weight: 400;
+}
+
+.title-timer {
+  position: relative;
+  top: 21px;
+  right: 48px;
+}
+
+.logo {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 120px;
+  height: 70px;
+  margin: 0;
+  /*padding: 0;*/
+  padding: 5px 0 5px 5px;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+p {
+  font-size: 0.8em;
+}
+
+input {
+  box-sizing: border-box;
+  border: 1px solid gray;
+  border-radius: 3px;
+  width: 220px;
+  height: 37px;
+  margin: 7px;
+  padding: 10px 7px 4px 10px;
+}
+
+input::placeholder {
+  font-family: "Shree Devanagari 714";
+  font-size: 1.7em;
+  font-weight: 100;
+}
+
+.form {
+  box-sizing: border-box;
+  border-radius: 5px;
+  text-align: center;
+  margin: 40px auto;
+  padding: 30px;
+  width: 300px;
+  height: 380px;
+}
+
+.login-form {
+  background-color: var(--blue);
+  color: white;
+}
+
+.signup-form {
+  background-color: white;
+}
+
+.form-title {
+font-size: 1.4em;
+font-weight: 700;
+margin-bottom: 30px;
+}
+
+.signup-form-title {
+  color: var(--darkgray);
+}
+
+.login-form-title {
+  color: white;
+}
+
+.green-text {
+  color: var(--hotgreen);
+}
+
+.form-button {
+    box-sizing: border-box;
+    background-color: var(--green);
+    color: white;
+    font-family: "Shree Devanagari 714";
+    font-size: 1.2em;
+    border: 1px solid var(--green);
+    border-radius: 3px;
+    width: 220px;
+    height: 37px;
+    padding: 5px;
+    margin-top: 40px;
+}
+
+.tagline {
+  font-size: .9em;
+  font-weight: 100;
+  margin: 60px;
+}
+
+.cursive {
+  font-family: "SignPainter";
+}
+
+.leftnav {
+  display: inline-block;
+  float: left;
+  margin: 10px;
+  /*height: 38px;
+  width: 100px;*/
+}
+
+.rightnav {
+  float: right;
+  display: inline-block;
+  margin: 10px;
+}
+
+.icon-large {
+  display: inline-block;
+  width: 30px;
+
+}
+
+.left-icon-text {
+  display: inline-block;
+  line-height: 1.0;
+}
+
+.right-icon-text {
+  display: inline-block;
+  line-height: 1.0;
+}
+
+.nav-text{
+  margin: 0;
+  /*position: relative;
+  bottom: 17px;
+  right: 2px;*/
+}
+
+.nav-text-left-line-two {
+  /*bottom: 25px;
+  left: 35px;*/
+}
+
+.nav-text-right {
+  text-align: right;
+  position: relative;
+  bottom: 17px;
+  left: 45px;
+}
+.nav-text-right-line-two {
+  text-align: right;
+  top: 0px;
+}
+
+.header2 {
+  font-size: 2em;
+  padding-right: 3px;
+}
+
+.inline-timer {
+  font-size: 1.3em;
+}
+
+.project-example-photo {
+  width: 100%;
+}
+
+.timer-example-photo {
+  box-sizing: border-box;
+  width: 100%;
+  display: block;
+  padding: 20px;
+}
+
+.try-it-out-section {
+  display: block;
+  background-color: var(--blue);
+  height: 70px;
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.try-it-out-header {
+  display: inline-block;
+  font-size: 2.0em;
+  padding: 20px 0;
+  font-weight: 500;
+  margin: 0 auto;
+  color: white;
+}
+
+.stopwatch-for-sign-up {
+  margin-top: 6px;
+}
+
+.add-gray-icon {
+  padding-top: 5px;
+}
+
+.add-a-new {
+  position: relative;
+  right: 10px;
+}
+
+.timer-here {
+  position: relative;
+  bottom: 6px;
+  right: 9px;
+}
+
+.timer-section {
+  display: block;
+  background-color: var(--lightgray);
+  padding: 10px;
+}
+
+.timer {
+  background-color: #FFFFFF;
+  width: 94%;
+  /*height: 105px;*/
+  margin: 15px auto;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.timer-info {
+  display: inline-block;
+  margin: 0;
+  position: relative;
+  bottom: 10px;
+}
+
+.timer-label {
+  font-weight: 100;
+  font-size: 1.0em;
+  color: var(--blue);
+  margin: 15px 0;
+  height: 25px;
+}
+
+.timer-stats {
+  margin: 0;
+}
+
+.timer-button {
+  box-sizing: border-box;
+  display: inline-block;
+  float: right;
+  border: 2px solid var(--blue);
+  border-radius: 3px;
+  height: 100px;
+  width: 100px;
+  padding: 34px 3px;
+  text-align: center;
+  color: var(--blue);
+  font-size: 1.2em;
+  top: 42px;
+}
+
+.save-timers-message {
+  font-size: 1.1em;
+  text-align: center;
+}
+
+.blue-sign-up {
+  color: var(--blue);
+  font-size: 1.6em;
+}
+
+@media only screen and (min-width: 400px) {
+
+  p {
+    font-size: 1.0em;
+  }
+
+  .timer-example-photo {
+    width: 400px;
+    margin: 40px auto;
+  }
+
+  .timer-label {
+    font-weight: 100;
+    font-size: 1.4em;
+    color: var(--blue);
+    margin: 15px 0;
+    height: 25px;
+  }
+
+  .leftnav {
+    margin: 15px;
+    height: 38px;
+    width: 100px;
+  }
+
+  .rightnav {
+    margin: 15px;
+    padding-right: 5px;
+    height: 100%;
+  }
+
+  .logo {
+    display: inline-block;
+    width: 120px;
+    height: 70px;
+    margin: 0;
+    padding: 5px 0;
+  }
+
+  .small-project-example-photo {
+    display: none;
+  }
+
+}
+
+@media only screen and (min-width: 500px) {
+  .timer-example-photo {
+    width: 500px;
+  }
+
+  .try-it-out-header {
+    font-size: 2.5em;
+    padding: 15px 0;
+    font-weight: 500;
+  }
+
+}
+
+@media only screen and (min-width: 700px) {
+
+  .landing-page-header {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%,rgba(0, 0, 0, 0) 70%,rgba(0, 0, 0, 0.7) 100%, transparent), url("images/watercolorCity-1300px.png");
+    height: 700px;
+    background-size: cover;
+  }
+
+  .timer-example-photo {
+    margin: 60px auto;
+  }
+  .project-example-photo {
+    display: none;
+  }
+
+  .small-photo-section {
+    font-size: 0;
+  }
+
+  .small-project-example-photo {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 20%;
+    padding: 5px;
+  }
+
+}
+
+@media only screen and (min-width: 800px) {
+
+  .timer {;
+    width: 750px;
+  }
+
+}
+
+@media only screen and (min-width: 1300px) {
+
+  .landing-page-header {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%,rgba(0, 0, 0, 0) 70%,rgba(0, 0, 0, 0.7) 100%, transparent), url("images/watercolorCity-1500px.png");
+  }
+
+}
+
+@media only screen and (min-width: 1400px) {
+
+  .landing-page-header {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%,rgba(0, 0, 0, 0) 70%,rgba(0, 0, 0, 0.7) 100%, transparent), url("images/watercolorCity-1500px-narrow.png");
+  }
+
+}
