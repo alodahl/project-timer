@@ -24,12 +24,14 @@ const renderTimerComponent = (timer, index) =>
 
 //initialize timers array with one timer object
 let timers = [];
-const newTimer = {
+function newTimer() {
+  return {
   label: "NEW PROJECT",
   totalTime: 0,
   todaysTime: 0,
   isRunning: false,
   intervalTicker: null
+  }
 };
 
 
@@ -43,14 +45,14 @@ $('.timer-section').on('click', '.timer-button', function(event) {
   console.log(timers);
   if (!clickedTimer.isRunning) {
     clickedTimer.isRunning = true;
-    // clickedTimer.intervalTicker = setInterval(function(event) {
-    //     clickedTimer.todaysTime += 1;
-    //     clickedTimer.totalTime += 1;
+    clickedTimer.intervalTicker = setInterval(function(event) {
+        clickedTimer.todaysTime += 1;
+        clickedTimer.totalTime += 1;
         renderTimers(timers);
-    // }, 1000);
+    }, 1000);
   } else {
     clickedTimer.isRunning = false;
-    // clearInterval(clickedTimer.intervalTicker);
+    clearInterval(clickedTimer.intervalTicker);
   }
   console.log(`timer ${id}`)
 })
@@ -58,7 +60,7 @@ $('.timer-section').on('click', '.timer-button', function(event) {
 //when "new timer" area is clicked, add a new object to timers array
 //and re-render the whole array of timers.
 $('.new-timer-button').on('click', function() {
-  timers.push(newTimer);
+  timers.push(newTimer());
   renderTimers(timers);
 })
 

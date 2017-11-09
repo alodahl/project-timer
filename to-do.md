@@ -3,6 +3,7 @@
 ## Incomplete Tasks:
 - disconnect timers 2 thru 4
 - style running timers to be green
+- change images to lighter jpgs
 
 
 ## Completed Tasks:
