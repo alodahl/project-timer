@@ -1,11 +1,10 @@
 # Project Timer To-do
 
 ## Incomplete Tasks:
-- change images to lighter jpgs
 - Today's time -> Mins instead of secs.  
 - Modal for new timer + edit timer.
 - Add delete timer / cancel creating button.
--connect index.js to landing page timer section.
+- overflow solution for timer label text
 
 ### IF YOU HAVE TIME.
 - Save everything, make a pull request, merge to master.
@@ -24,3 +23,5 @@
 - base timer rendering on index
 - disconnect timers 2 thru 4
 - Style the buttons to make them green when running (add-sub running class in button)
+- connect index.js to landing page timer section.
+- change images to lighter jpgs
