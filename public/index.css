@@ -5,6 +5,7 @@
   --mediumgray: #B2B2B2;
   --green: #1DC346;
   --hotgreen: #00FF00;
+  --darkgreen: #12A540;
 }
 
 body {
@@ -133,6 +134,19 @@ margin-bottom: 30px;
     height: 37px;
     padding: 5px;
     margin-top: 40px;
+}
+
+.form-button:active {
+  background-color: var(--darkgreen);
+  border: 1px solid var(--darkgreen);
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.button:focus {
+  text-decoration: none;
 }
 
 .tagline {
@@ -302,6 +316,18 @@ margin-bottom: 30px;
   color: var(--blue);
   font-size: 1.2em;
   top: 42px;
+}
+
+.timer-button:active {
+  background-color: var(--darkgreen);
+  border: 1px solid var(--darkgreen);
+  color: white;
+}
+
+.timer-button:enabled {
+  background-color: var(--green);
+  border: 1px solid var(--green);
+  color: white;
 }
 
 .save-timers-message {
