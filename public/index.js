@@ -12,26 +12,36 @@ const formatSeconds = (seconds) => {
 // }
 
 //makes one new blank timer with an id of it's index in the timers array
-const renderTimerComponent = (timer, index) =>
-  `<div class="timer" data-index="${index}">
+const renderTimerComponent = function (timer, index) {
+  let part1ofTimer = `<div class="timer" data-index="${index}">
     <div class="timer-info">
       <h3 class="timer-label">${timer.label}</h3>
       <p class="timer-stats">Today's Total:${timer.todaysTime}s</p>
       <p class="timer-stats">Project Total: ${timer.totalTime}s</p>
-    </div>
-    <div class="timer-button button" data-id="${index}">${formatSeconds(timer.todaysTime)}</div>
-  </div>`;
+    </div>`;
+  let part2ofStoppedTimer = `<div class="timer-button button" data-id="${index}">${formatSeconds(timer.todaysTime)}</div>
+    </div>`;
+  let part2ofRunningTimer = `<div class="timer-button button green-button" data-id="${index}">${formatSeconds(timer.todaysTime)}</div>
+    </div>`;
+  if (!timer.isRunning) {
+    return (`${part1ofTimer}${part2ofStoppedTimer}`);
+  } else {
+    return (`${part1ofTimer}${part2ofRunningTimer}`);
+  }
+  // !timer.isRunning ? $(".timer-button").removeClass('green-button') : $(".timer-button").addClass('green-button');
+}
 
 //initialize timers array with one timer object
 let timers = [];
-function newTimer() {
-  return {
-  label: "NEW PROJECT",
+function newTimer(name) {
+  let newTimer = {
+  label: name || "NEW PROJECT",
   totalTime: 0,
   todaysTime: 0,
   isRunning: false,
   intervalTicker: null
   }
+  timers.push(newTimer);
 };
 
 
@@ -42,7 +52,7 @@ $('.timer-section').on('click', '.timer-button', function(event) {
   var start = new Date;
   let id = $(this).attr('data-id');
   let clickedTimer = timers[id];
-  console.log(timers);
+  console.log(this);
   if (!clickedTimer.isRunning) {
     clickedTimer.isRunning = true;
     clickedTimer.intervalTicker = setInterval(function(event) {
@@ -52,15 +62,15 @@ $('.timer-section').on('click', '.timer-button', function(event) {
     }, 1000);
   } else {
     clickedTimer.isRunning = false;
-    clearInterval(clickedTimer.intervalTicker);
+    setTimeout(function( ) { clearInterval(clickedTimer.intervalTicker) }, 1000);;
   }
   console.log(`timer ${id}`)
 })
 
 //when "new timer" area is clicked, add a new object to timers array
-//and re-render the whole array of timers.
+//with newTimer function and re-render the whole array of timers.
 $('.new-timer-button').on('click', function() {
-  timers.push(newTimer());
+  newTimer();
   renderTimers(timers);
 })
 
@@ -71,9 +81,11 @@ function renderTimers(timers) {
   for(let i=0; i < timers.length; i++) {
     let index = i;
     let timer = timers[i];
-    $('.timer-section').append(renderTimerComponent(timer, index))
+    $('.timer-section').append(renderTimerComponent(timer, index));
   }
 }
 
 //render existing timers on page load
+newTimer("WATERCOLOR PAINTING")
+newTimer("finish coding server")
 renderTimers(timers);
