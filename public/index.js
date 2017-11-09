@@ -23,12 +23,12 @@ const renderTimerComponent = function (timer, index) {
     </div>`;
   let part2ofRunningTimer = `<div class="timer-button button green-button" data-id="${index}">${formatSeconds(timer.todaysTime)}</div>
     </div>`;
+
   if (!timer.isRunning) {
     return (`${part1ofTimer}${part2ofStoppedTimer}`);
   } else {
     return (`${part1ofTimer}${part2ofRunningTimer}`);
   }
-  // !timer.isRunning ? $(".timer-button").removeClass('green-button') : $(".timer-button").addClass('green-button');
 }
 
 //initialize timers array with one timer object
@@ -86,6 +86,6 @@ function renderTimers(timers) {
 }
 
 //render existing timers on page load
-newTimer("WATERCOLOR PAINTING")
-newTimer("finish coding server")
+newTimer("WATERCOLOR PAINTING");
+newTimer("FINISH CODING SERVER");
 renderTimers(timers);

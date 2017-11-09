@@ -2,10 +2,10 @@
 
 ## Incomplete Tasks:
 - change images to lighter jpgs
-- Style the buttons to make them green when running (add-sub running class in button)
 - Today's time -> Mins instead of secs.  
 - Modal for new timer + edit timer.
 - Add delete timer / cancel creating button.
+-connect index.js to landing page timer section.
 
 ### IF YOU HAVE TIME.
 - Save everything, make a pull request, merge to master.
@@ -23,3 +23,4 @@
 - use jquery to have timers display seconds, minutes, and hours.
 - base timer rendering on index
 - disconnect timers 2 thru 4
+- Style the buttons to make them green when running (add-sub running class in button)

@@ -330,6 +330,11 @@ margin-bottom: 30px;
   color: white;
 }
 
+.gray-background {
+  background-color: var(--lightgray);
+  padding: 5px 0 25px 0;
+}
+
 .save-timers-message {
   font-size: 1.1em;
   text-align: center;
