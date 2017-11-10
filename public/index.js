@@ -1,5 +1,20 @@
 "use strict";
 
+let timers = [];
+
+//calling newTimer pushes a new timer object
+//to the timers array
+function newTimer(name) {
+  let newTimer = {
+  label: name || "NEW PROJECT",
+  totalTime: 0,
+  todaysTime: 0,
+  isRunning: false,
+  intervalTicker: null
+  }
+  timers.push(newTimer);
+};
+
 //formats seconds into HOUR:MIN:SEC
 const formatSeconds = (seconds) => {
   var date = new Date(null);
@@ -7,6 +22,7 @@ const formatSeconds = (seconds) => {
   return date.toISOString().substr(11, 8);
 }
 
+//formats seconds into 00h 00m
 const formatHoursAndMinutes = (seconds) => {
   var date = new Date(null);
   date.setSeconds(seconds);
@@ -35,24 +51,20 @@ const renderTimerComponent = function (timer, index) {
   }
 }
 
-//initialize timers array with one timer object
-let timers = [];
-function newTimer(name) {
-  let newTimer = {
-  label: name || "NEW PROJECT",
-  totalTime: 0,
-  todaysTime: 0,
-  isRunning: false,
-  intervalTicker: null
+//render each object in timers array by passing values into a
+// html block and then appending that to the dom.
+function renderTimers(timers) {
+  $('.js-timer-section').html('');
+  for(let i=0; i < timers.length; i++) {
+    let index = i;
+    let timer = timers[i];
+    $('.js-timer-section').append(renderTimerComponent(timer, index));
   }
-  timers.push(newTimer);
-};
-
-
+}
 
 //listener for square timer button. on click, if it was off, it turns on timer and adds
 //1 to the totalTime and todaysTime every second. If it was on, it should stop the timer.
-$('.timer-section').on('click', '.timer-button', function(event) {
+$('.js-timer-section').on('click', '.timer-button', function(event) {
   var start = new Date;
   let id = $(this).attr('data-id');
   let clickedTimer = timers[id];
@@ -73,21 +85,33 @@ $('.timer-section').on('click', '.timer-button', function(event) {
 
 //when "new timer" area is clicked, add a new object to timers array
 //with newTimer function and re-render the whole array of timers.
-$('.new-timer-button').on('click', function() {
+// Then open a modal with user customization options,
+// hiding main content.
+$('.js-new-timer-button').on('click', function() {
   newTimer();
   renderTimers(timers);
+  // $('.js-modal-content').html(content);
+  $('.js-modal').removeClass("hidden");
+  $('header').attr("aria-hidden", "true");
+  $('main').attr("aria-hidden", "true");
+  $('footer').attr("aria-hidden", "true");
 })
 
-//render each object in timers array by passing values into a
-// html block and then appending that to the dom.
-function renderTimers(timers) {
-  $('.timer-section').html('');
-  for(let i=0; i < timers.length; i++) {
-    let index = i;
-    let timer = timers[i];
-    $('.timer-section').append(renderTimerComponent(timer, index));
-  }
-}
+//click close button to hide modal and show results page
+$('.close-button').on('click', function(event) {
+  $('.js-modal').addClass("hidden");
+  $('header').attr("aria-hidden", "false");
+  $('main').attr("aria-hidden", "false");
+  $('footer').attr("aria-hidden", "false");
+})
+
+//click outside of light modal to hide modal and return to results page
+$('.dark').on('click', function(event) {
+  $('.js-modal').addClass("hidden");
+  $('header').attr("aria-hidden", "false");
+  $('main').attr("aria-hidden", "false");
+  $('footer').attr("aria-hidden", "false");
+})
 
 //render existing timers on page load
 newTimer("WATERCOLOR PAINTING");

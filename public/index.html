@@ -44,7 +44,7 @@
           </div>
         </div>
       <h2 class="cursive try-it-out-header" id="tryitout">Try it out!</h2>
-      <div class="rightnav new-timer-button button">
+      <div class="rightnav js-new-timer-button button">
         <div class="right-icon-text">
           <p class="nav-text">add a new</p>
           <p class="nav-text">timer here!</p>
@@ -52,8 +52,17 @@
         <img class="icon-large add-gray-icon" src="images/add-white.svg" alt="Add Timer Icon">
       </div>
     </section>
-    <section class="timer-section">
+    <section class="timer-section js-timer-section">
     </section>
+    </main>
+    <div class="modal js-modal hidden">
+      <div class="dark"></div>
+      <div class="light">
+        <div class="js-modal-content modal-content"></div>
+        <img class="close-button" role="button"
+        src="#" alt="click to exit window">
+      </div>
+    </div>
     <footer class="gray-background">
       <div class="save-timers-message">
         <a href="signup.html"><span class="cursive blue-sign-up">sign up</span></a>
@@ -62,6 +71,5 @@
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="index.js"></script>
-    </main>
     </body>
     </html>

@@ -26,3 +26,4 @@
 - Today's time -> Mins instead of secs.
 - create links between html files
 - overflow solution for timer label text
+- refactor js-affected classes: add or rename to js-<class>

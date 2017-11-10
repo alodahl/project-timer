@@ -1,35 +1,41 @@
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Timer Dashboard</title>
-    <link rel="stylesheet" href="index.css">
-  </head>
-  <body class="gray-background">
-    <header>
-      <nav class="try-it-out-section">
-        <div class="leftnav">
-          <img class="icon-large stopwatch-for-sign-up" src="images/stopwatch-white.svg" alt="Sign Up Stopwatch Icon">
-          <div class="left-icon-text">
-            <p class="nav-text">my</p>
-            <p class="nav-text">projects</p>
-          </div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Timer Dashboard</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body class="gray-background">
+  <header>
+    <nav class="try-it-out-section">
+      <div class="leftnav">
+        <img class="icon-large stopwatch-for-sign-up" src="images/stopwatch-white.svg" alt="Sign Up Stopwatch Icon">
+        <div class="left-icon-text">
+          <p class="nav-text">my</p>
+          <p class="nav-text">projects</p>
         </div>
-        <h1 class="logo"><span class="cursive title-project">Project</span><span class="title-timer">timer</span></h1>
-        <div class="rightnav new-timer-button button" role="button">
-          <div class="right-icon-text">
+      </div>
+      <h1 class="logo"><span class="cursive title-project">Project</span><span class="title-timer">timer</span></h1>
+      <div class="rightnav js-new-timer-button button" role="button">
+        <div class="right-icon-text">
           <p class="nav-text">new</p>
           <p class="nav-text">timer</p>
-          </div>
-          <img class="icon-large add-gray-icon" src="images/add-white.svg" alt="Add Timer Icon">
         </div>
-      </nav>
-    </header>
-    <main class="timer-section">
-    </main>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="index.js">
-
-    </script>
-  </body>
+        <img class="icon-large add-gray-icon" src="images/add-white.svg" alt="Add Timer Icon">
+      </div>
+    </nav>
+  </header>
+  <main class="timer-section js-timer-section">
+  </main>
+  <div class="modal js-modal hidden">
+    <div class="dark"></div>
+    <div class="light">
+      <div class="js-modal-content modal-content"></div>
+      <img class="close-button" role="button"
+      src="#" alt="click to exit window">
+    </div>
+  </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="index.js"></script>
+</body>
 </html>
