@@ -2,17 +2,37 @@
 
 let timers = [];
 let newTimerForm = `<form class="edit-form" action="" method="">
-  <label for="project name">Project Name:</label>
-  <input type="text" name="project name" value="" placeholder="PASTEL LANDSCAPE">
-  <label for="category">Category:</label>
-  <input type="text" name="category" value="" placeholder="art">
-  <label for="start date">Start Date:</label>
-  <input type="text" name="start date" value="" placeholder="optional">
-  <label for="notes">Notes:</label>
-  <input type="text" name="notes" value="" placeholder="chalk pastels, 400lb cold-pressed paper">
-  <label for="other time">Do you need to manually add time spent on your project?</label>
-  <input type="text" name="other time" value="" placeholder="hours"><input type="text" name="other time" value="" placeholder="minutes">
+  <h2 class="edit-form-header">customize your timer</h2>
+  <p class="edit-form-description"><em>change one or more your project details at any time:</em></p>
+  <div class="edit-form-item">
+    <label for="project name">Project Name:</label>
+    <input class="edit-form-input" type="text" name="project name" value="" placeholder="PASTEL LANDSCAPE">
+  </div>
+  <div class="edit-form-item">
+    <label for="category">Category:</label>
+    <input class="edit-form-input" type="text" name="category" value="" placeholder="art">
+  </div>
+  <div class="edit-form-item">
+    <label for="start date">Start Date:</label>
+    <input class="edit-form-input" type="text" name="start date" value="" placeholder="optional">
+  </div>
+  <div class="edit-form-item">
+    <label for="notes">Notes:</label>
+    <input class="edit-form-input edit-notes-input" type="text" name="notes" value="" placeholder="chalk pastels, 400lb cold-pressed paper">
+  </div>
+  <div class="edit-form-item edit-time-section">
+    <label class="edit-time-label" for="other time">Do you need to manually add time spent on your project?</label>
+    <span class="edit-time-both-inputs" role:"add time manually">
+      <input class="edit-form-input edit-time-input" type="text" name="other time" value="" placeholder="hours">
+      <input class="edit-form-input edit-time-input" type="text" name="other time" value="" placeholder="minutes">
+    </span>
+  </div>
+  <div class="delete-timer-section">
+    <input type="checkbox" class="delete-timer-checkbox" name="delete timer">
+    <label for="delete timer">delete this timer forever</label>
+  </div>
   <button class="form-button" type="submit" name="button">save changes</button>
+  <button class="form-button cancel-button" type="button" name="button">cancel</button>
 </form>`
 
 //calling newTimer pushes a new timer object
@@ -108,6 +128,14 @@ $('.js-new-timer-button').on('click', function() {
   $('footer').attr("aria-hidden", "true");
   newTimer();
   renderTimers(timers);
+})
+
+//click cancel button to hide modal and show results page
+$('.light').on('click', '.cancel-button', function(event) {
+  $('.js-modal').addClass("hidden");
+  $('header').attr("aria-hidden", "false");
+  $('main').attr("aria-hidden", "false");
+  $('footer').attr("aria-hidden", "false");
 })
 
 //click close button to hide modal and show results page

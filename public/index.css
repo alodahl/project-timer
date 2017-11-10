@@ -357,7 +357,51 @@ margin-bottom: 30px;
   font-size: 1.6em;
 }
 
+.edit-form-description {
+  padding-bottom: 10px;
+}
+
+.edit-form-input {
+  margin: 0;
+  font-family: "Shree Devanagari 714";
+  font-size: 1.0em;
+  font-weight: 100;
+}
+
+.edit-form-input::placeholder {
+  font-size: 1.0em;
+}
+
+.edit-time-input {
+  width: 80px;
+}
+
+.edit-form-item {
+  margin: 10px;
+}
+
+.delete-timer-section {
+  clear: both;
+  padding: 10px;
+  color: red;
+}
+
+.delete-timer-checkbox {
+  width: 15px;
+  height: 15px;
+  padding: 0;
+  margin: 0;
+}
+
+.cancel-button {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  background-color: red;
+  border: 1px solid red;
+}
+
 .light {
+  box-sizing: border-box;
   display: block;
   background-color: white;
   width: 300px;
@@ -369,6 +413,8 @@ margin-bottom: 30px;
   transform: translate(-50%, -50%);
   overflow: auto;
   border-radius: 10px;
+  padding: 20px;
+  text-align: center;
 }
 
 .dark {
@@ -383,10 +429,10 @@ margin-bottom: 30px;
 
 .close-button {
   position: absolute;
-  top: 0px;
-  right: 0px;
-  width: 30px;
-  height: 30px;
+  top: 5px;
+  right: 5px;
+  width: 25px;
+  height: 25px;
 }
 
 .close-button:hover {
@@ -463,6 +509,32 @@ margin-bottom: 30px;
     font-size: 2.5em;
     padding: 15px 0;
     font-weight: 500;
+  }
+
+}
+
+@media only screen and (min-width: 600px) {
+
+  .light {
+    width: 400px;
+    padding: 25px;
+  }
+
+  .edit-form-item {
+    float: right;
+  }
+
+  .edit-time-section {
+    margin-top: 10px;
+  }
+  .edit-time-both-inputs {
+    display: block;
+    clear: left;
+  }
+
+  .edit-time-label {
+    text-align: center;
+    clear: right;
   }
 
 }
