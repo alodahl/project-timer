@@ -112,6 +112,10 @@ input::placeholder {
   background-color: white;
 }
 
+.edit-form {
+  background-color: white;
+}
+
 .form-title {
 font-size: 1.4em;
 font-weight: 700;
@@ -375,6 +379,18 @@ margin-bottom: 30px;
   background-color: black;
   opacity: 0.5;
   position: fixed;
+}
+
+.close-button {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 30px;
+  height: 30px;
+}
+
+.close-button:hover {
+  cursor: pointer;
 }
 
 .small-project-example-photo, .hidden {

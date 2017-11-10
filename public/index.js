@@ -1,6 +1,19 @@
 "use strict";
 
 let timers = [];
+let newTimerForm = `<form class="edit-form" action="" method="">
+  <label for="project name">Project Name:</label>
+  <input type="text" name="project name" value="" placeholder="PASTEL LANDSCAPE">
+  <label for="category">Category:</label>
+  <input type="text" name="category" value="" placeholder="art">
+  <label for="start date">Start Date:</label>
+  <input type="text" name="start date" value="" placeholder="optional">
+  <label for="notes">Notes:</label>
+  <input type="text" name="notes" value="" placeholder="chalk pastels, 400lb cold-pressed paper">
+  <label for="other time">Do you need to manually add time spent on your project?</label>
+  <input type="text" name="other time" value="" placeholder="hours"><input type="text" name="other time" value="" placeholder="minutes">
+  <button class="form-button" type="submit" name="button">save changes</button>
+</form>`
 
 //calling newTimer pushes a new timer object
 //to the timers array
@@ -88,13 +101,13 @@ $('.js-timer-section').on('click', '.timer-button', function(event) {
 // Then open a modal with user customization options,
 // hiding main content.
 $('.js-new-timer-button').on('click', function() {
-  newTimer();
-  renderTimers(timers);
-  // $('.js-modal-content').html(content);
+  $('.js-modal-content').html(newTimerForm);
   $('.js-modal').removeClass("hidden");
   $('header').attr("aria-hidden", "true");
   $('main').attr("aria-hidden", "true");
   $('footer').attr("aria-hidden", "true");
+  newTimer();
+  renderTimers(timers);
 })
 
 //click close button to hide modal and show results page
