@@ -1,10 +1,8 @@
 # Project Timer To-do
 
 ## Incomplete Tasks:
-- Modal for new timer + edit timer.
+- Modal for new timer + edit timer. (label max: 20 char)
 - Add delete timer / cancel creating button.
-- overflow solution for timer label text
-- create links between html files
 
 ### IF YOU HAVE TIME.
 - Save everything, make a pull request, merge to master.
@@ -27,3 +25,4 @@
 - change images to lighter jpgs
 - Today's time -> Mins instead of secs.
 - create links between html files
+- overflow solution for timer label text
