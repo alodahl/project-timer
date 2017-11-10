@@ -1,10 +1,10 @@
 # Project Timer To-do
 
 ## Incomplete Tasks:
-- Today's time -> Mins instead of secs.  
 - Modal for new timer + edit timer.
 - Add delete timer / cancel creating button.
 - overflow solution for timer label text
+- create links between html files
 
 ### IF YOU HAVE TIME.
 - Save everything, make a pull request, merge to master.
@@ -25,3 +25,4 @@
 - Style the buttons to make them green when running (add-sub running class in button)
 - connect index.js to landing page timer section.
 - change images to lighter jpgs
+- Today's time -> Mins instead of secs. 

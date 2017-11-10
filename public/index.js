@@ -3,21 +3,25 @@
 //formats seconds into HOUR:MIN:SEC
 const formatSeconds = (seconds) => {
   var date = new Date(null);
-  date.setSeconds(seconds); // specify value for SECONDS here
+  date.setSeconds(seconds);
   return date.toISOString().substr(11, 8);
 }
 
-// const formatMinutes = (seconds) => {
-//   var time = date.toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'});
-// }
+const formatHoursAndMinutes = (seconds) => {
+  var date = new Date(null);
+  date.setSeconds(seconds);
+  let hours = date.toISOString().substr(11, 2);
+  let min = date.toISOString().substr(14, 2);
+  return `${hours}h ${min}m`;
+}
 
 //makes one new blank timer with an id of it's index in the timers array
 const renderTimerComponent = function (timer, index) {
   let part1ofTimer = `<div class="timer" data-index="${index}">
     <div class="timer-info">
       <h3 class="timer-label">${timer.label}</h3>
-      <p class="timer-stats">Today's Total:${timer.todaysTime}s</p>
-      <p class="timer-stats">Project Total: ${timer.totalTime}s</p>
+      <p class="timer-stats">Today's Total:${formatHoursAndMinutes(timer.todaysTime)}</p>
+      <p class="timer-stats">Project Total: ${formatHoursAndMinutes(timer.totalTime)}</p>
     </div>`;
   let part2ofStoppedTimer = `<div class="timer-button button" data-id="${index}">${formatSeconds(timer.todaysTime)}</div>
     </div>`;
