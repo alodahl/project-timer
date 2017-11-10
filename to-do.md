@@ -25,4 +25,5 @@
 - Style the buttons to make them green when running (add-sub running class in button)
 - connect index.js to landing page timer section.
 - change images to lighter jpgs
-- Today's time -> Mins instead of secs. 
+- Today's time -> Mins instead of secs.
+- create links between html files
