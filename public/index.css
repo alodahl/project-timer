@@ -5,6 +5,7 @@
   --mediumgray: #B2B2B2;
   --green: #1DC346;
   --hotgreen: #00FF00;
+  --darkgreen: #12A540;
 }
 
 body {
@@ -13,13 +14,21 @@ body {
   color: var(--darkgray);
 }
 
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--hotgreen);
+}
+
 .gray-background {
   background-color: var(--lightgray);
 }
 
 .landing-page-header {
   background-color: #D5EBEB;
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%,rgba(0, 0, 0, 0) 70%,rgba(0, 0, 0, 0.7) 100%, transparent), url("images/watercolorCity-700px.png");
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%,rgba(0, 0, 0, 0) 70%,rgba(0, 0, 0, 0.7) 100%, transparent), url("images/watercolorCity-700px.jpg");
   height: 580px;
 }
 
@@ -103,6 +112,10 @@ input::placeholder {
   background-color: white;
 }
 
+.edit-form {
+  background-color: white;
+}
+
 .form-title {
 font-size: 1.4em;
 font-weight: 700;
@@ -133,6 +146,19 @@ margin-bottom: 30px;
     height: 37px;
     padding: 5px;
     margin-top: 40px;
+}
+
+.form-button:active {
+  background-color: var(--darkgreen);
+  border: 1px solid var(--darkgreen);
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.button:focus {
+  text-decoration: none;
 }
 
 .tagline {
@@ -289,19 +315,44 @@ margin-bottom: 30px;
   margin: 0;
 }
 
+.timer-icon {
+  width: 25px;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  top: 3px;
+}
+
 .timer-button {
   box-sizing: border-box;
   display: inline-block;
   float: right;
   border: 2px solid var(--blue);
   border-radius: 3px;
-  height: 100px;
-  width: 100px;
-  padding: 34px 3px;
+  height: 90px;
+  width: 90px;
+  padding: 20px 0;
   text-align: center;
   color: var(--blue);
-  font-size: 1.2em;
+  font-size: 1.0em;
   top: 42px;
+}
+
+.timer-button:active {
+  background-color: var(--darkgreen);
+  border: 1px solid var(--darkgreen);
+  color: white;
+}
+
+.green-button {
+  background-color: var(--green);
+  border: 1px solid var(--green);
+  color: white;
+}
+
+.gray-background {
+  background-color: var(--lightgray);
+  padding: 5px 0 25px 0;
 }
 
 .save-timers-message {
@@ -314,23 +365,109 @@ margin-bottom: 30px;
   font-size: 1.6em;
 }
 
-@media only screen and (min-width: 400px) {
+.edit-form-description {
+  padding-bottom: 10px;
+}
 
-  p {
-    font-size: 1.0em;
-  }
+.edit-form-input {
+  margin: 0;
+  font-family: "Shree Devanagari 714";
+  font-size: 1.0em;
+  font-weight: 100;
+}
+
+.edit-form-input::placeholder {
+  font-size: 1.0em;
+}
+
+.edit-time-input {
+  width: 80px;
+}
+
+.edit-form-item {
+  margin: 10px;
+}
+
+.delete-timer-section {
+  clear: both;
+  padding: 10px;
+  color: red;
+}
+
+.delete-timer-checkbox {
+  width: 15px;
+  height: 15px;
+  padding: 0;
+  margin: 0;
+}
+
+.cancel-button {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  background-color: red;
+  border: 1px solid red;
+}
+
+.light {
+  box-sizing: border-box;
+  display: block;
+  background-color: white;
+  width: 300px;
+  max-width: 98%;
+  max-height: 95%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: auto;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+.dark {
+  width: 100%;
+  height: 100%;
+  top:0;
+  left:0;
+  background-color: black;
+  opacity: 0.3;
+  position: fixed;
+}
+
+.close-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 25px;
+  height: 25px;
+}
+
+.close-button:hover {
+  cursor: pointer;
+}
+
+.small-project-example-photo, .hidden, .other-timer-stats {
+  display: none;
+}
+
+
+
+@media only screen and (min-width: 330px) {
+
+    .timer-button {
+      height: 100px;
+      width: 100px;
+      font-size: 1.2em;
+    }
+
+}
+
+@media only screen and (min-width: 400px) {
 
   .timer-example-photo {
     width: 400px;
     margin: 40px auto;
-  }
-
-  .timer-label {
-    font-weight: 100;
-    font-size: 1.4em;
-    color: var(--blue);
-    margin: 15px 0;
-    height: 25px;
   }
 
   .leftnav {
@@ -353,8 +490,20 @@ margin-bottom: 30px;
     padding: 5px 0;
   }
 
-  .small-project-example-photo {
-    display: none;
+}
+
+@media only screen and (min-width: 415px) {
+
+  .timer-label {
+    font-weight: 100;
+    font-size: 1.4em;
+    color: var(--blue);
+    margin: 15px 0;
+    height: 25px;
+  }
+
+  p {
+    font-size: 1.0em;
   }
 
 }
@@ -372,10 +521,67 @@ margin-bottom: 30px;
 
 }
 
+@media only screen and (min-width: 600px) {
+
+  .light {
+    width: 400px;
+    padding: 25px;
+  }
+
+  .edit-form-item {
+    float: right;
+  }
+
+  .edit-time-section {
+    margin-top: 10px;
+  }
+  .edit-time-both-inputs {
+    display: block;
+    clear: left;
+  }
+
+  .edit-time-label {
+    text-align: center;
+    clear: right;
+  }
+
+  .timer {
+    height: 118px;
+  }
+
+  .other-timer-stats {
+    display: block;
+  }
+
+  .timer-stats-div {
+    position: absolute;
+    left: 245px;
+    top: 55px;
+  }
+
+  .timer-info {
+    width: 430px;
+  }
+
+  .timer-icon {
+    width: 27px;
+    position: relative;
+    top: 0;
+  }
+
+  .timer-button {
+    height: 118px;
+    width: 118px;
+    font-size: 1.4em;
+    padding: 25px 0;
+  }
+
+}
+
 @media only screen and (min-width: 700px) {
 
   .landing-page-header {
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%,rgba(0, 0, 0, 0) 70%,rgba(0, 0, 0, 0.7) 100%, transparent), url("images/watercolorCity-1300px.png");
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%,rgba(0, 0, 0, 0) 70%,rgba(0, 0, 0, 0.7) 100%, transparent), url("images/watercolorCity-1300px.jpg");
     height: 700px;
     background-size: cover;
   }
@@ -398,6 +604,14 @@ margin-bottom: 30px;
     padding: 5px;
   }
 
+  .timer-stats-div {
+    left: 295px;
+  }
+
+  .timer-info {
+    width: 490px;
+  }
+
 }
 
 @media only screen and (min-width: 800px) {
@@ -406,12 +620,20 @@ margin-bottom: 30px;
     width: 750px;
   }
 
+  .timer-stats-div {
+    left: 345px;
+  }
+
+  .timer-info {
+    width: 540px;
+  }
+
 }
 
-@media only screen and (min-width: 1300px) {
+@media only screen and (min-width: 1100px) {
 
   .landing-page-header {
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%,rgba(0, 0, 0, 0) 70%,rgba(0, 0, 0, 0.7) 100%, transparent), url("images/watercolorCity-1500px.png");
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%,rgba(0, 0, 0, 0) 70%,rgba(0, 0, 0, 0.7) 100%, transparent), url("images/watercolorCity-1500px.jpg");
   }
 
 }
@@ -419,7 +641,7 @@ margin-bottom: 30px;
 @media only screen and (min-width: 1400px) {
 
   .landing-page-header {
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%,rgba(0, 0, 0, 0) 70%,rgba(0, 0, 0, 0.7) 100%, transparent), url("images/watercolorCity-1500px-narrow.png");
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%,rgba(0, 0, 0, 0) 70%,rgba(0, 0, 0, 0.7) 100%, transparent), url("images/watercolorCity-1500px-narrow.jpg");
   }
 
 }
