@@ -315,6 +315,14 @@ margin-bottom: 30px;
   margin: 0;
 }
 
+.timer-icon {
+  width: 25px;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  top: 3px;
+}
+
 .timer-button {
   box-sizing: border-box;
   display: inline-block;
@@ -323,10 +331,10 @@ margin-bottom: 30px;
   border-radius: 3px;
   height: 90px;
   width: 90px;
-  padding: 34px 3px;
+  padding: 20px 0;
   text-align: center;
   color: var(--blue);
-  font-size: 1em;
+  font-size: 1.0em;
   top: 42px;
 }
 
@@ -423,7 +431,7 @@ margin-bottom: 30px;
   top:0;
   left:0;
   background-color: black;
-  opacity: 0.5;
+  opacity: 0.3;
   position: fixed;
 }
 
@@ -439,7 +447,7 @@ margin-bottom: 30px;
   cursor: pointer;
 }
 
-.small-project-example-photo, .hidden {
+.small-project-example-photo, .hidden, .other-timer-stats {
   display: none;
 }
 
@@ -537,6 +545,37 @@ margin-bottom: 30px;
     clear: right;
   }
 
+  .timer {
+    height: 118px;
+  }
+
+  .other-timer-stats {
+    display: block;
+  }
+
+  .timer-stats-div {
+    position: absolute;
+    left: 245px;
+    top: 55px;
+  }
+
+  .timer-info {
+    width: 430px;
+  }
+
+  .timer-icon {
+    width: 27px;
+    position: relative;
+    top: 0;
+  }
+
+  .timer-button {
+    height: 118px;
+    width: 118px;
+    font-size: 1.4em;
+    padding: 25px 0;
+  }
+
 }
 
 @media only screen and (min-width: 700px) {
@@ -565,12 +604,28 @@ margin-bottom: 30px;
     padding: 5px;
   }
 
+  .timer-stats-div {
+    left: 295px;
+  }
+
+  .timer-info {
+    width: 490px;
+  }
+
 }
 
 @media only screen and (min-width: 800px) {
 
   .timer {;
     width: 750px;
+  }
+
+  .timer-stats-div {
+    left: 345px;
+  }
+
+  .timer-info {
+    width: 540px;
   }
 
 }
