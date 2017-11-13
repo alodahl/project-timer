@@ -43,15 +43,22 @@ const formatSeconds = (seconds) => {
 }
 
 //formats seconds into 00h 00m
-const formatHoursAndMinutes = (seconds) => {
+const formatHoursAndMinutes = (seconds, extraHours) => {
   var date = new Date(null);
   date.setSeconds(seconds);
   let hours = date.toISOString().substr(11, 2);
   let min = date.toISOString().substr(14, 2);
-  return `${hours}h ${min}m`;
+  let totalHours = Number(hours) + extraHours;
+  if (extraHours) {
+    return `${totalHours}h ${min}m`;
+  } else {
+    return `${hours}h ${min}m`;
+  }
 }
 
 //makes one new blank timer with an id of it's index in the timers array
+// <p class="timer-stats">Today's Total:${formatHoursAndMinutes(timer.todaysTime)}</p>
+
 const renderTimerComponent = function (timer, index) {
   let part1ofTimer = `<div class="timer" data-index="${index}">
     <div class="timer-info">
@@ -62,8 +69,7 @@ const renderTimerComponent = function (timer, index) {
         <p class="timer-stats other-timer-stats">Notes:${timer.projectNotes}</p>
       </div>
       <div class="timer-stats-div">
-        <p class="timer-stats">Today's Total:${formatHoursAndMinutes(timer.todaysTime)}</p>
-        <p class="timer-stats">Project Total: ${formatHoursAndMinutes(timer.totalTime)}</p>
+        <p class="timer-stats">Project Total: ${formatHoursAndMinutes(timer.totalTime, timer.hours24orMore)}</p>
       </div>
     </div>`;
   let part2ofStoppedTimer = `<div class="timer-button button" data-id="${index}" role="button" aria-label="Click to Start Timer">${formatSeconds(timer.todaysTime)}
@@ -102,10 +108,12 @@ function newTimer(projectName, category, startDate, notes, hoursToAdd, minutesTo
   let newTimer = {
   label: projectName || "NEW PROJECT",
   category: category || "",
-  creationDate: startDate || todaysDate(),
+  creationDate: startDate || new Date(),
   projectNotes: notes || "",
-  totalTime: ((minutesToAdd*60)+(hoursToAdd*3600)) || (hoursToAdd*3600) || (minutesToAdd*60) || 0,
-  todaysTime: 0,
+  totalTime: 0,
+  // totalTime: ((minutesToAdd*60)+(hoursToAdd*3600)) || (hoursToAdd*3600) || (minutesToAdd*60) || 0,
+  // todaysTime: 0,
+  // hours24orMore: 0,
   isRunning: false,
   intervalTicker: null
   }
@@ -138,12 +146,17 @@ $('.js-timer-section').on('click', '.timer-button', function(event) {
   var start = new Date;
   let id = $(this).attr('data-id');
   let clickedTimer = timers[id];
+  renderTimers(timers);
   console.log(this);
   if (!clickedTimer.isRunning) {
     clickedTimer.isRunning = true;
     clickedTimer.intervalTicker = setInterval(function(event) {
-        clickedTimer.todaysTime += 1;
+        // clickedTimer.todaysTime += 1;
         clickedTimer.totalTime += 1;
+        // if (clickedTimer.totalTime === 86399) {
+        //   clickedTimer.hours24orMore += 24;
+        //   clickedTimer.totalTime = 0;
+        // }
         renderTimers(timers);
     }, 1000);
   } else {
@@ -163,9 +176,6 @@ $('.js-new-timer-button').on('click', function() {
   $('header').attr("aria-hidden", "true");
   $('main').attr("aria-hidden", "true");
   $('footer').attr("aria-hidden", "true");
-
-  // newTimer();
-  // renderTimers(timers);
 })
 
 let projectName;
