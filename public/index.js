@@ -2,12 +2,6 @@
 
 let timers = [];
 
-
-
-
-
-
-
 //makes one new blank timer with an id of it's index in the timers array
 const renderTimerComponent = function (timer, index) {
   //<p class="timer-stats">Today's Total:${formatHoursAndMinutes(timer.todaysTime)}</p>
@@ -38,7 +32,6 @@ const renderTimerComponent = function (timer, index) {
   }
 }
 
-
 //calling newTimer pushes a new timer object
 //to the timers array
 function newTimer(projectName, category, startDate, notes) {
@@ -58,10 +51,8 @@ function newTimer(projectName, category, startDate, notes) {
 // html block and then appending that to the dom.
 function renderTimers(timers) {
   $('.js-timer-section').html('');
-  for(let i=0; i < timers.length; i++) {
-    let index = i;
-    let timer = timers[i];
-    $('.js-timer-section').append(renderTimerComponent(timer, index));
+  for(let index=0; index < timers.length; index++) {
+    $('.js-timer-section').append(renderTimerComponent(timers[index], index));
   }
 }
 
@@ -80,17 +71,18 @@ $('.js-timer-section').on('click', '.timer-button', function(event) {
   let clickedTimer = timers[id];
   if (!clickedTimer.isRunning) {
     clickedTimer.isRunning = true;
+    clickedTimer.totalTimeInSeconds += 1;
+    renderTimers(timers);
     clickedTimer.intervalTicker = setInterval(function(event) {
       clickedTimer.totalTimeInSeconds += 1;
       renderTimers(timers);
     }, 1000);
   } else {
     clickedTimer.isRunning = false;
-    setTimeout(function( ) { clearInterval(clickedTimer.intervalTicker) }, 1000);;
+    setTimeout(function( ) { clearInterval(clickedTimer.intervalTicker) }, 1000);
   }
   console.log(`timer ${id}`)
 })
-
 
 function closeModal(){
   $('.js-modal').addClass("hidden");
@@ -130,7 +122,6 @@ $(function(){
     $('footer').attr("aria-hidden", "true");
   })
 
-
   //when the "save changes" button is pressed, make sure
   //to only include truthy answers, then use them to
   //generate a new timer object. last, clear the global
@@ -147,9 +138,6 @@ $(function(){
   })
 
 })
-
-
-
 
 
 //////////// TIME TO STRING   ////////////
