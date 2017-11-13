@@ -2,21 +2,11 @@
 
 let timers = [];
 
-//formats seconds into HOUR:MIN:SEC
-const formatSeconds = (seconds) => {
-  var date = new Date(null);
-  date.setSeconds(seconds);
-  return date.toISOString().substr(11, 8);
-}
 
-//formats seconds into 00h 00m
-const formatHoursAndMinutes = (seconds) => {
-  var date = new Date(null);
-  date.setSeconds(seconds);
-  let hours = date.toISOString().substr(11, 2);
-  let min = date.toISOString().substr(14, 2);
-  return `${hours}h ${min}m`;
-}
+
+
+
+
 
 //makes one new blank timer with an id of it's index in the timers array
 const renderTimerComponent = function (timer, index) {
@@ -25,9 +15,9 @@ const renderTimerComponent = function (timer, index) {
   <div class="timer-info">
   <h3 class="timer-label">${timer.label}</h3>
   <div class="other-timer-stats-div">
-  <p class="timer-stats other-timer-stats">Category:${timer.category}</p>
-  <p class="timer-stats other-timer-stats">Start Date:${timer.creationDate}</p>
-  <p class="timer-stats other-timer-stats">Notes:${timer.projectNotes}</p>
+  <p class="timer-stats other-timer-stats">Category: ${timer.category}</p>
+  <p class="timer-stats other-timer-stats">Start Date: ${dateToString(timer.creationDate)}</p>
+  <p class="timer-stats other-timer-stats">Notes: ${timer.projectNotes}</p>
   </div>
   <div class="timer-stats-div">
 
@@ -101,52 +91,6 @@ $('.js-timer-section').on('click', '.timer-button', function(event) {
   console.log(`timer ${id}`)
 })
 
-//when "new timer" area is clicked, add a new object to timers array
-//with newTimer function and re-render the whole array of timers.
-// Then open a modal with user customization options,
-// hiding main content.
-$('.js-new-timer-button').on('click', function() {
-  $('.js-modal').removeClass("hidden");
-  $('header').attr("aria-hidden", "true");
-  $('main').attr("aria-hidden", "true");
-  $('footer').attr("aria-hidden", "true");
-})
-
-
-//when the "save changes" button is pressed, make sure
-//to only include truthy answers, then use them to
-//generate a new timer object. last, clear the global
-//variables for next time before closing modal.
-$('.light').on('click', '.save-changes', function(event) {
-  let projectName = $('.js-project-name').val();
-  let category = $('.js-category-name').val();
-  let startDate = $('.js-start-date').val();
-  let notes = $('.js-notes').val();
-  //let hoursToAdd = $('.js-hours').val();
-  //let minutesToAdd = $('.js-minutes').val();
-  newTimer(projectName, category, startDate, notes);
-  renderTimers(timers);
-  clearTimers();
-  closeModal();
-})
-
-//click cancel button to hide modal and show results page
-$('.light').on('click', '.cancel-button', function(event) {
-  $('.js-modal').addClass("hidden");
-  $('header').attr("aria-hidden", "false");
-  $('main').attr("aria-hidden", "false");
-  $('footer').attr("aria-hidden", "false");
-})
-
-//click close button to hide modal and show results page
-$('.close-button').on('click', function(event) {
-  closeModal()
-})
-
-//click outside of light modal to hide modal and return to results page
-$('.dark').on('click', function(event) {
-  closeModal()
-})
 
 function closeModal(){
   $('.js-modal').addClass("hidden");
@@ -155,30 +99,78 @@ function closeModal(){
   $('footer').attr("aria-hidden", "false");
 }
 
+$(function(){
+  //render existing timers on page load
+  newTimer("WATERCOLOR PAINTING");
+  newTimer("FINISH CODING SERVER");
+  renderTimers(timers);
+
+  //click cancel button to hide modal and show results page
+  $('.light').on('click', '.cancel-button', function(event) {
+    closeModal();
+  })
+
+  //click close button to hide modal and show results page
+  $('.close-button').on('click', function(event) {
+    closeModal()
+  })
+
+  //click outside of light modal to hide modal and return to results page
+  $('.dark').on('click', function(event) {
+    closeModal()
+  })
+  //when "new timer" area is clicked, add a new object to timers array
+  //with newTimer function and re-render the whole array of timers.
+  // Then open a modal with user customization options,
+  // hiding main content.
+  $('.js-new-timer-button').on('click', function() {
+    $('.js-modal').removeClass("hidden");
+    $('header').attr("aria-hidden", "true");
+    $('main').attr("aria-hidden", "true");
+    $('footer').attr("aria-hidden", "true");
+  })
 
 
-//render existing timers on page load
-newTimer("WATERCOLOR PAINTING");
-newTimer("FINISH CODING SERVER");
-renderTimers(timers);
+  //when the "save changes" button is pressed, make sure
+  //to only include truthy answers, then use them to
+  //generate a new timer object. last, clear the global
+  //variables for next time before closing modal.
+  $('.light').on('click', '.save-changes', function(event) {
+    let projectName = $('.js-project-name').val();
+    let category = $('.js-category-name').val();
+    let startDate = $('.js-start-date').val();
+    let notes = $('.js-notes').val();
+    newTimer(projectName, category, startDate, notes);
+    renderTimers(timers);
+    clearTimers();
+    closeModal()
+  })
+
+})
 
 
 
 
 
-//
-// function todaysDate() {
-// var today = new Date();
-// var dd = today.getDate();
-// var mm = today.getMonth()+1; //January is 0!
-// var yyyy = today.getFullYear();
-//
-// if(dd<10) {
-//     dd = '0'+dd
-// }
-// if(mm<10) {
-//     mm = '0'+mm
-// }
-// today = mm + '/' + dd + '/' + yyyy;
-// return(today);
-// }
+//////////// TIME TO STRING   ////////////
+
+//formats seconds into HOUR:MIN:SEC
+const formatSeconds = (seconds) => {
+  var date = new Date(null);
+  date.setSeconds(seconds);
+  return date.toISOString().substr(11, 8);
+}
+
+//formats seconds into 00h 00m
+const formatHoursAndMinutes = (seconds) => {
+  var date = new Date(null);
+  date.setSeconds(seconds);
+  let hours = date.toISOString().substr(11, 2);
+  let min = date.toISOString().substr(14, 2);
+  return `${hours}h ${min}m`;
+}
+
+function dateToString(date){
+  let dateString = "" + date;
+  return dateString.substr(0, 15)
+}
