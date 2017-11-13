@@ -69,19 +69,16 @@ $('.js-timer-section').on('click', '.timer-button', function(event) {
   var start = new Date;
   let id = $(this).attr('data-id');
   let clickedTimer = timers[id];
-  if (!clickedTimer.isRunning) {
-    clickedTimer.isRunning = true;
-    clickedTimer.totalTimeInSeconds += 1;
-    renderTimers(timers);
+  clickedTimer.isRunning = (!clickedTimer.isRunning);
+  renderTimers(timers);
+  if (clickedTimer.isRunning) {
     clickedTimer.intervalTicker = setInterval(function(event) {
       clickedTimer.totalTimeInSeconds += 1;
       renderTimers(timers);
     }, 1000);
   } else {
-    clickedTimer.isRunning = false;
-    setTimeout(function( ) { clearInterval(clickedTimer.intervalTicker) }, 1000);
+    clearInterval(clickedTimer.intervalTicker);
   }
-  console.log(`timer ${id}`)
 })
 
 function closeModal(){
@@ -111,6 +108,7 @@ $(function(){
   $('.dark').on('click', function(event) {
     closeModal()
   })
+  
   //when "new timer" area is clicked, add a new object to timers array
   //with newTimer function and re-render the whole array of timers.
   // Then open a modal with user customization options,
@@ -136,12 +134,9 @@ $(function(){
     clearTimers();
     closeModal()
   })
-
 })
 
-
 //////////// TIME TO STRING   ////////////
-
 //formats seconds into HOUR:MIN:SEC
 const formatSeconds = (seconds) => {
   var date = new Date(null);
