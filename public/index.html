@@ -58,7 +58,41 @@
     <div class="modal js-modal hidden">
       <div class="dark"></div>
       <div class="light">
-        <div class="js-modal-content modal-content"></div>
+        <div class="js-modal-content modal-content">
+          <form class="edit-form" action="" method="">
+            <h2 class="edit-form-header">customize your timer</h2>
+            <p class="edit-form-description"><em>change one or more your project details at any time:</em></p>
+            <div class="edit-form-item">
+              <label for="project name">Project Name:</label>
+              <input class="edit-form-input js-project-name" type="text" name="project name" value="" placeholder="PASTEL LANDSCAPE" maxlength="20">
+            </div>
+            <div class="edit-form-item">
+              <label for="category">Category:</label>
+              <input class="edit-form-input js-category-name" type="text" name="category" value="" placeholder="art" maxlength="20">
+            </div>
+            <div class="edit-form-item">
+              <label for="start date">Start Date:</label>
+              <input class="edit-form-input js-start-date" type="text" name="start date" value="" placeholder="optional" maxlength="18">
+            </div>
+            <div class="edit-form-item">
+              <label for="notes">Notes:</label>
+              <input class="edit-form-input edit-notes-input js-notes" type="text" name="notes" value="" placeholder="chalk pastels, 400lb cold-pressed paper" maxlength="50">
+            </div>
+            <div class="edit-form-item edit-time-section">
+              <label class="edit-time-label" for="other time">Do you need to manually add time spent on your project?</label>
+              <span class="edit-time-both-inputs" role:"add time manually">
+                <input class="edit-form-input edit-time-input js-hours" type="text" name="other time" value="" placeholder="hours" maxlength="2">
+                <input class="edit-form-input edit-time-input js-minutes" type="text" name="other time" value="" placeholder="minutes" maxlength="2">
+              </span>
+            </div>
+            <div class="delete-timer-section">
+              <input type="checkbox" class="delete-timer-checkbox" name="delete timer">
+              <label for="delete timer">delete this timer forever</label>
+            </div>
+            <button class="form-button save-changes" type="button" role="submit" name="button">save changes</button>
+            <button class="form-button cancel-button" type="button" name="button">cancel</button>
+          </form>
+        </div>
         <img class="close-button button" role="button"
         src="images/close-button.svg" alt="click to exit window">
       </div>
