@@ -5,7 +5,6 @@
 
 ### SERVER SIDE:
 - Use postman from now on.
-- do models.js
 - POST /api/timers/ -> creates a timer.
 - GET /api/timers/
 - PUT /api/timers/:id -> edit existing timer
@@ -38,3 +37,5 @@
 ### SERVER SIDE:
 - check out a new branch. And start working on server.js.
 - Maybe copy server.js from blogpost as starting point
+- do models.js
+- set up mlab timers and test databases, setup env vars on travis and heroku
