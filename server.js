@@ -4,6 +4,9 @@ const morgan = require('morgan');
 const express = require('express');
 const app = express();
 
+// const {DATABASE_URL, PORT} = require('./config');
+const {Timer} = require('./models');
+
 app.use(morgan('common'));
 app.use(bodyParser.json());
 app.use(express.static('public'));
@@ -15,30 +18,20 @@ app.listen(process.env.PORT || 8080);
 module.exports = {app};
 
 
+app.get('/timers', (req, res) => {
+  Timer
+    .find()
+    .then(timers => {
+      res.json(posts.map(post => post.apiRepr()));
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({error: 'something went terribly wrong'});
+    });
+});
 //
-// const {DATABASE_URL, PORT} = require('./config');
-// const {BlogPost} = require('./models');
-
-
-
-
-
-//
-//
-// app.get('/posts', (req, res) => {
-//   BlogPost
-//     .find()
-//     .then(posts => {
-//       res.json(posts.map(post => post.apiRepr()));
-//     })
-//     .catch(err => {
-//       console.error(err);
-//       res.status(500).json({error: 'something went terribly wrong'});
-//     });
-// });
-//
-// app.get('/posts/:id', (req, res) => {
-//   BlogPost
+// app.get('/timers/:id', (req, res) => {
+//   Timers
 //     .findById(req.params.id)
 //     .then(post => res.json(post.apiRepr()))
 //     .catch(err => {
@@ -46,8 +39,8 @@ module.exports = {app};
 //       res.status(500).json({error: 'something went horribly awry'});
 //     });
 // });
-//
-// app.post('/posts', (req, res) => {
+// /////The required fields will be everything but "logs" & "totalTimeInSeconds"
+// app.post('/timers', (req, res) => {
 //   const requiredFields = ['title', 'content', 'author'];
 //   for (let i=0; i<requiredFields.length; i++) {
 //     const field = requiredFields[i];
@@ -58,7 +51,7 @@ module.exports = {app};
 //     }
 //   }
 //
-//   BlogPost
+//   Timers
 //     .create({
 //       title: req.body.title,
 //       content: req.body.content,
@@ -73,8 +66,8 @@ module.exports = {app};
 // });
 //
 //
-// app.delete('/posts/:id', (req, res) => {
-//   BlogPost
+// app.delete('/timers/:id', (req, res) => {
+//   Timer
 //     .findByIdAndRemove(req.params.id)
 //     .then(() => {
 //       res.status(204).json({message: 'success'});
@@ -85,8 +78,8 @@ module.exports = {app};
 //     });
 // });
 //
-//
-// app.put('/posts/:id', (req, res) => {
+//  /////remember not to test "logs" or "totalTimeInSeconds"
+// app.put('/timers/:id', (req, res) => {
 //   if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
 //     res.status(400).json({
 //       error: 'Request path id and request body id values must match'
@@ -106,17 +99,6 @@ module.exports = {app};
 //     .then(updatedPost => res.status(204).end())
 //     .catch(err => res.status(500).json({message: 'Something went wrong'}));
 // });
-//
-//
-// app.delete('/:id', (req, res) => {
-//   BlogPosts
-//     .findByIdAndRemove(req.params.id)
-//     .then(() => {
-//       console.log(`Deleted blog post with id \`${req.params.ID}\``);
-//       res.status(204).end();
-//     });
-// });
-//
 //
 // app.use('*', function(req, res) {
 //   res.status(404).json({message: 'Not Found'});

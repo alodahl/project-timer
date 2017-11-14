@@ -1,6 +1,7 @@
 # Project Timer To-do
 
 ## Incomplete Tasks:
+- make one button each for create new and edit existing timer
 - "edit timer" button works twice
 
 ### SERVER SIDE:
