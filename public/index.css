@@ -288,6 +288,7 @@ margin-bottom: 30px;
 }
 
 .timer {
+  position: relative;
   background-color: #FFFFFF;
   width: 94%;
   /*height: 105px;*/
@@ -307,12 +308,29 @@ margin-bottom: 30px;
   font-weight: 100;
   font-size: 1.0em;
   color: var(--blue);
-  margin: 15px 0;
+  margin: 10px 0;
   height: 25px;
 }
 
 .timer-stats {
   margin: 0;
+}
+
+.edit-icon-button {
+  width: 25px;
+  height: 25px;
+  background-color: white;
+  border: none;
+  padding: none;
+  margin: 0 5px;
+  position: absolute;
+  bottom: 10px;
+  right: 115px;
+  /*float: right;*/
+}
+
+.edit-icon-img {
+  width: 20px;
 }
 
 .timer-icon {
@@ -394,11 +412,43 @@ margin-bottom: 30px;
   color: red;
 }
 
-.delete-timer-checkbox {
+.delete-timer-icon {
   width: 15px;
   height: 15px;
   padding: 0;
   margin: 0;
+}
+
+.delete-timer-button {
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 3px;
+  padding: 3px 4px;
+}
+
+.delete-alert {
+  text-align: center;
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.delete-alert-button {
+  background-color: var(--darkgray);
+  border: 1px solid var(--darkgray);
+  border-radius: 3px;
+  font-family: "Shree Devanagari 714";
+  color: white;
+  font-size: 1.0em;
+  padding: 5px 0 3px 0;
+  width: 130px;
+  margin: 10px 5px 0 5px;
+}
+
+.final-delete-it-button {
+  background-color: red;
+  border: 1px solid red;
 }
 
 .cancel-button {
@@ -451,19 +501,6 @@ margin-bottom: 30px;
   display: none;
 }
 
-
-
-@media only screen and (min-width: 330px) {
-
-    /*.timer-button {
-      height: 100px;
-      width: 100px;
-      font-size: 1.2em;
-      margin-bottom: 8px;
-    }*/
-
-}
-
 @media only screen and (min-width: 400px) {
 
   .timer-example-photo {
@@ -491,6 +528,10 @@ margin-bottom: 30px;
     padding: 5px 0;
   }
 
+  .edit-icon-button {
+    right: 135px;
+  }
+
 }
 
 @media only screen and (min-width: 415px) {
@@ -506,7 +547,7 @@ margin-bottom: 30px;
     font-weight: 100;
     font-size: 1.4em;
     color: var(--blue);
-    margin: 15px 0;
+    margin: 10px 0;
     height: 25px;
   }
 
@@ -525,6 +566,10 @@ margin-bottom: 30px;
     font-size: 2.5em;
     padding: 15px 0;
     font-weight: 500;
+  }
+
+  .edit-icon-button {
+    right: 150px;
   }
 
 }
@@ -554,7 +599,7 @@ margin-bottom: 30px;
   }
 
   .timer {
-    height: 118px;
+    /*height: 130px;*/
   }
 
   .other-timer-stats {
@@ -582,6 +627,11 @@ margin-bottom: 30px;
     width: 118px;
     font-size: 1.4em;
     padding: 25px 0;
+  }
+
+  .edit-icon-button {
+    right: 170px;
+    bottom: 15px;
   }
 
 }

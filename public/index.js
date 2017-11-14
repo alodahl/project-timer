@@ -1,6 +1,7 @@
 "use strict";
 
 let timers = [];
+let indexOfTimerBeingEdited;
 
 //makes one new blank timer with an id of it's index in the timers array
 // <p class="timer-stats">Today's Total:${formatHoursAndMinutes(timer.todaysTime)}</p>
@@ -16,15 +17,17 @@ const renderTimerComponent = function (timer, index) {
   <p class="timer-stats other-timer-stats">Notes: ${timer.projectNotes}</p>
   </div>
   <div class="timer-stats-div">
-
   <p class="timer-stats">Project Total: ${formatHoursAndMinutes(timer.totalTimeInSeconds)}</p>
+  <p></p>
   </div>
-  </div>`;
+  </div>
+  <button class="edit-icon-button js-edit-icon-button button" data-id="${index}"><img class="edit-icon-img" src="images/edit.gif" alt="edit this timer"></button>
+  `;
   let part2ofStoppedTimer = `<div class="timer-button button" data-id="${index}" role="button" aria-label="Click to Start Timer">${formatSeconds(timer.totalTimeInSeconds)}
-  <img class="timer-icon" src="images/start-timer.svg"</div>
+  <img class="timer-icon" src="images/start-timer.svgz"</div>
   </div>`;
   let part2ofRunningTimer = `<div class="timer-button button green-button" data-id="${index}" role="button" aria-label="Click to Stop Timer">${formatSeconds(timer.totalTimeInSeconds)}
-  <img class="timer-icon" src="images/stop-timer.svg"</div>
+  <img class="timer-icon" src="images/stop-timer.svgz"</div>
   </div>`;
 
   if (!timer.isRunning) {
@@ -58,7 +61,7 @@ function renderTimers(timers) {
   }
 }
 
-function clearTimers() {
+function clearForm() {
   $('.js-project-name').val("");
   $('.js-category-name').val("");
   $('.js-start-date').val("");
@@ -90,6 +93,31 @@ function closeModal(){
   $('footer').attr("aria-hidden", "false");
 }
 
+function openModal(){
+  $('.js-modal').removeClass("hidden");
+  $('header').attr("aria-hidden", "true");
+  $('main').attr("aria-hidden", "true");
+  $('footer').attr("aria-hidden", "true");
+}
+
+$('.light').on('click', '.js-change-existing-timer', function(event) {
+  console.log("js-change-existing-timer button ran");
+  let projectName = $('.js-project-name').val();
+  let category = $('.js-category-name').val();
+  let startDate = $('.js-start-date').val();
+  let notes = $('.js-notes').val();
+  timers[indexOfTimerBeingEdited].label = projectName;
+  timers[indexOfTimerBeingEdited].category = category;
+  timers[indexOfTimerBeingEdited].creationDate = startDate;
+  timers[indexOfTimerBeingEdited].projectNotes =  notes;
+  renderTimers(timers);
+  clearForm();
+  closeModal();
+  $('.submit-button').addClass('save-changes');
+  $('.submit-button').removeClass('js-change-existing-timer');
+  // indexOfTimerBeingEdited = "";
+})
+
 $(function(){
   //render existing timers on page load
   newTimer("WATERCOLOR PAINTING");
@@ -116,10 +144,7 @@ $(function(){
   // Then open a modal with user customization options,
   // hiding main content.
   $('.js-new-timer-button').on('click', function() {
-    $('.js-modal').removeClass("hidden");
-    $('header').attr("aria-hidden", "true");
-    $('main').attr("aria-hidden", "true");
-    $('footer').attr("aria-hidden", "true");
+    openModal();
   })
 
   //when the "save changes" button is pressed, make sure
@@ -127,14 +152,63 @@ $(function(){
   //generate a new timer object. last, clear the global
   //variables for next time before closing modal.
   $('.light').on('click', '.save-changes', function(event) {
+    console.log("save-changes button ran");
     let projectName = $('.js-project-name').val();
     let category = $('.js-category-name').val();
     let startDate = $('.js-start-date').val();
     let notes = $('.js-notes').val();
     newTimer(projectName, category, startDate, notes);
     renderTimers(timers);
-    clearTimers();
-    closeModal()
+    clearForm();
+    closeModal();
+  })
+
+  // $('.light').on('click', '.js-change-existing-timer', function(event) {
+  //   console.log("js-change-existing-timer button ran");
+  //   let projectName = $('.js-project-name').val();
+  //   let category = $('.js-category-name').val();
+  //   let startDate = $('.js-start-date').val();
+  //   let notes = $('.js-notes').val();
+  //   timers[indexOfTimerBeingEdited].label = projectName;
+  //   timers[indexOfTimerBeingEdited].category = category;
+  //   timers[indexOfTimerBeingEdited].creationDate = startDate;
+  //   timers[indexOfTimerBeingEdited].projectNotes =  notes;
+  //   renderTimers(timers);
+  //   clearForm();
+  //   closeModal();
+  //   $('.submit-button').addClass('save-changes');
+  //   $('.submit-button').removeClass('js-change-existing-timer');
+  //   // indexOfTimerBeingEdited = "";
+  // })
+
+  $('.light').on('click','.js-delete-timer-button', function() {
+    event.preventDefault();
+    $('.js-delete-alert').removeClass('hidden');
+    console.log("delete timer button ran");
+  })
+
+  $('.light').on('click','.js-final-delete-it-button', function() {
+    event.preventDefault();
+    timers.splice([indexOfTimerBeingEdited], 1);
+    renderTimers(timers);
+    closeModal();
+    $('.js-delete-alert').addClass('hidden');
+  })
+
+  $('.light').on('click','.js-cancel-delete-button', function() {
+    event.preventDefault();
+    $('.js-delete-alert').addClass('hidden');
+    // console.log("delete timer button ran");
+  })
+
+  $('.js-edit-icon-button').on('click', function(event) {
+    console.log("edit timer function began");
+    let index = $(this).attr('data-id');
+    $('.submit-button').removeClass('save-changes');
+    $('.submit-button').addClass('js-change-existing-timer');
+    indexOfTimerBeingEdited = index;
+    openModal();
+    console.log("whole edit timer function ran");
   })
 })
 

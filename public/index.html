@@ -78,20 +78,27 @@
               <label for="notes">Notes:</label>
               <input class="edit-form-input edit-notes-input js-notes" type="text" name="notes" value="" placeholder="chalk pastels, 400lb cold-pressed paper" maxlength="50">
             </div>
-            <div class="edit-form-item edit-time-section">
+            <!-- <div class="edit-form-item edit-time-section">
               <label class="edit-time-label" for="other time">Do you need to manually add time spent on your project?</label>
               <span class="edit-time-both-inputs" role:"add time manually">
                 <input class="edit-form-input edit-time-input js-hours" type="text" name="other time" value="" placeholder="hours" maxlength="2">
                 <input class="edit-form-input edit-time-input js-minutes" type="text" name="other time" value="" placeholder="minutes" maxlength="2">
               </span>
-            </div>
-            <div class="delete-timer-section">
-              <input type="checkbox" class="delete-timer-checkbox" name="delete timer">
-              <label for="delete timer">delete this timer forever</label>
-            </div>
-            <button class="form-button save-changes" type="button" role="submit" name="button">save changes</button>
+            </div> -->
+            <button class="form-button save-changes submit-button" type="button" role="submit" name="button">save changes</button>
             <button class="form-button cancel-button" type="button" name="button">cancel</button>
+            <div class="delete-timer-section">
+              <button class="delete-timer-button js-delete-timer-button button" name="delete timer"><img class="delete-timer-icon" src="images/trashbin.png" alt="permanently delete this timer"></button>
+              <label for="delete timer">permanently delete timer</label>
+            </div>
           </form>
+        </div>
+        <div class="delete-alert js-delete-alert hidden">
+          Are you sure you want to delete this timer and all its data forever?
+          <div delete-alert-buttons-div>
+            <button class="js-final-delete-it-button final-delete-it-button delete-alert-button button">yes, delete it</button>
+            <button class="js-cancel-delete-button delete-alert-button button">no, cancel</button>
+          </div>
         </div>
         <img class="close-button button" role="button"
         src="images/close-button.svg" alt="click to exit window">

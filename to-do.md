@@ -1,13 +1,14 @@
 # Project Timer To-do
 
 ## Incomplete Tasks:
-- Modal for new timer + edit timer. (label max: 20 char)
-- Add delete timer / cancel creating button.
+- "edit timer" button works twice
+- Make "start time" into dropdown calendar input
 
-### IF YOU HAVE TIME.
+### SERVER SIDE:
 - Save everything, make a pull request, merge to master.
 - Use postman from now on.
 - check out a new branch. And start working on server.js.
+- do models.js
 - Maybe copy server.js from blogpost as starting point??
 - POST /api/timers/ -> creates a timer.
 - GET /api/timers/
@@ -27,3 +28,9 @@
 - create links between html files
 - overflow solution for timer label text
 - refactor js-affected classes: add or rename to js-<class>
+- Modal for new timer
+- Add delete timer / cancel creating checkbox.
+- SVG -> JPEG / PNG / GIF / SVGZ
+- Add "delete timer" button, remove checkbox
+- Delete "add time" inputs from modal.
+- "edit timer" button edits and deletes
