@@ -1,15 +1,9 @@
 # Project Timer To-do
 
 ## Incomplete Tasks:
-- make one button each for create new and edit existing timer
-- "edit timer" button works twice
 
 ### SERVER SIDE:
-- Use postman from now on.
-- POST /api/timers/ -> creates a timer.
-- GET /api/timers/
-- PUT /api/timers/:id -> edit existing timer
-- DELETE /api/timers/:id -> delete existing timer
+- setup mongoose tests
 
 
 ## Completed Tasks:
@@ -34,9 +28,16 @@
 - "edit timer" button edits and deletes
 - Make "start time" into dropdown calendar input
 - Save everything, make a pull request, merge to master.
+- make sure "edit timer" button works multiple times
 
 ### SERVER SIDE:
 - check out a new branch. And start working on server.js.
 - Maybe copy server.js from blogpost as starting point
 - do models.js
 - set up mlab timers and test databases, setup env vars on travis and heroku
+- set up endpoints for POST, GET, PUT, and DELETE, and got desired results on Postman
+- POST /api/timers/ -> creates a timer.
+- GET /api/timers/
+- PUT /api/timers/:id -> edit existing timer
+- DELETE /api/timers/:id -> delete existing timer
+- Use postman from now on.

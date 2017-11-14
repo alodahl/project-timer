@@ -3,12 +3,12 @@ const mongoose = require('mongoose');
 const timerSchema = mongoose.Schema({
   label: {label: String},
   category: {type: String},
-  creationDate: {type: Date, default: new Date()}
+  creationDate: {type: Date, default: new Date()},
   projectNotes: {type: String},
   logs: [{
     seconds: Number,
     endDate: {type: Date, default: new Date()}
-     }];
+     }]
 });
 
 timerSchema.virtual('totalTimeInSeconds').get(function() {
@@ -17,7 +17,7 @@ timerSchema.virtual('totalTimeInSeconds').get(function() {
   }, 0);
 });
 
-timers.methods.apiRepr = function() {
+timerSchema.methods.apiRepr = function() {
   return {
     id: this._id,
     label: this.label,

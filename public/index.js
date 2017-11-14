@@ -95,6 +95,7 @@ function closeModal(){
   indexOfTimerBeingEdited = "";
   $('.submit-button').addClass('save-changes');
   $('.submit-button').removeClass('js-change-existing-timer');
+  // $('.js-project-name').prop('required', 'false');
 }
 
 function openModal(){
@@ -137,6 +138,7 @@ $(function(){
   // Then open a modal with user customization options,
   // hiding main content.
   $('.js-new-timer-button').on('click', function() {
+    // $('.js-project-name').prop('required', 'true');
     openModal();
   })
 
