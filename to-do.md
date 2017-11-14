@@ -2,7 +2,6 @@
 
 ## Incomplete Tasks:
 - "edit timer" button works twice
-- Make "start time" into dropdown calendar input
 
 ### SERVER SIDE:
 - Save everything, make a pull request, merge to master.
@@ -34,3 +33,4 @@
 - Add "delete timer" button, remove checkbox
 - Delete "add time" inputs from modal.
 - "edit timer" button edits and deletes
+- Make "start time" into dropdown calendar input

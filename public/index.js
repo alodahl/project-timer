@@ -100,24 +100,6 @@ function openModal(){
   $('footer').attr("aria-hidden", "true");
 }
 
-$('.light').on('click', '.js-change-existing-timer', function(event) {
-  console.log("js-change-existing-timer button ran");
-  let projectName = $('.js-project-name').val();
-  let category = $('.js-category-name').val();
-  let startDate = $('.js-start-date').val();
-  let notes = $('.js-notes').val();
-  timers[indexOfTimerBeingEdited].label = projectName;
-  timers[indexOfTimerBeingEdited].category = category;
-  timers[indexOfTimerBeingEdited].creationDate = startDate;
-  timers[indexOfTimerBeingEdited].projectNotes =  notes;
-  renderTimers(timers);
-  clearForm();
-  closeModal();
-  $('.submit-button').addClass('save-changes');
-  $('.submit-button').removeClass('js-change-existing-timer');
-  // indexOfTimerBeingEdited = "";
-})
-
 $(function(){
   //render existing timers on page load
   newTimer("WATERCOLOR PAINTING");
@@ -163,23 +145,23 @@ $(function(){
     closeModal();
   })
 
-  // $('.light').on('click', '.js-change-existing-timer', function(event) {
-  //   console.log("js-change-existing-timer button ran");
-  //   let projectName = $('.js-project-name').val();
-  //   let category = $('.js-category-name').val();
-  //   let startDate = $('.js-start-date').val();
-  //   let notes = $('.js-notes').val();
-  //   timers[indexOfTimerBeingEdited].label = projectName;
-  //   timers[indexOfTimerBeingEdited].category = category;
-  //   timers[indexOfTimerBeingEdited].creationDate = startDate;
-  //   timers[indexOfTimerBeingEdited].projectNotes =  notes;
-  //   renderTimers(timers);
-  //   clearForm();
-  //   closeModal();
-  //   $('.submit-button').addClass('save-changes');
-  //   $('.submit-button').removeClass('js-change-existing-timer');
-  //   // indexOfTimerBeingEdited = "";
-  // })
+  $('.light').on('click', '.js-change-existing-timer', function(event) {
+    console.log("js-change-existing-timer button ran");
+    let projectName = $('.js-project-name').val();
+    let category = $('.js-category-name').val();
+    let startDate = $('.js-start-date').val();
+    let notes = $('.js-notes').val();
+    timers[indexOfTimerBeingEdited].label = projectName;
+    timers[indexOfTimerBeingEdited].category = category;
+    timers[indexOfTimerBeingEdited].creationDate = startDate;
+    timers[indexOfTimerBeingEdited].projectNotes =  notes;
+    renderTimers(timers);
+    clearForm();
+    closeModal();
+    $('.submit-button').addClass('save-changes');
+    $('.submit-button').removeClass('js-change-existing-timer');
+    // indexOfTimerBeingEdited = "";
+  })
 
   $('.light').on('click','.js-delete-timer-button', function() {
     event.preventDefault();
