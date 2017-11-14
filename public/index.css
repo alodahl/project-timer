@@ -291,7 +291,7 @@ margin-bottom: 30px;
   position: relative;
   background-color: #FFFFFF;
   width: 94%;
-  /*height: 105px;*/
+  height: 93px;
   margin: 15px auto;
   padding: 10px;
   border-radius: 5px;
@@ -536,6 +536,10 @@ margin-bottom: 30px;
 
 @media only screen and (min-width: 415px) {
 
+  .timer {
+    height: 102px;
+  }
+
   .timer-button {
     height: 102px;
     width: 102px;
@@ -576,6 +580,10 @@ margin-bottom: 30px;
 
 @media only screen and (min-width: 600px) {
 
+  .timer {
+    height: 118px;
+  }
+
   .light {
     width: 400px;
     padding: 25px;
@@ -598,10 +606,6 @@ margin-bottom: 30px;
     clear: right;
   }
 
-  .timer {
-    /*height: 130px;*/
-  }
-
   .other-timer-stats {
     display: block;
   }
@@ -609,7 +613,7 @@ margin-bottom: 30px;
   .timer-stats-div {
     position: absolute;
     left: 245px;
-    top: 55px;
+    top: 45px;
   }
 
   .timer-info {
@@ -631,7 +635,6 @@ margin-bottom: 30px;
 
   .edit-icon-button {
     right: 170px;
-    bottom: 15px;
   }
 
 }
