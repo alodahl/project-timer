@@ -91,6 +91,10 @@ function closeModal(){
   $('header').attr("aria-hidden", "false");
   $('main').attr("aria-hidden", "false");
   $('footer').attr("aria-hidden", "false");
+  $('.js-delete-alert').addClass('hidden');
+  indexOfTimerBeingEdited = "";
+  $('.submit-button').addClass('save-changes');
+  $('.submit-button').removeClass('js-change-existing-timer');
 }
 
 function openModal(){
@@ -98,6 +102,13 @@ function openModal(){
   $('header').attr("aria-hidden", "true");
   $('main').attr("aria-hidden", "true");
   $('footer').attr("aria-hidden", "true");
+}
+
+function verifyUserChanges(projectName, category, startDate, notes){
+  if (projectName) {timers[indexOfTimerBeingEdited].label = projectName;};
+  if (category) {timers[indexOfTimerBeingEdited].category = category;};
+  if (startDate) {timers[indexOfTimerBeingEdited].creationDate = startDate;};
+  if (notes) {timers[indexOfTimerBeingEdited].projectNotes =  notes;}
 }
 
 $(function(){
@@ -151,16 +162,11 @@ $(function(){
     let category = $('.js-category-name').val();
     let startDate = $('.js-start-date').val();
     let notes = $('.js-notes').val();
-    timers[indexOfTimerBeingEdited].label = projectName;
-    timers[indexOfTimerBeingEdited].category = category;
-    timers[indexOfTimerBeingEdited].creationDate = startDate;
-    timers[indexOfTimerBeingEdited].projectNotes =  notes;
+
+    verifyUserChanges(projectName, category, startDate, notes);
     renderTimers(timers);
     clearForm();
     closeModal();
-    $('.submit-button').addClass('save-changes');
-    $('.submit-button').removeClass('js-change-existing-timer');
-    // indexOfTimerBeingEdited = "";
   })
 
   $('.light').on('click','.js-delete-timer-button', function() {
@@ -174,16 +180,14 @@ $(function(){
     timers.splice([indexOfTimerBeingEdited], 1);
     renderTimers(timers);
     closeModal();
-    $('.js-delete-alert').addClass('hidden');
   })
 
   $('.light').on('click','.js-cancel-delete-button', function() {
     event.preventDefault();
     $('.js-delete-alert').addClass('hidden');
-    // console.log("delete timer button ran");
   })
 
-  $('.js-edit-icon-button').on('click', function(event) {
+  $('.js-timer-section').on('click','.js-edit-icon-button', function(event) {
     console.log("edit timer function began");
     let index = $(this).attr('data-id');
     $('.submit-button').removeClass('save-changes');
