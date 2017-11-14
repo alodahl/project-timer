@@ -4,11 +4,8 @@
 - "edit timer" button works twice
 
 ### SERVER SIDE:
-- Save everything, make a pull request, merge to master.
 - Use postman from now on.
-- check out a new branch. And start working on server.js.
 - do models.js
-- Maybe copy server.js from blogpost as starting point??
 - POST /api/timers/ -> creates a timer.
 - GET /api/timers/
 - PUT /api/timers/:id -> edit existing timer
@@ -16,6 +13,8 @@
 
 
 ## Completed Tasks:
+
+### CLIENT-SIDE
 - Make landing page responsive for large widths
 - use jquery to have timers display seconds, minutes, and hours.
 - base timer rendering on index
@@ -34,3 +33,8 @@
 - Delete "add time" inputs from modal.
 - "edit timer" button edits and deletes
 - Make "start time" into dropdown calendar input
+- Save everything, make a pull request, merge to master.
+
+### SERVER SIDE:
+- check out a new branch. And start working on server.js.
+- Maybe copy server.js from blogpost as starting point
