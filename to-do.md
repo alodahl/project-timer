@@ -4,7 +4,8 @@
 
 ### SERVER SIDE:
 - setup mongoose tests
-
+- add an endpoint for new "log"s
+- do I need a user property in the timer?
 
 ## Completed Tasks:
 

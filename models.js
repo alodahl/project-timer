@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
 const timerSchema = mongoose.Schema({
-  label: {label: String},
-  category: {type: String},
+  label: {label: String}, //, default: "NEW PROJECT"
+  category: {type: String}, //, default: ""
   creationDate: {type: Date, default: new Date()},
-  projectNotes: {type: String},
+  projectNotes: {type: String}, //, default: ""
   logs: [{
     seconds: Number,
     endDate: {type: Date, default: new Date()}
