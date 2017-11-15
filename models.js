@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const timerSchema = mongoose.Schema({
-  label: {label: String}, //, default: "NEW PROJECT"
+  label: {type: String}, //, default: "NEW PROJECT"
   category: {type: String}, //, default: ""
   creationDate: {type: Date, default: new Date()},
   projectNotes: {type: String}, //, default: ""
