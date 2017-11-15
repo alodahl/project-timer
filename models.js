@@ -24,7 +24,8 @@ timerSchema.methods.apiRepr = function() {
     category: this.category,
     creationDate: this.creationDate,
     projectNotes: this.projectNotes,
-    totalTimeInSeconds: this.totalTimeInSeconds
+    totalTimeInSeconds: this.totalTimeInSeconds,
+    isRunning:false
   };
 }
 

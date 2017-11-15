@@ -75,10 +75,10 @@ function getTimersFromApi() {
 }
 function saveTimerToApi(timerData) {
   const settings = {
-    url: '/timers',
+    url: `/timers/${state.idOfTimerBeingEdited}`,
     data: timerData,
     dataType: 'json',
-    type: 'POST',
+    type: state.idOfTimerBeingEdited? 'PUT' : 'POST',
     success: function(timer) {
       getTimersFromApi()
       clearForm();
@@ -88,11 +88,6 @@ function saveTimerToApi(timerData) {
       console.log("Error: API could not answer your request.", data);
     }
   };
-  if(state.idOfTimerBeingEdited){
-    settings.type="PUT";
-    settings.url = `/timers/${state.idOfTimerBeingEdited}`;
-    settings.data.id = state.idOfTimerBeingEdited;
-  }
   $.ajax(settings);
 }
 
@@ -118,7 +113,7 @@ function clearForm() {
 $('.js-timer-section').on('click', '.timer-button', function(event) {
   var start = new Date;
   let id = $(this).attr('data-id');
-  let clickedTimer = state.timers[id];
+  let clickedTimer = state.timers.find(timer => timer.id === id);
   clickedTimer.isRunning = (!clickedTimer.isRunning);
   renderTimers(state.timers);
   if (clickedTimer.isRunning) {
@@ -198,10 +193,10 @@ $(function(){
       creationDate: $('.js-start-date').val(),
       projectNotes: $('.js-notes').val(),
     }
-
+    if(state.idOfTimerBeingEdited){
+      timerData.id = state.idOfTimerBeingEdited;
+    }
     saveTimerToApi(timerData);
-
-
   })
 
   $('.light').on('click', '.js-change-existing-timer', function(event) {

@@ -2,10 +2,16 @@
 
 ## Incomplete Tasks:
 
-### SERVER SIDE:
+### CLIENT-SIDE
+- click on delete makes an AJAX Delete request, calls getTimersFromApi again.
+- Prepopulate edit form. (dashboard)
+- Prepopulate edit form. (landing-page)
+
+### DO LATER
 - add mongoose tests for timers/:id/log
-- add an endpoint for new "log"s
-- do I need a user property in the timer?
+- do I need a user property in the timer -> later
+
+-----
 
 ## Completed Tasks:
 
