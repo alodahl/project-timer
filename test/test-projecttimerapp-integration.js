@@ -96,9 +96,12 @@ describe('Timer API resource', function() {
               'id', 'label', 'category', 'creationDate', 'projectNotes', 'totalTimeInSeconds');
           });
           resTimer = res.body[0];
+          console.log("hello");
+          console.log(resTimer.label);
           return Timer.findById(resTimer.id);
         })
         .then(function(Timer) {
+          console.log(Timer.label);
           resTimer.id.should.equal(Timer.id);
           resTimer.label.should.equal(Timer.label);
           resTimer.category.should.equal(Timer.category);

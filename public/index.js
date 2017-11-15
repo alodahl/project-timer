@@ -24,10 +24,10 @@ const renderTimerComponent = function (timer, index) {
   <button class="edit-icon-button js-edit-icon-button button" data-id="${index}"><img class="edit-icon-img" src="images/edit.gif" alt="edit this timer"></button>
   `;
   let part2ofStoppedTimer = `<div class="timer-button button" data-id="${index}" role="button" aria-label="Click to Start Timer">${formatSeconds(timer.totalTimeInSeconds)}
-  <img class="timer-icon" src="images/start-timer.svgz"</div>
+  <img class="timer-icon" src="images/start-timer.png"</div>
   </div>`;
   let part2ofRunningTimer = `<div class="timer-button button green-button" data-id="${index}" role="button" aria-label="Click to Stop Timer">${formatSeconds(timer.totalTimeInSeconds)}
-  <img class="timer-icon" src="images/stop-timer.svgz"</div>
+  <img class="timer-icon" src="images/stop-timer.png"</div>
   </div>`;
 
   if (!timer.isRunning) {
