@@ -3,7 +3,7 @@
 ## Incomplete Tasks:
 
 ### SERVER SIDE:
-- setup mongoose tests
+- add mongoose tests for timers/:id/log
 - add an endpoint for new "log"s
 - do I need a user property in the timer?
 
@@ -42,3 +42,4 @@
 - PUT /api/timers/:id -> edit existing timer
 - DELETE /api/timers/:id -> delete existing timer
 - Use postman from now on.
+- setup mongoose tests
