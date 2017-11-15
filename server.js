@@ -97,7 +97,33 @@ app.put('/timers/:id', (req, res) => {
 
   Timer
     .findByIdAndUpdate(req.params.id, {$set: updated}, {new: true})
-    .then(updatedPost => res.status(204).end())
+    .then(updatedTimer => res.status(204).end())
+    .catch(err => res.status(500).json({message: 'Something went wrong'}));
+});
+
+app.put('/timers/:id/log', (req, res) => {
+  if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
+    res.status(400).json({
+      error: 'Request path id and request body id values must match'
+    });
+  }
+
+  const newLogEntry = {};
+  const requiredFields = ['seconds', 'endDate'];
+
+  for (let i=0; i<requiredFields.length; i++) {
+    const field = requiredFields[i];
+    if (!(field in req.body.logs[i])) {
+      const message = `Missing \`${field}\` in request body`
+      console.error(message);
+      return res.status(400).send(message);
+    }
+  }
+
+  Timer
+    .findById(req.params.id);
+    .        {$push: {logs: updated}})
+    .then(updatedTimer => res.status(204).end())
     .catch(err => res.status(500).json({message: 'Something went wrong'}));
 });
 
