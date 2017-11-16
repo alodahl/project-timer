@@ -5,17 +5,15 @@ let state = {
   idOfTimerBeingEdited: ""
 }
 
-//makes one new blank timer with an id of it's index in the timers array
-// <p class="timer-stats">Today's Total:${formatHoursAndMinutes(timer.todaysTime)}</p>
-
-const renderTimerComponent = function (timer, index) {
+const renderTimerComponent = function (timer, id) {
+  console.log(id);
   //<p class="timer-stats">Today's Total:${formatHoursAndMinutes(timer.todaysTime)}</p>
-  let part1ofTimer = `<div class="timer" data-index="${index}">
+  let part1ofTimer = `<div class="timer" data-id="${id}">
   <div class="timer-info">
   <h3 class="timer-label">${timer.label}</h3>
   <div class="other-timer-stats-div">
   <p class="timer-stats other-timer-stats">Category: ${timer.category}</p>
-  <p class="timer-stats other-timer-stats">Start Date: ${dateToString(timer.creationDate)}</p>
+  <p class="timer-stats other-timer-stats">Start Date: ${dateToString(timer.creationDate).substr(0, 10)}</p>
   <p class="timer-stats other-timer-stats">Notes: ${timer.projectNotes}</p>
   </div>
   <div class="timer-stats-div">
@@ -23,9 +21,9 @@ const renderTimerComponent = function (timer, index) {
   <p></p>
   </div>
   </div>
-  <button class="edit-icon-button js-edit-icon-button button" data-id="${timer.id}"><img class="edit-icon-img" src="images/edit.gif" alt="edit this timer"></button>
+  <button class="edit-icon-button js-edit-icon-button button" data-id="${id}"><img class="edit-icon-img" src="images/edit.gif" alt="edit this timer"></button>
   `;
-  let part2ofStoppedTimer = `<div class="timer-button button" data-id="${timer.id}" role="button" aria-label="Click to Start Timer">${formatSeconds(timer.totalTimeInSeconds)}
+  let part2ofStoppedTimer = `<div class="timer-button button" data-id="${id}" role="button" aria-label="Click to Start Timer">${formatSeconds(timer.totalTimeInSeconds)}
   <img class="timer-icon" src="images/start-timer.png"</div>
   </div>`;
   let part2ofRunningTimer = `<div class="timer-button button green-button" data-id="${timer.id}" role="button" aria-label="Click to Stop Timer">${formatSeconds(timer.totalTimeInSeconds)}
@@ -39,22 +37,6 @@ const renderTimerComponent = function (timer, index) {
   }
 }
 
-//calling newTimer pushes a new timer object
-//to the timers array
-function newTimer(label, category, creationDate, projectNotes) {
-  let newTimer = {
-    label: label || "NEW PROJECT",
-    category: category || "",
-    creationDate: creationDate || new Date(),
-    projectNotes: projectNotes || "",
-    totalTimeInSeconds: 0,
-    isRunning: false,
-    intervalTicker: null
-  }
-  state.timers.push(newTimer);
-};
-
-
 function getTimersFromApi() {
   const settings = {
     url: '/timers',
@@ -65,7 +47,7 @@ function getTimersFromApi() {
     type: 'GET',
     success: function(timers) {
       state.timers=timers;
-      renderTimers(state.timers)
+      renderTimers(state.timers);
     },
     error: function(data) {
       console.log("Error: API could not answer your request.");
@@ -73,6 +55,7 @@ function getTimersFromApi() {
   };
   $.ajax(settings);
 }
+
 function saveTimerToApi(timerData) {
   const settings = {
     url: `/timers/${state.idOfTimerBeingEdited}`,
@@ -91,14 +74,44 @@ function saveTimerToApi(timerData) {
   $.ajax(settings);
 }
 
+function deleteTimerFromApi() {
+  const settings = {
+    url: `/timers/${state.idOfTimerBeingEdited}`,
+    dataType: 'json',
+    type: 'DELETE',
+    success: function() {
+      getTimersFromApi()
+      closeModal();
+      // state.timers.splice([indexOfTimerBeingEdited], 1);
+      //      renderTimers(state.timers);
+    },
+    error: function(data) {
+      console.log("Error: API could not answer your request.", data);
+    }
+  };
+  $.ajax(settings);
+}
+
 
 //render each object in timers array by passing values into a
 // html block and then appending that to the dom.
 function renderTimers(timers) {
   $('.js-timer-section').html('');
   for(let index=0; index < timers.length; index++) {
-    $('.js-timer-section').append(renderTimerComponent(timers[index], index));
+    $('.js-timer-section').append(renderTimerComponent(timers[index], timers[index].id));
   }
+}
+
+function populateForm() {
+  // TODO: 1.Find timer with an id of state.idOfTimerBeingEdited,
+  //       2. Use that one as the timer being edited
+  let chosenTimer = state.timers.find(timer => timer.id === state.idOfTimerBeingEdited )
+
+  console.log(chosenTimer);
+   $('.js-project-name').attr('value', `${chosenTimer.label}`);
+   $('.js-category-name').attr('value', `${chosenTimer.category}`);
+   $('.js-start-date').attr('value', `${chosenTimer.creationDate}`);
+   $('.js-notes').attr('value', `${chosenTimer.projectNotes}`);
 }
 
 function clearForm() {
@@ -139,6 +152,7 @@ function closeModal(){
 }
 
 function openModal(){
+  populateForm();
   $('.js-modal').removeClass("hidden");
   $('header').attr("aria-hidden", "true");
   $('main').attr("aria-hidden", "true");
@@ -215,11 +229,11 @@ $(function(){
   $('.light').on('click','.js-delete-timer-button', function() {
     event.preventDefault();
     $('.js-delete-alert').removeClass('hidden');
-    console.log("delete timer button ran");
   })
 
   $('.light').on('click','.js-final-delete-it-button', function() {
     event.preventDefault();
+    deleteTimerFromApi();
     // TODO: ajax request to delete, on success.
     //      state.timers.splice([indexOfTimerBeingEdited], 1);
     //      renderTimers(state.timers);
@@ -232,9 +246,9 @@ $(function(){
   })
 
   $('.js-timer-section').on('click','.js-edit-icon-button', function(event) {
-     console.log("edit timer function began");
      let id = $(this).attr('data-id');
      state.idOfTimerBeingEdited = id;
+     console.log(state.idOfTimerBeingEdited);
      openModal();
      console.log("whole edit timer function ran");
   })

@@ -3,7 +3,6 @@
 ## Incomplete Tasks:
 
 ### CLIENT-SIDE
-- click on delete makes an AJAX Delete request, calls getTimersFromApi again.
 - Prepopulate edit form. (dashboard)
 - Prepopulate edit form. (landing-page)
 
@@ -36,6 +35,8 @@
 - Make "start time" into dropdown calendar input
 - Save everything, make a pull request, merge to master.
 - make sure "edit timer" button works multiple times
+- click on delete makes an AJAX Delete request, calls getTimersFromApi again.
+- dashboard timers based on mongo id, not on index
 
 ### SERVER SIDE:
 - check out a new branch. And start working on server.js.
