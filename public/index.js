@@ -7,6 +7,7 @@ let indexOfTimerBeingEdited;
 // <p class="timer-stats">Today's Total:${formatHoursAndMinutes(timer.todaysTime)}</p>
 
 const renderTimerComponent = function (timer, index) {
+  console.log(timer.creationDate);
   //<p class="timer-stats">Today's Total:${formatHoursAndMinutes(timer.todaysTime)}</p>
   let part1ofTimer = `<div class="timer" data-index="${index}">
   <div class="timer-info">
@@ -86,6 +87,33 @@ $('.js-timer-section').on('click', '.timer-button', function(event) {
   }
 })
 
+function openModal(){
+  $('.js-modal').removeClass("hidden");
+  $('header').attr("aria-hidden", "true");
+  $('main').attr("aria-hidden", "true");
+  $('footer').attr("aria-hidden", "true");
+}
+
+function populateForm() {
+  // TODO: 1.Find timer with an index equal to indexOfTimerBeingEdited,
+  //       2. Use that one as the timer being edited
+  let chosenTimer = timers[indexOfTimerBeingEdited];
+  console.log(`${chosenTimer.label}`);
+
+   $('.js-project-name').attr('value', `${chosenTimer.label}`);
+   $('.js-category-name').attr('value', `${chosenTimer.category}`);
+   $('.js-start-date').attr('value', `${chosenTimer.creationDate}`);
+   $('.js-notes').attr('value', `${chosenTimer.projectNotes}`);
+}
+
+function populateNewForm() {
+  let defaultDate = new Date().toISOString().substr(0, 10);
+  $('.js-project-name').attr('value', 'NEW PROJECT');
+  $('.js-category-name').attr('value', '');
+  $('.js-start-date').attr('value', `${defaultDate}`);
+  $('.js-notes').attr('value', '');
+}
+
 function closeModal(){
   $('.js-modal').addClass("hidden");
   $('header').attr("aria-hidden", "false");
@@ -93,16 +121,9 @@ function closeModal(){
   $('footer').attr("aria-hidden", "false");
   $('.js-delete-alert').addClass('hidden');
   indexOfTimerBeingEdited = "";
-  $('.submit-button').addClass('save-changes');
+  $('.submit-button').addClass('save-new');
   $('.submit-button').removeClass('js-change-existing-timer');
-  // $('.js-project-name').prop('required', 'false');
-}
-
-function openModal(){
-  $('.js-modal').removeClass("hidden");
-  $('header').attr("aria-hidden", "true");
-  $('main').attr("aria-hidden", "true");
-  $('footer').attr("aria-hidden", "true");
+  // clearForm();
 }
 
 function verifyUserChanges(projectName, category, startDate, notes){
@@ -121,41 +142,54 @@ $(function(){
   //click cancel button to hide modal and show results page
   $('.light').on('click', '.cancel-button', function(event) {
     closeModal();
+    // clearForm();
   })
 
   //click close button to hide modal and show results page
   $('.close-button').on('click', function(event) {
-    closeModal()
+    closeModal();
   })
 
   //click outside of light modal to hide modal and return to results page
   $('.dark').on('click', function(event) {
-    closeModal()
+    closeModal();
   })
 
   //when "new timer" area is clicked, add a new object to timers array
   //with newTimer function and re-render the whole array of timers.
   // Then open a modal with user customization options,
   // hiding main content.
-  $('.js-new-timer-button').on('click', function() {
-    // $('.js-project-name').prop('required', 'true');
+  $('.js-new-timer-button').on('click', function() {;
+    // populateNewForm();
     openModal();
+    populateNewForm();
   })
 
   //when the "save changes" button is pressed, make sure
   //to only include truthy answers, then use them to
   //generate a new timer object. last, clear the global
   //variables for next time before closing modal.
-  $('.light').on('click', '.save-changes', function(event) {
-    console.log("save-changes button ran");
+  $('.light').on('click', '.save-new', function(event) {
+    console.log("save-new button ran");
     let projectName = $('.js-project-name').val();
     let category = $('.js-category-name').val();
     let startDate = $('.js-start-date').val();
     let notes = $('.js-notes').val();
     newTimer(projectName, category, startDate, notes);
     renderTimers(timers);
-    clearForm();
+    // clearForm();
     closeModal();
+  })
+
+  $('.js-timer-section').on('click','.js-edit-icon-button', function(event) {
+    console.log("edit timer function began");
+    let index = $(this).attr('data-id');
+    $('.submit-button').removeClass('save-new');
+    $('.submit-button').addClass('js-change-existing-timer');
+    indexOfTimerBeingEdited = index;
+    populateForm();
+    openModal();
+    console.log("whole edit timer function ran");
   })
 
   $('.light').on('click', '.js-change-existing-timer', function(event) {
@@ -167,7 +201,7 @@ $(function(){
 
     verifyUserChanges(projectName, category, startDate, notes);
     renderTimers(timers);
-    clearForm();
+    // clearForm();
     closeModal();
   })
 
@@ -189,15 +223,6 @@ $(function(){
     $('.js-delete-alert').addClass('hidden');
   })
 
-  $('.js-timer-section').on('click','.js-edit-icon-button', function(event) {
-    console.log("edit timer function began");
-    let index = $(this).attr('data-id');
-    $('.submit-button').removeClass('save-changes');
-    $('.submit-button').addClass('js-change-existing-timer');
-    indexOfTimerBeingEdited = index;
-    openModal();
-    console.log("whole edit timer function ran");
-  })
 })
 
 //////////// TIME TO STRING   ////////////

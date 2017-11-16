@@ -6,8 +6,6 @@ let state = {
 }
 
 const renderTimerComponent = function (timer, id) {
-  console.log(id);
-  //<p class="timer-stats">Today's Total:${formatHoursAndMinutes(timer.todaysTime)}</p>
   let part1ofTimer = `<div class="timer" data-id="${id}">
   <div class="timer-info">
   <h3 class="timer-label">${timer.label}</h3>
@@ -63,9 +61,9 @@ function saveTimerToApi(timerData) {
     dataType: 'json',
     type: state.idOfTimerBeingEdited? 'PUT' : 'POST',
     success: function(timer) {
-      getTimersFromApi()
-      clearForm();
+      getTimersFromApi();
       closeModal();
+      // clearForm();
     },
     error: function(data) {
       console.log("Error: API could not answer your request.", data);
@@ -103,23 +101,62 @@ function renderTimers(timers) {
 }
 
 function populateForm() {
-  // TODO: 1.Find timer with an id of state.idOfTimerBeingEdited,
-  //       2. Use that one as the timer being edited
-  let chosenTimer = state.timers.find(timer => timer.id === state.idOfTimerBeingEdited )
-
+  // Finds timer with an id of state.idOfTimerBeingEdited,
+  // and changes the input values to current values on database
+  let chosenTimer = state.timers.find(timer => timer.id === state.idOfTimerBeingEdited);
+  let defaultDate = new Date().toISOString().substr(0, 10);
+  console.log("start populating form");
   console.log(chosenTimer);
+  console.log(defaultDate);
+  if (state.idOfTimerBeingEdited){
    $('.js-project-name').attr('value', `${chosenTimer.label}`);
    $('.js-category-name').attr('value', `${chosenTimer.category}`);
-   $('.js-start-date').attr('value', `${chosenTimer.creationDate}`);
+   $('.js-start-date').attr('value', `${(chosenTimer.creationDate).substr(0, 10)}`);
    $('.js-notes').attr('value', `${chosenTimer.projectNotes}`);
+ } else {
+   $('.js-project-name').attr('value', 'NEW PROJECT');
+   $('.js-category-name').attr('value', '');
+   $('.js-start-date').attr('value', `${defaultDate}`);
+   $('.js-notes').attr('value', '');
+ }
+ console.log("finish populating form");
 }
 
-function clearForm() {
-  $('.js-project-name').val("");
-  $('.js-category-name').val("");
-  $('.js-start-date').val("");
-  $('.js-notes').val("");
+// function clearForm() {
+//   $('.js-project-name').val("");
+//   $('.js-category-name').val("");
+//   $('.js-start-date').val("");
+//   $('.js-notes').val("");
+// }
+
+// Then open a modal with user customization options,
+// hiding main content.
+function openModal(){
+  populateForm();
+  $('.js-modal').removeClass("hidden");
+  $('header').attr("aria-hidden", "true");
+  $('main').attr("aria-hidden", "true");
+  $('footer').attr("aria-hidden", "true");
 }
+
+function closeModal(){
+  $('.js-modal').addClass("hidden");
+  $('header').attr("aria-hidden", "false");
+  $('main').attr("aria-hidden", "false");
+  $('footer').attr("aria-hidden", "false");
+  $('.js-delete-alert').addClass('hidden');
+  $('.submit-button').addClass('save-changes');
+  $('.submit-button').removeClass('js-change-existing-timer');
+  state.idOfTimerBeingEdited="";
+  // $('.js-project-name').prop('required', 'false');
+}
+
+// function verifyUserChanges(label, category, creationDate, notes){
+//   if (label) {state.timers[indexOfTimerBeingEdited].label = label;};
+//   if (category) {state.timers[indexOfTimerBeingEdited].category = category;};
+//   if (creationDate) {state.timers[indexOfTimerBeingEdited].creationDate = creationDate;};
+//   if (notes) {state.timers[indexOfTimerBeingEdited].projectNotes =  notes;}
+// }
 
 //listener for square timer button. on click, if it was off, it turns on timer and adds
 //1 to the totalTimeInSeconds and todaysTime every second. If it was on, it should stop the timer.
@@ -139,35 +176,8 @@ $('.js-timer-section').on('click', '.timer-button', function(event) {
   }
 })
 
-function closeModal(){
-  $('.js-modal').addClass("hidden");
-  $('header').attr("aria-hidden", "false");
-  $('main').attr("aria-hidden", "false");
-  $('footer').attr("aria-hidden", "false");
-  $('.js-delete-alert').addClass('hidden');
-  $('.submit-button').addClass('save-changes');
-  $('.submit-button').removeClass('js-change-existing-timer');
-  state.idOfTimerBeingEdited="";
-  // $('.js-project-name').prop('required', 'false');
-}
-
-function openModal(){
-  populateForm();
-  $('.js-modal').removeClass("hidden");
-  $('header').attr("aria-hidden", "true");
-  $('main').attr("aria-hidden", "true");
-  $('footer').attr("aria-hidden", "true");
-}
-
-// function verifyUserChanges(label, category, creationDate, notes){
-//   if (label) {state.timers[indexOfTimerBeingEdited].label = label;};
-//   if (category) {state.timers[indexOfTimerBeingEdited].category = category;};
-//   if (creationDate) {state.timers[indexOfTimerBeingEdited].creationDate = creationDate;};
-//   if (notes) {state.timers[indexOfTimerBeingEdited].projectNotes =  notes;}
-// }
-
 $(function(){
-  //render existing timers on page load
+  //render existing db timers on page load
   getTimersFromApi();
 
   //click cancel button to hide modal and show results page
@@ -185,10 +195,7 @@ $(function(){
     closeModal()
   })
 
-  //when "new timer" area is clicked, add a new object to timers array
-  //with newTimer function and re-render the whole array of timers.
-  // Then open a modal with user customization options,
-  // hiding main content.
+  //click to create a new timer object
   $('.js-new-timer-button').on('click', function() {
     // $('.js-project-name').prop('required', 'true');
     openModal();
@@ -213,18 +220,6 @@ $(function(){
     saveTimerToApi(timerData);
   })
 
-  $('.light').on('click', '.js-change-existing-timer', function(event) {
-    console.log("js-change-existing-timer button ran");
-    let label = $('.js-project-name').val();
-    let category = $('.js-category-name').val();
-    let creationDate = $('.js-start-date').val();
-    let projectNotes = $('.js-notes').val();
-
-    verifyUserChanges(label, category, creationDate, projectNotes);
-    renderTimers(state.timers);
-    clearForm();
-    closeModal();
-  })
 
   $('.light').on('click','.js-delete-timer-button', function() {
     event.preventDefault();
@@ -248,9 +243,7 @@ $(function(){
   $('.js-timer-section').on('click','.js-edit-icon-button', function(event) {
      let id = $(this).attr('data-id');
      state.idOfTimerBeingEdited = id;
-     console.log(state.idOfTimerBeingEdited);
      openModal();
-     console.log("whole edit timer function ran");
   })
 })
 

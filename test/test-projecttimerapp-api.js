@@ -145,7 +145,7 @@ describe('Timer API resource', function() {
       });
   });
 
-  describe('PUT endpoint', function() {
+  describe('PUT endpoints', function() {
     // strategy:
     //  1. Get an existing timer from db
     //  2. Make a PUT request to update that timer
@@ -178,6 +178,36 @@ describe('Timer API resource', function() {
           timer.category.should.equal(updateData.category);
         });
       });
+
+      it('should update logs by appending new entry to array', function() {
+        let updateData;
+        const newLog = {
+            seconds: 120,
+            endDate: new Date()
+        };
+
+        return Timer
+          .findOne()
+          .then(function(timer) {
+            newLog.id = timer.id;
+            // timer.logs.push(newLog);
+            // updateData = timer.logs;
+            return timer;
+          })
+          .then(function(timer) {
+            console.log(`Put request for ${newLog}`);
+            return chai.request(app)
+              .put(`/timers/${timer.id}/log`)
+              .send(newLog);
+          })
+          .then(function(res) {
+            res.should.have.status(204);
+            return Timer.findById(newLog.id);
+          })
+          .then(function(timer) {
+            timer.logs[(timer.logs.length)-1].seconds.should.equal(newLog.seconds);
+          });
+        });
   });
 
   describe('DELETE endpoint', function() {

@@ -3,11 +3,11 @@
 ## Incomplete Tasks:
 
 ### CLIENT-SIDE
-- Prepopulate edit form. (dashboard)
-- Prepopulate edit form. (landing-page)
+- Populate form issues (dashboard & index)
+
 
 ### DO LATER
-- add mongoose tests for timers/:id/log
+- add timers/:id/log endpoint to dashboard.js
 - do I need a user property in the timer -> later
 
 -----
@@ -37,6 +37,8 @@
 - make sure "edit timer" button works multiple times
 - click on delete makes an AJAX Delete request, calls getTimersFromApi again.
 - dashboard timers based on mongo id, not on index
+- Prepopulate edit form. (dashboard)
+- Prepopulate edit form. (landing-page)
 
 ### SERVER SIDE:
 - check out a new branch. And start working on server.js.
@@ -50,3 +52,4 @@
 - DELETE /api/timers/:id -> delete existing timer
 - Use postman from now on.
 - setup mongoose tests
+- add mongoose tests for timers/:id/log
