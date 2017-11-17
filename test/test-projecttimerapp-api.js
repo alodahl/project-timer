@@ -181,7 +181,7 @@ describe('Timer API resource', function() {
 
       it('should update logs by appending new entry to array', function() {
         let updateData;
-        const newLog = {
+        const newLogEntry = {
             seconds: 120,
             endDate: new Date()
         };
@@ -189,23 +189,20 @@ describe('Timer API resource', function() {
         return Timer
           .findOne()
           .then(function(timer) {
-            newLog.id = timer.id;
-            // timer.logs.push(newLog);
-            // updateData = timer.logs;
+            newLogEntry.id = timer.id;
             return timer;
           })
           .then(function(timer) {
-            console.log(`Put request for ${newLog}`);
             return chai.request(app)
               .put(`/timers/${timer.id}/log`)
-              .send(newLog);
+              .send(newLogEntry);
           })
           .then(function(res) {
             res.should.have.status(204);
-            return Timer.findById(newLog.id);
+            return Timer.findById(newLogEntry.id);
           })
           .then(function(timer) {
-            timer.logs[(timer.logs.length)-1].seconds.should.equal(newLog.seconds);
+            timer.logs[(timer.logs.length)-1].seconds.should.equal(newLogEntry.seconds);
           });
         });
   });

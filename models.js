@@ -25,7 +25,8 @@ timerSchema.methods.apiRepr = function() {
     creationDate: this.creationDate,
     projectNotes: this.projectNotes,
     totalTimeInSeconds: this.totalTimeInSeconds,
-    isRunning:false
+    isRunning:false,
+    currentEntryCount: 0
   };
 }
 

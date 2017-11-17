@@ -4,10 +4,10 @@
 
 ### CLIENT-SIDE
 - Populate form issues (dashboard & index)
+- add timers/:id/log endpoint to dashboard.js
 
 
 ### DO LATER
-- add timers/:id/log endpoint to dashboard.js
 - do I need a user property in the timer -> later
 
 -----

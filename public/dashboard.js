@@ -4,7 +4,7 @@ let state = {
   timers: [],
   idOfTimerBeingEdited: ""
 }
-
+//formatHoursAndMinutes
 const renderTimerComponent = function (timer, id) {
   let part1ofTimer = `<div class="timer" data-id="${id}">
   <div class="timer-info">
@@ -15,7 +15,7 @@ const renderTimerComponent = function (timer, id) {
   <p class="timer-stats other-timer-stats">Notes: ${timer.projectNotes}</p>
   </div>
   <div class="timer-stats-div">
-  <p class="timer-stats">Project Total: ${formatHoursAndMinutes(timer.totalTimeInSeconds)}</p>
+  <p class="timer-stats">Project Total: ${timer.totalTimeInSeconds}</p>
   <p></p>
   </div>
   </div>
@@ -78,7 +78,7 @@ function deleteTimerFromApi() {
     dataType: 'json',
     type: 'DELETE',
     success: function() {
-      getTimersFromApi()
+      getTimersFromApi();
       closeModal();
       // state.timers.splice([indexOfTimerBeingEdited], 1);
       //      renderTimers(state.timers);
@@ -89,6 +89,27 @@ function deleteTimerFromApi() {
   };
   $.ajax(settings);
 }
+
+function newLogEntry(newLog) {
+  const settings = {
+    id: newLog.id,
+    url: `/timers/${newLog.id}/log`,
+    data: newLog,
+    dataType: 'json',
+    type: 'PUT',
+    success: function() {
+      // getTimersFromApi();
+      console.log(this.data); //[newTimeEntry.id]
+      console.log(this.id);
+      console.log(`${state.timers.find(timer => timer.id === this.id).currentEntryCount} seconds have been added to your log!`);
+    },
+    error: function(data) {
+      console.log(`Error: API could not log your time for ${state.timers[newTimeEntry.id].label}.`, data);
+    }
+  };
+  $.ajax(settings);
+}
+
 
 
 //render each object in timers array by passing values into a
@@ -164,15 +185,25 @@ $('.js-timer-section').on('click', '.timer-button', function(event) {
   var start = new Date;
   let id = $(this).attr('data-id');
   let clickedTimer = state.timers.find(timer => timer.id === id);
+  let newTimeEntry = {
+      id: `${id}`,
+      seconds: `${clickedTimer.currentEntryCount}`,
+      endDate: new Date()
+  };
+  state.idOfTimerBeingEdited = id;
   clickedTimer.isRunning = (!clickedTimer.isRunning);
+
   renderTimers(state.timers);
   if (clickedTimer.isRunning) {
+    clickedTimer.totalTimeInSeconds = 0;
     clickedTimer.intervalTicker = setInterval(function(event) {
       clickedTimer.totalTimeInSeconds += 1;
+      clickedTimer.currentEntryCount += 1;
       renderTimers(state.timers);
     }, 1000);
   } else {
     clearInterval(clickedTimer.intervalTicker);
+    newLogEntry(newTimeEntry);
   }
 })
 
@@ -226,7 +257,7 @@ $(function(){
     $('.js-delete-alert').removeClass('hidden');
   })
 
-  $('.light').on('click','.js-final-delete-it-button', function() {
+  $('.light').on('click','.js-final-delete-it-button', function(event) {
     event.preventDefault();
     deleteTimerFromApi();
     // TODO: ajax request to delete, on success.
