@@ -3,8 +3,7 @@
 ## Incomplete Tasks:
 
 ### CLIENT-SIDE
-- Populate form issues (dashboard & index)
-- add timers/:id/log endpoint to dashboard.js
+- fix CI test issue (test-...-api.js line 218 & 219)
 
 
 ### DO LATER
@@ -39,6 +38,8 @@
 - dashboard timers based on mongo id, not on index
 - Prepopulate edit form. (dashboard)
 - Prepopulate edit form. (landing-page)
+- Populate form issues (dashboard & index)
+- add timers/:id/log endpoint to dashboard.js
 
 ### SERVER SIDE:
 - check out a new branch. And start working on server.js.

@@ -28,7 +28,15 @@ function generateTimerData() {
       label: faker.lorem.word(),
       category: faker.lorem.word(),
       creationDate: faker.date.recent(),
-      projectNotes: faker.lorem.sentence()
+      projectNotes: faker.lorem.sentence(),
+      logs: [{
+        seconds: faker.random.number(),
+        endDate: faker.date.recent()
+        },
+        {
+        seconds: faker.random.number(),
+        endDate: faker.date.recent()
+         }]
   }
 }
 
@@ -180,7 +188,10 @@ describe('Timer API resource', function() {
       });
 
       it('should update logs by appending new entry to array', function() {
-        let updateData;
+        let updateLogArray = {
+          id: 0,
+          logs: []
+        }
         const newLogEntry = {
             seconds: 120,
             endDate: new Date()
@@ -189,20 +200,26 @@ describe('Timer API resource', function() {
         return Timer
           .findOne()
           .then(function(timer) {
-            newLogEntry.id = timer.id;
+            updateLogArray.id = timer.id;
+            updateLogArray.logs = timer.logs;
+            updateLogArray.logs.push(newLogEntry)
             return timer;
           })
           .then(function(timer) {
             return chai.request(app)
               .put(`/timers/${timer.id}/log`)
-              .send(newLogEntry);
+              .send(updateLogArray);
           })
           .then(function(res) {
             res.should.have.status(204);
-            return Timer.findById(newLogEntry.id);
+            return Timer.findById(updateLogArray.id);
           })
           .then(function(timer) {
-            timer.logs[(timer.logs.length)-1].seconds.should.equal(newLogEntry.seconds);
+            console.log("NEW LOG ENTRY TESTS" + timer.logs[timer.logs.length - 1]);
+            timer.logs[timer.logs.length - 1].seconds.should.equal(newLogEntry.seconds);
+            timer.logs.reduce(function(totalTimeInSeconds, log){
+              return totalTimeInSeconds + log.seconds;
+            }, 0).should.equal(timer.totalTimeInSeconds);
           });
         });
   });

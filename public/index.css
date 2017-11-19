@@ -547,6 +547,14 @@ margin-bottom: 30px;
     /*margin-bottom: 8px;*/
   }
 
+  p {
+    font-size: 1.0em;
+  }
+
+}
+
+@media only screen and (min-width: 450px) {
+
   .timer-label {
     font-weight: 100;
     font-size: 1.4em;
@@ -555,11 +563,8 @@ margin-bottom: 30px;
     height: 25px;
   }
 
-  p {
-    font-size: 1.0em;
-  }
-
 }
+
 
 @media only screen and (min-width: 500px) {
   .timer-example-photo {
@@ -613,7 +618,7 @@ margin-bottom: 30px;
   .timer-stats-div {
     position: absolute;
     left: 245px;
-    top: 45px;
+    top: 43px;
   }
 
   .timer-info {

@@ -100,18 +100,18 @@ function populateForm() {
   let chosenTimer = timers[indexOfTimerBeingEdited];
   console.log(`${chosenTimer.label}`);
 
-   $('.js-project-name').attr('value', `${chosenTimer.label}`);
-   $('.js-category-name').attr('value', `${chosenTimer.category}`);
-   $('.js-start-date').attr('value', `${chosenTimer.creationDate}`);
-   $('.js-notes').attr('value', `${chosenTimer.projectNotes}`);
+   $('.js-project-name').val(`${chosenTimer.label}`);
+   $('.js-category-name').val(`${chosenTimer.category}`);
+   $('.js-start-date').val(`${chosenTimer.creationDate}`);
+   $('.js-notes').val(`${chosenTimer.projectNotes}`);
 }
 
 function populateNewForm() {
   let defaultDate = new Date().toISOString().substr(0, 10);
-  $('.js-project-name').attr('value', 'NEW PROJECT');
-  $('.js-category-name').attr('value', '');
-  $('.js-start-date').attr('value', `${defaultDate}`);
-  $('.js-notes').attr('value', '');
+  $('.js-project-name').val('NEW PROJECT');
+  $('.js-category-name').val('');
+  $('.js-start-date').val(`${defaultDate}`);
+  $('.js-notes').val('');
 }
 
 function closeModal(){
@@ -123,7 +123,7 @@ function closeModal(){
   indexOfTimerBeingEdited = "";
   $('.submit-button').addClass('save-new');
   $('.submit-button').removeClass('js-change-existing-timer');
-  // clearForm();
+  clearForm();
 }
 
 function verifyUserChanges(projectName, category, startDate, notes){
@@ -142,7 +142,6 @@ $(function(){
   //click cancel button to hide modal and show results page
   $('.light').on('click', '.cancel-button', function(event) {
     closeModal();
-    // clearForm();
   })
 
   //click close button to hide modal and show results page
@@ -160,7 +159,6 @@ $(function(){
   // Then open a modal with user customization options,
   // hiding main content.
   $('.js-new-timer-button').on('click', function() {;
-    // populateNewForm();
     openModal();
     populateNewForm();
   })
@@ -177,7 +175,6 @@ $(function(){
     let notes = $('.js-notes').val();
     newTimer(projectName, category, startDate, notes);
     renderTimers(timers);
-    // clearForm();
     closeModal();
   })
 
@@ -201,7 +198,6 @@ $(function(){
 
     verifyUserChanges(projectName, category, startDate, notes);
     renderTimers(timers);
-    // clearForm();
     closeModal();
   })
 

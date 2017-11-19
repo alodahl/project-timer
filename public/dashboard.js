@@ -15,16 +15,16 @@ const renderTimerComponent = function (timer, id) {
   <p class="timer-stats other-timer-stats">Notes: ${timer.projectNotes}</p>
   </div>
   <div class="timer-stats-div">
-  <p class="timer-stats">Project Total: ${timer.totalTimeInSeconds}</p>
-  <p></p>
+  <p class="timer-stats">Project Total:  ${formatHoursAndMinutes(timer.totalTimeInSeconds)}</p>
+  <p class="timer-stats">Session Total: ${formatHoursAndMinutes(timer.currentEntryCount)}</p>
   </div>
   </div>
   <button class="edit-icon-button js-edit-icon-button button" data-id="${id}"><img class="edit-icon-img" src="images/edit.gif" alt="edit this timer"></button>
   `;
-  let part2ofStoppedTimer = `<div class="timer-button button" data-id="${id}" role="button" aria-label="Click to Start Timer">${formatSeconds(timer.totalTimeInSeconds)}
+  let part2ofStoppedTimer = `<div class="timer-button button" data-id="${id}" role="button" aria-label="Click to Start Timer">${formatSeconds(timer.currentEntryCount)}
   <img class="timer-icon" src="images/start-timer.png"</div>
   </div>`;
-  let part2ofRunningTimer = `<div class="timer-button button green-button" data-id="${timer.id}" role="button" aria-label="Click to Stop Timer">${formatSeconds(timer.totalTimeInSeconds)}
+  let part2ofRunningTimer = `<div class="timer-button button green-button" data-id="${timer.id}" role="button" aria-label="Click to Stop Timer">${formatSeconds(timer.currentEntryCount)}
   <img class="timer-icon" src="images/stop-timer.png"</div>
   </div>`;
 
@@ -63,7 +63,7 @@ function saveTimerToApi(timerData) {
     success: function(timer) {
       getTimersFromApi();
       closeModal();
-      // clearForm();
+      clearForm();
     },
     error: function(data) {
       console.log("Error: API could not answer your request.", data);
@@ -128,27 +128,27 @@ function populateForm() {
   let defaultDate = new Date().toISOString().substr(0, 10);
   console.log("start populating form");
   console.log(chosenTimer);
-  console.log(defaultDate);
+  // console.log(defaultDate);
   if (state.idOfTimerBeingEdited){
-   $('.js-project-name').attr('value', `${chosenTimer.label}`);
-   $('.js-category-name').attr('value', `${chosenTimer.category}`);
-   $('.js-start-date').attr('value', `${(chosenTimer.creationDate).substr(0, 10)}`);
-   $('.js-notes').attr('value', `${chosenTimer.projectNotes}`);
+   $('.js-project-name').val(`${chosenTimer.label}`);
+   $('.js-category-name').val(`${chosenTimer.category}`);
+   $('.js-start-date').val(`${(chosenTimer.creationDate).substr(0, 10)}`);
+   $('.js-notes').val(`${chosenTimer.projectNotes}`);
  } else {
-   $('.js-project-name').attr('value', 'NEW PROJECT');
-   $('.js-category-name').attr('value', '');
-   $('.js-start-date').attr('value', `${defaultDate}`);
-   $('.js-notes').attr('value', '');
+   $('.js-project-name').val('NEW PROJECT');
+   $('.js-category-name').val('');
+   $('.js-start-date').val(`${defaultDate}`);
+   $('.js-notes').val('');
  }
  console.log("finish populating form");
 }
 
-// function clearForm() {
-//   $('.js-project-name').val("");
-//   $('.js-category-name').val("");
-//   $('.js-start-date').val("");
-//   $('.js-notes').val("");
-// }
+function clearForm() {
+  $('.js-project-name').val("");
+  $('.js-category-name').val("");
+  $('.js-start-date').val("");
+  $('.js-notes').val("");
+}
 
 // Then open a modal with user customization options,
 // hiding main content.
@@ -195,7 +195,7 @@ $('.js-timer-section').on('click', '.timer-button', function(event) {
 
   renderTimers(state.timers);
   if (clickedTimer.isRunning) {
-    clickedTimer.totalTimeInSeconds = 0;
+    clickedTimer.currentEntryCount = 0;
     clickedTimer.intervalTicker = setInterval(function(event) {
       clickedTimer.totalTimeInSeconds += 1;
       clickedTimer.currentEntryCount += 1;
