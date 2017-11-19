@@ -172,7 +172,7 @@ $(function(){
     let category = $('.js-category-name').val();
     let startDate = $('.js-start-date').val();
     let notes = $('.js-notes').val();
-    newTimer(projectTime, projectName, category, startDate, notes);
+    newTimer(projectName, projectTime, category, startDate, notes);
     renderTimers(timers);
     closeModal();
   })

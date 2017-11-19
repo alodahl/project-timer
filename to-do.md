@@ -40,6 +40,7 @@
 - Prepopulate edit form. (landing-page)
 - Populate form issues (dashboard & index)
 - add timers/:id/log endpoint to dashboard.js
+- add session totals to dashboard and index files
 
 ### SERVER SIDE:
 - check out a new branch. And start working on server.js.
