@@ -4,11 +4,7 @@ let timers = [];
 let indexOfTimerBeingEdited;
 
 //makes one new blank timer with an id of it's index in the timers array
-// <p class="timer-stats">Today's Total:${formatHoursAndMinutes(timer.todaysTime)}</p>
-
 const renderTimerComponent = function (timer, index) {
-  console.log(timer.creationDate);
-  //<p class="timer-stats">Today's Total:${formatHoursAndMinutes(timer.todaysTime)}</p>
   let part1ofTimer = `<div class="timer" data-index="${index}">
   <div class="timer-info">
   <h3 class="timer-label">${timer.label}</h3>
@@ -19,15 +15,15 @@ const renderTimerComponent = function (timer, index) {
   </div>
   <div class="timer-stats-div">
   <p class="timer-stats">Project Total: ${formatHoursAndMinutes(timer.totalTimeInSeconds)}</p>
-  <p></p>
+  <p class="timer-stats">Session Total: ${formatHoursAndMinutes(timer.currentEntryCount)}</p>
   </div>
   </div>
   <button class="edit-icon-button js-edit-icon-button button" data-id="${index}"><img class="edit-icon-img" src="images/edit.gif" alt="edit this timer"></button>
   `;
-  let part2ofStoppedTimer = `<div class="timer-button button" data-id="${index}" role="button" aria-label="Click to Start Timer">${formatSeconds(timer.totalTimeInSeconds)}
+  let part2ofStoppedTimer = `<div class="timer-button button" data-id="${index}" role="button" aria-label="Click to Start Timer">${formatSeconds(timer.currentEntryCount)}
   <img class="timer-icon" src="images/start-timer.png"</div>
   </div>`;
-  let part2ofRunningTimer = `<div class="timer-button button green-button" data-id="${index}" role="button" aria-label="Click to Stop Timer">${formatSeconds(timer.totalTimeInSeconds)}
+  let part2ofRunningTimer = `<div class="timer-button button green-button" data-id="${index}" role="button" aria-label="Click to Stop Timer">${formatSeconds(timer.currentEntryCount)}
   <img class="timer-icon" src="images/stop-timer.png"</div>
   </div>`;
 
@@ -40,13 +36,14 @@ const renderTimerComponent = function (timer, index) {
 
 //calling newTimer pushes a new timer object
 //to the timers array
-function newTimer(projectName, category, startDate, notes) {
+function newTimer(projectName, projectTotal, category, startDate, notes) {
   let newTimer = {
     label: projectName || "NEW PROJECT",
     category: category || "",
     creationDate: startDate || new Date(),
     projectNotes: notes || "",
-    totalTimeInSeconds: 0,
+    totalTimeInSeconds: projectTotal,
+    currentEntryCount: 0,
     isRunning: false,
     intervalTicker: null
   }
@@ -80,6 +77,7 @@ $('.js-timer-section').on('click', '.timer-button', function(event) {
   if (clickedTimer.isRunning) {
     clickedTimer.intervalTicker = setInterval(function(event) {
       clickedTimer.totalTimeInSeconds += 1;
+      clickedTimer.currentEntryCount += 1;
       renderTimers(timers);
     }, 1000);
   } else {
@@ -135,8 +133,8 @@ function verifyUserChanges(projectName, category, startDate, notes){
 
 $(function(){
   //render existing timers on page load
-  newTimer("WATERCOLOR PAINTING");
-  newTimer("FINISH CODING SERVER");
+  newTimer("WATERCOLOR PAINTING", 10000);
+  newTimer("FINISH CODING SERVER", 2000);
   renderTimers(timers);
 
   //click cancel button to hide modal and show results page
@@ -169,11 +167,12 @@ $(function(){
   //variables for next time before closing modal.
   $('.light').on('click', '.save-new', function(event) {
     console.log("save-new button ran");
+    let projectTime = 0;
     let projectName = $('.js-project-name').val();
     let category = $('.js-category-name').val();
     let startDate = $('.js-start-date').val();
     let notes = $('.js-notes').val();
-    newTimer(projectName, category, startDate, notes);
+    newTimer(projectTime, projectName, category, startDate, notes);
     renderTimers(timers);
     closeModal();
   })
@@ -235,7 +234,8 @@ const formatHoursAndMinutes = (seconds) => {
   date.setSeconds(seconds);
   let hours = date.toISOString().substr(11, 2);
   let min = date.toISOString().substr(14, 2);
-  return `${hours}h ${min}m`;
+  let sec = date.toISOString().substr(17, 2);
+  return `${hours}:${min}:${sec}`;
 }
 
 function dateToString(date){
