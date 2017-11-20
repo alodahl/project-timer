@@ -113,9 +113,6 @@ app.put('/timers/:id/log', (req, res) => {
 
   for (let i=0; i<requiredFields.length; i++) {
     const field = requiredFields[i];
-    console.log(req.body.logs);
-    console.log(req.body.logs.length);
-    console.log(req.body.logs[(req.body.logs.length) - 1]);
     if (!(field in req.body.logs[(req.body.logs.length) - 1])) {
       const message = `Missing \`${field}\` in request body`
       console.error(message);
@@ -127,7 +124,7 @@ app.put('/timers/:id/log', (req, res) => {
      seconds: req.body.seconds,
      endDate: req.body.endDate
    };
-   let oldLogsArray = [];
+   // let oldLogsArray = [];
 
   Timer
     .findById(req.params.id)

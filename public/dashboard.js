@@ -98,8 +98,8 @@ function newLogEntry(newLog) {
     dataType: 'json',
     type: 'PUT',
     success: function() {
-      // getTimersFromApi();
-      console.log(this.data); //[newTimeEntry.id]
+      getTimersFromApi();
+      console.log(this.data);
       console.log(this.id);
       console.log(`${state.timers.find(timer => timer.id === this.id).currentEntryCount} seconds have been added to your log!`);
     },
@@ -185,11 +185,6 @@ $('.js-timer-section').on('click', '.timer-button', function(event) {
   var start = new Date;
   let id = $(this).attr('data-id');
   let clickedTimer = state.timers.find(timer => timer.id === id);
-  let newTimeEntry = {
-      id: `${id}`,
-      seconds: `${clickedTimer.currentEntryCount}`,
-      endDate: new Date()
-  };
   state.idOfTimerBeingEdited = id;
   clickedTimer.isRunning = (!clickedTimer.isRunning);
 
@@ -202,6 +197,11 @@ $('.js-timer-section').on('click', '.timer-button', function(event) {
       renderTimers(state.timers);
     }, 1000);
   } else {
+    let newTimeEntry = {
+        id: `${id}`,
+        seconds: `${clickedTimer.currentEntryCount}`,
+        endDate: new Date()
+    };
     clearInterval(clickedTimer.intervalTicker);
     newLogEntry(newTimeEntry);
   }
@@ -292,7 +292,8 @@ const formatHoursAndMinutes = (seconds) => {
   date.setSeconds(seconds);
   let hours = date.toISOString().substr(11, 2);
   let min = date.toISOString().substr(14, 2);
-  return `${hours}h ${min}m`;
+  let sec = date.toISOString().substr(17, 2);
+  return `${hours}:${min}:${sec}`;
 }
 
 function dateToString(date){
