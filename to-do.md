@@ -3,8 +3,10 @@
 ## Incomplete Tasks:
 
 ### CLIENT-SIDE
-- fix CI test issue (test-...-api.js line 218 & 219)
 
+### SERVER-SIDE
+- Travis tests don't pass
+- delete endpoint sends error object when trying to delete non-existent timer.  (solution: hide delete menu on new timer modal?)
 
 ### DO LATER
 - do I need a user property in the timer -> later
@@ -41,6 +43,7 @@
 - Populate form issues (dashboard & index)
 - add timers/:id/log endpoint to dashboard.js
 - add session totals to dashboard and index files
+- fix CI test issue (test-...-api.js line 218 & 219)
 
 ### SERVER SIDE:
 - check out a new branch. And start working on server.js.

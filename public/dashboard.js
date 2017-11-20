@@ -4,7 +4,7 @@ let state = {
   timers: [],
   idOfTimerBeingEdited: ""
 }
-//formatHoursAndMinutes
+
 const renderTimerComponent = function (timer, id) {
   let part1ofTimer = `<div class="timer" data-id="${id}">
   <div class="timer-info">
@@ -38,9 +38,6 @@ const renderTimerComponent = function (timer, id) {
 function getTimersFromApi() {
   const settings = {
     url: '/timers',
-    // data: {
-    //   data
-    // },
     dataType: 'json',
     type: 'GET',
     success: function(timers) {
@@ -80,8 +77,6 @@ function deleteTimerFromApi() {
     success: function() {
       getTimersFromApi();
       closeModal();
-      // state.timers.splice([indexOfTimerBeingEdited], 1);
-      //      renderTimers(state.timers);
     },
     error: function(data) {
       console.log("Error: API could not answer your request.", data);
@@ -169,15 +164,7 @@ function closeModal(){
   $('.submit-button').addClass('save-changes');
   $('.submit-button').removeClass('js-change-existing-timer');
   state.idOfTimerBeingEdited="";
-  // $('.js-project-name').prop('required', 'false');
 }
-
-// function verifyUserChanges(label, category, creationDate, notes){
-//   if (label) {state.timers[indexOfTimerBeingEdited].label = label;};
-//   if (category) {state.timers[indexOfTimerBeingEdited].category = category;};
-//   if (creationDate) {state.timers[indexOfTimerBeingEdited].creationDate = creationDate;};
-//   if (notes) {state.timers[indexOfTimerBeingEdited].projectNotes =  notes;}
-// }
 
 //listener for square timer button. on click, if it was off, it turns on timer and adds
 //1 to the totalTimeInSeconds and todaysTime every second. If it was on, it should stop the timer.
@@ -260,10 +247,6 @@ $(function(){
   $('.light').on('click','.js-final-delete-it-button', function(event) {
     event.preventDefault();
     deleteTimerFromApi();
-    // TODO: ajax request to delete, on success.
-    //      state.timers.splice([indexOfTimerBeingEdited], 1);
-    //      renderTimers(state.timers);
-    //      closeModal();
   })
 
   $('.light').on('click','.js-cancel-delete-button', function() {

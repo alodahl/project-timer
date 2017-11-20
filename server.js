@@ -69,6 +69,9 @@ app.post('/timers', (req, res) => {
 });
 
 app.delete('/timers/:id', (req, res) => {
+  if (!req.params.id) {
+    res.status(404).json({error: 'Delete cannot be completed because timer does not exist.'});
+  };
   Timer
     .findByIdAndRemove(req.params.id)
     .then(() => {
