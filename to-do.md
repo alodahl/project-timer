@@ -2,9 +2,10 @@
 
 ## Incomplete Tasks:
 
-### CLIENT-SIDE
-- fix CI test issue (test-...-api.js line 218 & 219)
+### AUTHENTICATION
+- Add authentication files using lesson example
 
+### CLIENT-SIDE
 
 ### DO LATER
 - do I need a user property in the timer -> later
@@ -41,6 +42,7 @@
 - Populate form issues (dashboard & index)
 - add timers/:id/log endpoint to dashboard.js
 - add session totals to dashboard and index files
+- fix CI test issue (test-...-api.js line 218 & 219)
 
 ### SERVER SIDE:
 - check out a new branch. And start working on server.js.
