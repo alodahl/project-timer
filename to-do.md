@@ -1,21 +1,19 @@
 # Project Timer To-do
 
 ## Incomplete Tasks:
-- "edit timer" button works twice
 
-### SERVER SIDE:
-- Save everything, make a pull request, merge to master.
-- Use postman from now on.
-- check out a new branch. And start working on server.js.
-- do models.js
-- Maybe copy server.js from blogpost as starting point??
-- POST /api/timers/ -> creates a timer.
-- GET /api/timers/
-- PUT /api/timers/:id -> edit existing timer
-- DELETE /api/timers/:id -> delete existing timer
+### CLIENT-SIDE
+- fix CI test issue (test-...-api.js line 218 & 219)
 
+
+### DO LATER
+- do I need a user property in the timer -> later
+
+-----
 
 ## Completed Tasks:
+
+### CLIENT-SIDE
 - Make landing page responsive for large widths
 - use jquery to have timers display seconds, minutes, and hours.
 - base timer rendering on index
@@ -34,3 +32,26 @@
 - Delete "add time" inputs from modal.
 - "edit timer" button edits and deletes
 - Make "start time" into dropdown calendar input
+- Save everything, make a pull request, merge to master.
+- make sure "edit timer" button works multiple times
+- click on delete makes an AJAX Delete request, calls getTimersFromApi again.
+- dashboard timers based on mongo id, not on index
+- Prepopulate edit form. (dashboard)
+- Prepopulate edit form. (landing-page)
+- Populate form issues (dashboard & index)
+- add timers/:id/log endpoint to dashboard.js
+- add session totals to dashboard and index files
+
+### SERVER SIDE:
+- check out a new branch. And start working on server.js.
+- Maybe copy server.js from blogpost as starting point
+- do models.js
+- set up mlab timers and test databases, setup env vars on travis and heroku
+- set up endpoints for POST, GET, PUT, and DELETE, and got desired results on Postman
+- POST /api/timers/ -> creates a timer.
+- GET /api/timers/
+- PUT /api/timers/:id -> edit existing timer
+- DELETE /api/timers/:id -> delete existing timer
+- Use postman from now on.
+- setup mongoose tests
+- add mongoose tests for timers/:id/log
