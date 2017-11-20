@@ -92,8 +92,8 @@ function deleteTimerFromApi() {
 
 function newLogEntry(newLog) {
   const settings = {
-    id: newLog.id,
-    url: `/timers/${newLog.id}/log`,
+    id: newLog.timerId,
+    url: `/timers/${newLog.timerId}/log`,
     data: newLog,
     dataType: 'json',
     type: 'PUT',
@@ -197,12 +197,12 @@ $('.js-timer-section').on('click', '.timer-button', function(event) {
       renderTimers(state.timers);
     }, 1000);
   } else {
+    clearInterval(clickedTimer.intervalTicker);
     let newTimeEntry = {
-        id: `${id}`,
+        timerId: `${id}`,
         seconds: `${clickedTimer.currentEntryCount}`,
         endDate: new Date()
     };
-    clearInterval(clickedTimer.intervalTicker);
     newLogEntry(newTimeEntry);
   }
 })

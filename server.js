@@ -102,8 +102,8 @@ app.put('/timers/:id', (req, res) => {
     .catch(err => res.status(500).json({message: 'Something went wrong'}));
 });
 
-app.put('/timers/:id/log', (req, res) => {
-  if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
+app.put('/timers/:timerId/log', (req, res) => {
+  if (!(req.params.timerId && req.body.timerId && req.params.timerId === req.body.timerId)) {
     res.status(400).json({
       error: 'Request path id and request body id values must match'
     });
@@ -113,7 +113,7 @@ app.put('/timers/:id/log', (req, res) => {
 
   for (let i=0; i<requiredFields.length; i++) {
     const field = requiredFields[i];
-    if (!(field in req.body.logs[(req.body.logs.length) - 1])) {
+    if (!(field in req.body)) {
       const message = `Missing \`${field}\` in request body`
       console.error(message);
       return res.status(400).send(message);
@@ -124,14 +124,10 @@ app.put('/timers/:id/log', (req, res) => {
      seconds: req.body.seconds,
      endDate: req.body.endDate
    };
-   // let oldLogsArray = [];
 
   Timer
-    .findById(req.params.id)
+    .findById(req.params.timerId)
     .then(timer => {
-      // oldLogsArray = timer.logs;
-      // oldLogsArray.push(newLogEntry);
-      // .update(req.params.id, {$set: }, {new: true})
       timer.logs.push(newLogEntry);
       return timer.save()
     })

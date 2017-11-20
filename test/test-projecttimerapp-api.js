@@ -188,38 +188,33 @@ describe('Timer API resource', function() {
       });
 
       it('should update logs by appending new entry to array', function() {
-        let updateLogArray = {
-          id: 0,
-          logs: []
-        }
+        // let updateLogArray = {
+        //   id: 0,
+        //   logs: []
+        // }
         const newLogEntry = {
             seconds: 120,
             endDate: new Date()
         };
 
+        var timer;
+
         return Timer
           .findOne()
-          .then(function(timer) {
-            updateLogArray.id = timer.id;
-            updateLogArray.logs = timer.logs;
-            updateLogArray.logs.push(newLogEntry)
-            return timer;
-          })
-          .then(function(timer) {
+          .then(function(_timer) {
+            timer = _timer;
+            newLogEntry.timerId = timer.id;
             return chai.request(app)
               .put(`/timers/${timer.id}/log`)
-              .send(updateLogArray);
+              .send(newLogEntry);
           })
           .then(function(res) {
             res.should.have.status(204);
-            return Timer.findById(updateLogArray.id);
+            return Timer.findById(timer.id);
           })
-          .then(function(timer) {
-            console.log("NEW LOG ENTRY TESTS" + timer.logs[timer.logs.length - 1]);
-            timer.logs[timer.logs.length - 1].seconds.should.equal(newLogEntry.seconds);
-            timer.logs.reduce(function(totalTimeInSeconds, log){
-              return totalTimeInSeconds + log.seconds;
-            }, 0).should.equal(timer.totalTimeInSeconds);
+          .then(function(updatedTimer) {
+            updatedTimer.logs[updatedTimer.logs.length - 1].seconds.should.equal(newLogEntry.seconds);
+            (timer.totalTimeInSeconds + newLogEntry.seconds).should.equal(updatedTimer.totalTimeInSeconds);
           });
         });
   });
