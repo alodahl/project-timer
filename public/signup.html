@@ -28,14 +28,16 @@
   </header>
   <main>
     <div class="signup-form form">
-      <form class="" action="" method="post">
+      <form class="js-signup-form">       <!--action="../users" method="post"-->
         <h2 class="signup-form-title form-title">Sign Up</h2>
-        <input type="text" name="username" placeholder="username">
-        <input type="text" name="password" placeholder="password">
-        <input type="text" name="confirm password" placeholder="confirm password">
-        <button class="form-button button" type="submit" name="sign-up button">sign me up!</button>
+        <input class="js-signup-username" type="text" name="username" placeholder="username" required>
+        <input class="js-signup-password" type="text" name="password" placeholder="password" required>
+        <input class="js-signup-confirm-password" type="text" name="confirm password" placeholder="confirm password" required>
+        <button class="form-button button js-signup-button" type="submit" name="sign-up button">sign me up!</button>
       </form>
     </div>
   </main>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="signup.js"></script>
 </body>
 </html>

@@ -7,17 +7,19 @@ const app = express();
 const {DATABASE_URL, PORT} = require('./config');
 const {Timer} = require('./models');
 
-// const {router: usersRouter} = require('./users');
+const {router: usersRouter} = require('./users');
+// const {router: authRouter, basicStrategy, jwtStrategy} = require('./auth');
 
+mongoose.Promise = global.Promise;
 
 app.use(morgan('common'));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
-mongoose.Promise = global.Promise;
+app.use('/users/', usersRouter);
+// app.use('/api/auth/', authRouter);
 
-// app.use('/users/', usersRouter);
 
 app.get('/timers', (req, res) => {
   Timer

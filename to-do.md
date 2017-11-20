@@ -2,19 +2,29 @@
 
 ## Incomplete Tasks:
 
-### AUTHENTICATION
-- Add authentication files using lesson example
+### AUTHENTICATION:
+- test user authentication files in Postman
+- add endpoints to signup.html
+- add endpoints to login.html
 
-### CLIENT-SIDE
+### CLIENT-SIDE:
+- fix input text size in signup and login.html
+- add user alerts for signup errors (!== passwords, existing user, spacing issues)
 
-### DO LATER
+### SERVER-SIDE:
+- Travis tests don't pass (test db seems to be deleted when travis runs)
+- Add test db collection after showing mentor
+- delete endpoint send error object, not message(solution: remove "data" from dashboard.js CRUD console logs?)
+
+### DO LATER:
 - do I need a user property in the timer -> later
+- make sure to delete return all users at end of users/router.js; prod should not return users - dev purposes only
 
 -----
 
 ## Completed Tasks:
 
-### CLIENT-SIDE
+### CLIENT-SIDE:
 - Make landing page responsive for large widths
 - use jquery to have timers display seconds, minutes, and hours.
 - base timer rendering on index
@@ -57,3 +67,6 @@
 - Use postman from now on.
 - setup mongoose tests
 - add mongoose tests for timers/:id/log
+
+### AUTHENTICATION:
+- Add authentication files using lesson example
