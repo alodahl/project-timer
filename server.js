@@ -7,6 +7,9 @@ const app = express();
 const {DATABASE_URL, PORT} = require('./config');
 const {Timer} = require('./models');
 
+const {router: usersRouter} = require('./users');
+
+
 app.use(morgan('common'));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
@@ -14,10 +17,7 @@ app.use(express.static('public'));
 
 mongoose.Promise = global.Promise;
 
-// app.listen(process.env.PORT || 8080);
-
-module.exports = {app};
-
+app.use('/users/', usersRouter);
 
 app.get('/timers', (req, res) => {
   Timer
