@@ -7,7 +7,7 @@ const app = express();
 const {DATABASE_URL, PORT} = require('./config');
 const {Timer} = require('./models');
 
-const {router: usersRouter} = require('./users');
+// const {router: usersRouter} = require('./users');
 
 
 app.use(morgan('common'));
@@ -17,7 +17,7 @@ app.use(express.static('public'));
 
 mongoose.Promise = global.Promise;
 
-app.use('/users/', usersRouter);
+// app.use('/users/', usersRouter);
 
 app.get('/timers', (req, res) => {
   Timer
