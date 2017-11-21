@@ -4,7 +4,6 @@
 
 ### AUTHENTICATION:
 - test user authentication files in Postman
-- add endpoints to signup.html
 - add endpoints to login.html
 
 ### CLIENT-SIDE:
@@ -70,3 +69,4 @@
 
 ### AUTHENTICATION:
 - Add authentication files using lesson example
+- add endpoints to signup.html

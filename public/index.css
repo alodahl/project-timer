@@ -132,6 +132,7 @@ margin-bottom: 30px;
 
 .green-text {
   color: var(--hotgreen);
+  padding: 0 20px;
 }
 
 .form-button {
