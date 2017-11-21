@@ -25,7 +25,5 @@ $('.js-signup-form').submit( function(event) {
     password: $('.js-signup-password').val(),
     confirmPassword: $('.js-signup-confirm-password').val(),
   };
-
-
   createNewUser(newUserData);
 })

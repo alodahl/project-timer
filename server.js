@@ -2,6 +2,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const express = require('express');
+const passport = require('passport');
+
 const app = express();
 
 const {DATABASE_URL, PORT} = require('./config');
@@ -17,9 +19,22 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
+app.use(passport.initialize());
+passport.use(basicStrategy);
+passport.use(jwtStrategy);
+
 app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 
+app.get(
+    '/public/dashboard.html',
+    passport.authenticate('jwt', {session: false}),
+    (req, res) => {
+        return res.json({
+            // data: 'rosebud'
+        });
+    }
+);
 
 app.get('/timers', (req, res) => {
   Timer
