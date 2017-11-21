@@ -6,9 +6,10 @@ function logUserIn(userData) {
     data: userData,
     dataType: 'json',
     type: 'POST',
-    success: function(user) {
-      window.location.href = './protected/dashboard.html';
+    success: function(data) {
+      localStorage.setItem('token', data.authToken);
       console.log("You are logged in.", data);
+      window.location.href = '/dashboard.html';
     },
     error: function(data) {
       console.log("Error: user authentication failed.", data);

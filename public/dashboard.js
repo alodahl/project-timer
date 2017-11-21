@@ -2,7 +2,8 @@
 
 let state = {
   timers: [],
-  idOfTimerBeingEdited: ""
+  idOfTimerBeingEdited: "",
+  token:""
 }
 //formatHoursAndMinutes
 const renderTimerComponent = function (timer, id) {
@@ -36,11 +37,10 @@ const renderTimerComponent = function (timer, id) {
 }
 
 function getTimersFromApi() {
+  console.log(state.token)
   const settings = {
     url: '/timers',
-    // data: {
-    //   data
-    // },
+    headers: { 'Authorization': `Bearer ${state.token}` },
     dataType: 'json',
     type: 'GET',
     success: function(timers) {
@@ -208,6 +208,13 @@ $('.js-timer-section').on('click', '.timer-button', function(event) {
 })
 
 $(function(){
+
+  state.token = localStorage.getItem("token");
+  if(!state.token){
+    window.location.href = '/login.html';
+  }
+
+
   //render existing db timers on page load
   getTimersFromApi();
 
