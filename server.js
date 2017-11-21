@@ -26,19 +26,21 @@ passport.use(jwtStrategy);
 app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 
-app.get(
-    '/protected/',
-    passport.authenticate('jwt', {session: false}),
-    (req, res) => {
-        return res.json({
-            // data: 'rosebud'
-        });
-    }
-);
+// app.get(
+//     '/protected/',
+//     passport.authenticate('jwt', {session: false}),
+//     (req, res) => {
+//         return res.json({
+//             data: 'rosebud'
+//         });
+//     }
+// );
 
-app.get('/timers', (req, res) => {
+app.get('/timers',
+passport.authenticate('jwt', {session: false}), (req, res) => {
+  console.log(req.user);
   Timer
-    .find()
+    .find({user: req.user.id})
     .then(timers => {
       res.json(timers.map(timer => timer.apiRepr()));
     })
@@ -48,7 +50,8 @@ app.get('/timers', (req, res) => {
     });
 });
 
-app.get('/timers/:id', (req, res) => {
+app.get('/timers/:id',
+passport.authenticate('jwt', {session: false}), (req, res) => {
   Timer
     .findById(req.params.id)
     .then(timer => res.json(timer.apiRepr()))
@@ -59,7 +62,8 @@ app.get('/timers/:id', (req, res) => {
 });
 
 ////The required fields will be everything but "logs" & "totalTimeInSeconds"
-app.post('/timers', (req, res) => {
+app.post('/timers',
+passport.authenticate('jwt', {session: false}), (req, res) => {
   const requiredFields = ['label'];
   for (let i=0; i<requiredFields.length; i++) {
     const field = requiredFields[i];
@@ -75,7 +79,8 @@ app.post('/timers', (req, res) => {
       label: req.body.label,
       category: req.body.category,
       creationDate: req.body.creationDate,
-      projectNotes: req.body.projectNotes
+      projectNotes: req.body.projectNotes,
+      user: req.user.id
     })
     .then(timer => res.status(201).json(timer.apiRepr()))
     .catch(err => {
@@ -85,7 +90,8 @@ app.post('/timers', (req, res) => {
 
 });
 
-app.delete('/timers/:id', (req, res) => {
+app.delete('/timers/:id',
+passport.authenticate('jwt', {session: false}), (req, res) => {
   Timer
     .findByIdAndRemove(req.params.id)
     .then(() => {
@@ -98,7 +104,8 @@ app.delete('/timers/:id', (req, res) => {
 });
 
  /////remember not to verify "logs" or "totalTimeInSeconds"
-app.put('/timers/:id', (req, res) => {
+app.put('/timers/:id',
+passport.authenticate('jwt', {session: false}), (req, res) => {
   if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
     res.status(400).json({
       error: 'Request path id and request body id values must match'
@@ -119,7 +126,8 @@ app.put('/timers/:id', (req, res) => {
     .catch(err => res.status(500).json({message: 'Something went wrong'}));
 });
 
-app.put('/timers/:timerId/log', (req, res) => {
+app.put('/timers/:timerId/log',
+passport.authenticate('jwt', {session: false}), (req, res) => {
   if (!(req.params.timerId && req.body.timerId && req.params.timerId === req.body.timerId)) {
     res.status(400).json({
       error: 'Request path id and request body id values must match'

@@ -5,6 +5,7 @@ const timerSchema = mongoose.Schema({
   category: {type: String, default: ""},
   creationDate: {type: Date, default: new Date()},
   projectNotes: {type: String, default: ""},
+  user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   logs: [{
     seconds: Number,
     endDate: {type: Date, default: new Date()}

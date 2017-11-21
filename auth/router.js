@@ -30,7 +30,7 @@ router.post(
     // expiration
     passport.authenticate('jwt', {session: false}),
     (req, res) => {
-        const authToken = createAuthToken(req.user);
+        const authToken = createAuthToken(req.user.apiRepr());
         res.json({authToken});
     }
 );

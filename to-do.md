@@ -12,6 +12,7 @@
 - Travis tests don't pass (test db seems to be deleted when travis runs)
 - Add test db collection after showing mentor
 - delete endpoint send error object, not message(solution: remove "data" from dashboard.js CRUD console logs?)
+- prevent user being posted if confirm password is not correct or in body
 
 ### DO LATER:
 - do I need a user property in the timer -> later
