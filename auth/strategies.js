@@ -1,5 +1,4 @@
 const passport = require('passport');
-const {BasicStrategy} = require('passport-http');
 const {
     // Assigns the Strategy export to the name JwtStrategy using object
     // destructuring
@@ -8,10 +7,12 @@ const {
     ExtractJwt
 } = require('passport-jwt');
 
+const LocalStrategy = require('passport-local').Strategy
+
 const {User} = require('../users/models');
 const {JWT_SECRET} = require('../config'); //database url var can be deleted after troubleshooting
 
-const basicStrategy = new BasicStrategy((username, password, callback) => {
+const localStrategy = new LocalStrategy((username, password, callback) => {
     let user;
     User.findOne({username: username})
         .then(_user => {
@@ -55,4 +56,4 @@ const jwtStrategy = new JwtStrategy(
     }
 );
 
-module.exports = {basicStrategy, jwtStrategy};
+module.exports = {localStrategy, jwtStrategy};
