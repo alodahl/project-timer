@@ -6,7 +6,6 @@
 - figure out jwt_secret problem
 
 ### CLIENT-SIDE:
-- fix input text size in signup and login.html
 - add user alerts for signup errors (!== passwords, existing user, spacing issues)
 
 ### SERVER-SIDE:
@@ -51,6 +50,7 @@
 - add timers/:id/log endpoint to dashboard.js
 - add session totals to dashboard and index files
 - fix CI test issue (test-...-api.js line 218 & 219)
+- fix input text size in signup and login.html
 
 ### SERVER SIDE:
 - check out a new branch. And start working on server.js.

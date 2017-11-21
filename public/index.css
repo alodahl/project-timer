@@ -87,9 +87,19 @@ input {
   padding: 10px 7px 4px 10px;
 }
 
+.auth-input {
+  font-size: 1.2em;
+  padding-bottom: 10px;
+  color: var(--darkgray);
+}
+
+.auth-input:focus {
+  decoration: none;
+  border: 2px solid var(--hotgreen);
+}
+
 input::placeholder {
   font-family: "Shree Devanagari 714";
-  font-size: 1.7em;
   font-weight: 100;
 }
 
