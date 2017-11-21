@@ -9,7 +9,7 @@ const {
 } = require('passport-jwt');
 
 const {User} = require('../users/models');
-const {JWT_SECRET} = require('../config');
+const {JWT_SECRET, DATABASE_URL} = require('../config'); //database url var can be deleted after troubleshooting
 
 const basicStrategy = new BasicStrategy((username, password, callback) => {
     let user;

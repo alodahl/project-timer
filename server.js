@@ -27,7 +27,7 @@ app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 
 app.get(
-    '/public/dashboard.html',
+    '/protected/',
     passport.authenticate('jwt', {session: false}),
     (req, res) => {
         return res.json({

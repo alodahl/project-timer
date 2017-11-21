@@ -3,8 +3,7 @@
 ## Incomplete Tasks:
 
 ### AUTHENTICATION:
-- test user authentication files in Postman
-- add endpoints to login.html
+- figure out jwt_secret problem
 
 ### CLIENT-SIDE:
 - fix input text size in signup and login.html
@@ -70,3 +69,5 @@
 ### AUTHENTICATION:
 - Add authentication files using lesson example
 - add endpoints to signup.html
+- add endpoints to login.html
+- test user authentication files in Postman

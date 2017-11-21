@@ -7,7 +7,8 @@ function logUserIn(userData) {
     dataType: 'json',
     type: 'POST',
     success: function(user) {
-      window.location.href = "dashboard.html";
+      window.location.href = './protected/dashboard.html';
+      console.log("You are logged in.", data);
     },
     error: function(data) {
       console.log("Error: user authentication failed.", data);
