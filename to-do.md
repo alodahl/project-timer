@@ -3,7 +3,8 @@
 ## Incomplete Tasks:
 
 ### AUTHENTICATION:
-- figure out jwt_secret problem
+- Change all ajax calls to have authToken
+- add a sign out button to delete token from local storage
 
 ### CLIENT-SIDE:
 - add user alerts for signup errors (!== passwords, existing user, spacing issues)
