@@ -7,7 +7,7 @@ function logUserIn(userData) {
     dataType: 'json',
     type: 'POST',
     success: function(user) {
-      window.location.href = './protected/dashboard.html';
+      window.location.href = './dashboard.html';
       console.log("You are logged in.", data);
     },
     error: function(data) {
