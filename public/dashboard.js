@@ -3,7 +3,8 @@
 let state = {
   timers: [],
   idOfTimerBeingEdited: "",
-  token:""
+  token:"",
+  user: ""
 }
 //formatHoursAndMinutes
 const renderTimerComponent = function (timer, id) {
@@ -37,7 +38,6 @@ const renderTimerComponent = function (timer, id) {
 }
 
 function getTimersFromApi() {
-  console.log(state.token)
   const settings = {
     url: '/timers',
     headers: { 'Authorization': `Bearer ${state.token}` },
@@ -57,6 +57,7 @@ function getTimersFromApi() {
 function saveTimerToApi(timerData) {
   const settings = {
     url: `/timers/${state.idOfTimerBeingEdited}`,
+    headers: { 'Authorization': `Bearer ${state.token}` },
     data: timerData,
     dataType: 'json',
     type: state.idOfTimerBeingEdited? 'PUT' : 'POST',
@@ -75,13 +76,12 @@ function saveTimerToApi(timerData) {
 function deleteTimerFromApi() {
   const settings = {
     url: `/timers/${state.idOfTimerBeingEdited}`,
+    headers: { 'Authorization': `Bearer ${state.token}` },
     dataType: 'json',
     type: 'DELETE',
     success: function() {
       getTimersFromApi();
       closeModal();
-      // state.timers.splice([indexOfTimerBeingEdited], 1);
-      //      renderTimers(state.timers);
     },
     error: function(data) {
       console.log("Error: API could not answer your request.", data);
@@ -94,13 +94,12 @@ function newLogEntry(newLog) {
   const settings = {
     id: newLog.timerId,
     url: `/timers/${newLog.timerId}/log`,
+    headers: { 'Authorization': `Bearer ${state.token}` },
     data: newLog,
     dataType: 'json',
     type: 'PUT',
     success: function() {
       getTimersFromApi();
-      console.log(this.data);
-      console.log(this.id);
       console.log(`${state.timers.find(timer => timer.id === this.id).currentEntryCount} seconds have been added to your log!`);
     },
     error: function(data) {
@@ -126,9 +125,6 @@ function populateForm() {
   // and changes the input values to current values on database
   let chosenTimer = state.timers.find(timer => timer.id === state.idOfTimerBeingEdited);
   let defaultDate = new Date().toISOString().substr(0, 10);
-  console.log("start populating form");
-  console.log(chosenTimer);
-  // console.log(defaultDate);
   if (state.idOfTimerBeingEdited){
    $('.js-project-name').val(`${chosenTimer.label}`);
    $('.js-category-name').val(`${chosenTimer.category}`);
@@ -140,7 +136,6 @@ function populateForm() {
    $('.js-start-date').val(`${defaultDate}`);
    $('.js-notes').val('');
  }
- console.log("finish populating form");
 }
 
 function clearForm() {
@@ -172,13 +167,6 @@ function closeModal(){
   // $('.js-project-name').prop('required', 'false');
 }
 
-// function verifyUserChanges(label, category, creationDate, notes){
-//   if (label) {state.timers[indexOfTimerBeingEdited].label = label;};
-//   if (category) {state.timers[indexOfTimerBeingEdited].category = category;};
-//   if (creationDate) {state.timers[indexOfTimerBeingEdited].creationDate = creationDate;};
-//   if (notes) {state.timers[indexOfTimerBeingEdited].projectNotes =  notes;}
-// }
-
 //listener for square timer button. on click, if it was off, it turns on timer and adds
 //1 to the totalTimeInSeconds and todaysTime every second. If it was on, it should stop the timer.
 $('.js-timer-section').on('click', '.timer-button', function(event) {
@@ -209,11 +197,18 @@ $('.js-timer-section').on('click', '.timer-button', function(event) {
 
 $(function(){
 
+
   state.token = localStorage.getItem("token");
   if(!state.token){
     window.location.href = '/login.html';
   }
 
+  state.user = localStorage.getItem("user");
+  if(!state.user){
+    window.location.href = '/login.html';
+  }
+
+  $('.js-user-name').text(`Hi, ${state.user}`);
 
   //render existing db timers on page load
   getTimersFromApi();
@@ -245,7 +240,6 @@ $(function(){
   //variables for next time before closing modal.
   $('.edit-form').submit( function(event) {
     event.preventDefault()
-    console.log("save button clicked");
     let timerData = {
       label: $('.js-project-name').val(),
       category: $('.js-category-name').val(),
@@ -282,6 +276,12 @@ $(function(){
      let id = $(this).attr('data-id');
      state.idOfTimerBeingEdited = id;
      openModal();
+  })
+
+  $('.log-out-button').on('click', function(event) {
+    console.log("log out button clicked");
+    state.token = "";
+    window.location.href = "login.html";
   })
 })
 

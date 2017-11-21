@@ -3,20 +3,18 @@
 ## Incomplete Tasks:
 
 ### AUTHENTICATION:
-- Change all ajax calls to have authToken
-- add a sign out button to delete token from local storage
 
 ### CLIENT-SIDE:
 - add user alerts for signup errors (!== passwords, existing user, spacing issues)
+- change "try-it-out-section" class to blue-nav-bar
 
 ### SERVER-SIDE:
 - Travis tests don't pass (test db seems to be deleted when travis runs)
 - Add test db collection after showing mentor
-- delete endpoint send error object, not message(solution: remove "data" from dashboard.js CRUD console logs?)
+- delete endpoint send error object, not message
+- remove "data" from dashboard.js CRUD console logs?
+- remove "console.log(state.token)"s
 - prevent user being posted if confirm password is not correct or in body
-
-### DO LATER:
-- do I need a user property in the timer -> later
 - make sure to delete return all users at end of users/router.js; prod should not return users - dev purposes only
 
 -----
@@ -67,9 +65,12 @@
 - Use postman from now on.
 - setup mongoose tests
 - add mongoose tests for timers/:id/log
+- do I need a user property in the timer -> later
 
 ### AUTHENTICATION:
 - Add authentication files using lesson example
 - add endpoints to signup.html
 - add endpoints to login.html
 - test user authentication files in Postman
+- Change all ajax calls to have authToken
+- add a sign out button to delete token from local storage

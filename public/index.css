@@ -186,8 +186,6 @@ margin-bottom: 30px;
   display: inline-block;
   float: left;
   margin: 10px;
-  /*height: 38px;
-  width: 100px;*/
 }
 
 .rightnav {
@@ -214,14 +212,7 @@ margin-bottom: 30px;
 
 .nav-text{
   margin: 0;
-  /*position: relative;
-  bottom: 17px;
-  right: 2px;*/
-}
-
-.nav-text-left-line-two {
-  /*bottom: 25px;
-  left: 35px;*/
+  text-align: left;
 }
 
 .nav-text-right {
@@ -512,7 +503,18 @@ margin-bottom: 30px;
   display: none;
 }
 
+.user-name {
+  display: none;
+}
+
 @media only screen and (min-width: 400px) {
+
+  .user-name {
+    display: inline;
+    position: absolute;
+    top: 24px;
+    left: 51px;
+  }
 
   .timer-example-photo {
     width: 400px;
@@ -521,8 +523,6 @@ margin-bottom: 30px;
 
   .leftnav {
     margin: 15px;
-    height: 38px;
-    width: 100px;
   }
 
   .rightnav {
@@ -558,9 +558,9 @@ margin-bottom: 30px;
     /*margin-bottom: 8px;*/
   }
 
-  p {
+  /*p {
     font-size: 1.0em;
-  }
+  }*/
 
 }
 
@@ -572,6 +572,10 @@ margin-bottom: 30px;
     color: var(--blue);
     margin: 10px 0;
     height: 25px;
+  }
+
+  p {
+    font-size: 1.0em;
   }
 
 }

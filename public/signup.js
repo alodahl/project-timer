@@ -19,7 +19,6 @@ function createNewUser(userData) {
 
 $('.js-signup-form').submit( function(event) {
   event.preventDefault()
-  console.log("signup button clicked");
   let newUserData = {
     username: $('.js-signup-username').val(),
     password: $('.js-signup-password').val(),
