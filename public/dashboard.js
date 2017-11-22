@@ -132,7 +132,7 @@ function populateForm() {
    $('.js-start-date').val(`${(chosenTimer.creationDate).substr(0, 10)}`);
    $('.js-notes').val(`${chosenTimer.projectNotes}`);
  } else {
-   $('.js-project-name').val('NEW PROJECT');
+   $('.js-project-name').val('');
    $('.js-category-name').val('');
    $('.js-start-date').val(`${defaultDate}`);
    $('.js-notes').val('');

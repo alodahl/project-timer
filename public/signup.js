@@ -7,7 +7,6 @@ function createNewUser(userData) {
     dataType: 'json',
     type: 'POST',
     success: function(user) {
-      alert(`User "${user.username}" has been created! Click "ok" to log in.`);
       window.location.href = "login.html";
     },
     error: function(data) {

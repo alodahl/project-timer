@@ -155,6 +155,7 @@ $(function(){
 
   //click "new timer" area to open modal
   $('.js-new-timer-button').on('click', function() {;
+    //hide delete button $('.js-delete-alert').addClass('hidden');
     openModal();
     populateNewForm();
   })

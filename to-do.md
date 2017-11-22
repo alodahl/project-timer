@@ -2,6 +2,15 @@
 
 ## Incomplete Tasks:
 
+Index
+- Fix login/signup icons so that text is also clickable.
+- Hide delete button when creating new timer.
+- Clicking on timers sometimes doesn't work. (Fix same way as on dashboard)
+
+Dashboard.
+- When dashboard is empty. Have a little message "click on new timer to get started!" That hides when you have timers / show when you delete all timers.
+- Hide delete timer when clicking on "new timer"
+
 ### AUTHENTICATION:
 - write auth tests
 
@@ -51,6 +60,7 @@
 - delete endpoint send error message
 - remove "data" from dashboard.js CRUD console logs
 - change "try-it-out-section" class to blue-nav-bar
+- Remove the alert when signing up. Just redirect to login.
 
 
 ### SERVER SIDE:
