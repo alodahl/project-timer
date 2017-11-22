@@ -233,6 +233,7 @@ $(function(){
 
   //click to create a new timer object
   $('.js-new-timer-button').on('click', function() {
+    state.idOfTimerBeingEdited="";
     openModal();
   })
 

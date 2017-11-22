@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 
 const should = chai.should();
 
-const {Timer} = require('../models');
+const {Timer} = require('../timers/models');
 const {app, runServer, closeServer} = require('../server');
 const {TEST_DATABASE_URL} = require('../config');
 
@@ -110,7 +110,6 @@ describe('Timer API resource', function() {
           resTimer.id.should.equal(Timer.id);
           resTimer.label.should.equal(Timer.label);
           resTimer.category.should.equal(Timer.category);
-          // resTimer.creationDate.should.equal(Timer.creationDate);
           resTimer.projectNotes.should.equal(Timer.projectNotes);
           resTimer.totalTimeInSeconds.should.equal(Timer.totalTimeInSeconds);
         });
@@ -140,14 +139,12 @@ describe('Timer API resource', function() {
             res.body.id.should.not.be.null;
             res.body.label.should.equal(newTimer.label);
             res.body.category.should.equal(newTimer.category);
-            // res.body.creationDate.should.equal(newTimer.creationDate);
             res.body.projectNotes.should.equal(newTimer.projectNotes);
             return Timer.findById(res.body.id);
           })
           .then(function(Timer) {
             Timer.label.should.equal(newTimer.label);
             Timer.category.should.equal(newTimer.category);
-            // Timer.creationDate.should.equal(newTimer.creationDate);
             Timer.projectNotes.should.equal(newTimer.projectNotes);
           });
       });
@@ -188,10 +185,8 @@ describe('Timer API resource', function() {
       });
 
       it('should update logs by appending new entry to array', function() {
-        // let updateLogArray = {
-        //   id: 0,
-        //   logs: []
-        // }
+
+        let timer;
         const newLogEntry = {
             seconds: 120,
             endDate: new Date()
@@ -200,6 +195,7 @@ describe('Timer API resource', function() {
         return Timer
           .findOne()
           .then(function(_timer) {
+            timer = _timer;
             newLogEntry.id = timer.id;
             return chai.request(app)
               .put(`/timers/${timer.id}/log`)

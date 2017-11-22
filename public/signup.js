@@ -12,7 +12,7 @@ function createNewUser(userData) {
     },
     error: function(data) {
       console.log("Error: API could not create a new user.");
-      alert("Error: " + data.responseJSON.message);
+      alert(data.responseJSON.location + " error: " + data.responseJSON.message);
     }
   };
   $.ajax(settings);
@@ -27,10 +27,7 @@ $('.js-signup-form').submit( function(event) {
   };
   if (newUserData.password !== newUserData.confirmPassword) {
     alert("Your passwords do not match! Enter and confirm a password.");
-  // } if (newUserData.username) {
-
   } else {
     createNewUser(newUserData);
-
   }
 })

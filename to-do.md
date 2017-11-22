@@ -6,7 +6,7 @@
 - write auth tests
 
 ### CLIENT-SIDE:
-- refactor:  login.html on, add comments and delete unnecessary code
+- make text also clickable in links
 
 ### SERVER-SIDE:
 - Travis tests don't pass (test db seems to be deleted when travis runs)
@@ -76,3 +76,4 @@
 - test user authentication files in Postman
 - Change all ajax calls to have authToken
 - add a sign out button to delete token from local storage
+- refactor:  add comments and delete unnecessary code

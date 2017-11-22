@@ -134,8 +134,8 @@ function verifyUserChanges(projectName, category, startDate, notes){
 
 $(function(){
   //render existing timers on page load
-  newTimer("WATERCOLOR PAINTING", 10000);
-  newTimer("FINISH CODING SERVER", 2000);
+  newTimer('WATERCOLOR PAINTING', 10000, 'Art', new Date(), '24" x 36"');
+  newTimer('FINISH CODING SERVER', 2000, 'Web', new Date(), 'CI Tests');
   renderTimers(timers);
 
   //click cancel button to hide modal and show results page

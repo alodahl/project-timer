@@ -76,7 +76,6 @@ passport.authenticate('jwt', {session: false}), (req, res) => {
     });
 });
 
- /////remember not to verify "logs" or "totalTimeInSeconds"
 router.put('/:id',
 passport.authenticate('jwt', {session: false}), (req, res) => {
   if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {

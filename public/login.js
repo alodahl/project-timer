@@ -15,7 +15,6 @@ function logUserIn(userData) {
     error: function(data) {
       console.log("Error: user authentication failed.");
       alert("Error: Incorrect name and password combination");
-      // alert("Error: " + data.responseJSON.message);
     }
   };
   $.ajax(settings);

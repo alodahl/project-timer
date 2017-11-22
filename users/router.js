@@ -42,13 +42,8 @@ router.post('/', jsonParser, (req, res) => {
         });
     }
 
-    // If the username and password aren't trimmed we give an error.  Users might
-    // expect that these will work without trimming (i.e. they want the password
-    // "foobar ", including the space at the end).  We need to reject such values
-    // explicitly so the users know what's happening, rather than silently
-    // trimming them and expecting the user to understand.
-    // We'll silently trim the other fields, because they aren't credentials used
-    // to log in, so it's less of a problem.
+    // Don't let users accidently register a space as part of their
+    //username or password
     const explicityTrimmedFields = ['username', 'password'];
     const nonTrimmedField = explicityTrimmedFields.find(
         field => req.body[field].trim() !== req.body[field]
@@ -69,8 +64,6 @@ router.post('/', jsonParser, (req, res) => {
         },
         password: {
             min: 10,
-            // bcrypt truncates after 72 characters, so let's not give the illusion
-            // of security by storing extra (unused) info
             max: 72
         }
     };
@@ -99,8 +92,6 @@ router.post('/', jsonParser, (req, res) => {
     }
 
     let {username, password} = req.body;
-    // Username and password come in pre-trimmed, otherwise we throw an error
-    // before this
 
     return User.find({username})
         .count()
