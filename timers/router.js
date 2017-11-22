@@ -94,7 +94,7 @@ passport.authenticate('jwt', {session: false}), (req, res) => {
 
   Timer
     .findByIdAndUpdate(req.params.id, {$set: updated}, {new: true})
-    .then(updatedTimer => res.status(204).end())
+    .then(updatedTimer => res.json(updatedTimer))
     .catch(err => res.status(500).json({message: 'Something went wrong'}));
 });
 
