@@ -3,19 +3,14 @@
 ## Incomplete Tasks:
 
 ### AUTHENTICATION:
+- write auth tests
 
 ### CLIENT-SIDE:
-- add user alerts for signup errors (!== passwords, existing user, spacing issues)
-- change "try-it-out-section" class to blue-nav-bar
+- refactor:  login.html on, add comments and delete unnecessary code
 
 ### SERVER-SIDE:
 - Travis tests don't pass (test db seems to be deleted when travis runs)
 - Add test db collection after showing mentor
-- delete endpoint send error object, not message
-- remove "data" from dashboard.js CRUD console logs?
-- remove "console.log(state.token)"s
-- prevent user being posted if confirm password is not correct or in body
-- make sure to delete return all users at end of users/router.js; prod should not return users - dev purposes only
 
 -----
 
@@ -51,6 +46,12 @@
 - add session totals to dashboard and index files
 - fix CI test issue (test-...-api.js line 218 & 219)
 - fix input text size in signup and login.html
+- add user alerts for signup errors (!== passwords, existing user, spacing issues)
+- prevent user being posted if confirm password is not correct or in body
+- delete endpoint send error message
+- remove "data" from dashboard.js CRUD console logs
+- change "try-it-out-section" class to blue-nav-bar
+
 
 ### SERVER SIDE:
 - check out a new branch. And start working on server.js.
@@ -66,6 +67,7 @@
 - setup mongoose tests
 - add mongoose tests for timers/:id/log
 - do I need a user property in the timer -> later
+- show username in dashboard.html
 
 ### AUTHENTICATION:
 - Add authentication files using lesson example

@@ -11,7 +11,8 @@ function createNewUser(userData) {
       window.location.href = "login.html";
     },
     error: function(data) {
-      console.log("Error: API could not create a new user.", data);
+      console.log("Error: API could not create a new user.");
+      alert("Error: " + data.responseJSON.message);
     }
   };
   $.ajax(settings);
@@ -24,5 +25,12 @@ $('.js-signup-form').submit( function(event) {
     password: $('.js-signup-password').val(),
     confirmPassword: $('.js-signup-confirm-password').val(),
   };
-  createNewUser(newUserData);
+  if (newUserData.password !== newUserData.confirmPassword) {
+    alert("Your passwords do not match! Enter and confirm a password.");
+  // } if (newUserData.username) {
+
+  } else {
+    createNewUser(newUserData);
+
+  }
 })

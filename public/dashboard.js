@@ -6,7 +6,7 @@ let state = {
   token:"",
   user: ""
 }
-//formatHoursAndMinutes
+
 const renderTimerComponent = function (timer, id) {
   let part1ofTimer = `<div class="timer" data-id="${id}">
   <div class="timer-info">
@@ -67,7 +67,7 @@ function saveTimerToApi(timerData) {
       clearForm();
     },
     error: function(data) {
-      console.log("Error: API could not answer your request.", data);
+      console.log("Error: API could not answer your request.");
     }
   };
   $.ajax(settings);
@@ -84,7 +84,8 @@ function deleteTimerFromApi() {
       closeModal();
     },
     error: function(data) {
-      console.log("Error: API could not answer your request.", data);
+      console.log("Error: API could not answer your request.");
+      alert("Error: " + data.responseJSON.message);
     }
   };
   $.ajax(settings);
@@ -103,7 +104,7 @@ function newLogEntry(newLog) {
       console.log(`${state.timers.find(timer => timer.id === this.id).currentEntryCount} seconds have been added to your log!`);
     },
     error: function(data) {
-      console.log(`Error: API could not log your time for ${state.timers[newTimeEntry.id].label}.`, data);
+      console.log(`Error: API could not log your time for ${state.timers[newTimeEntry.id].label}.`);
     }
   };
   $.ajax(settings);
@@ -120,9 +121,9 @@ function renderTimers(timers) {
   }
 }
 
+// Finds timer with an id of state.idOfTimerBeingEdited,
+// and changes the input values to current values on database
 function populateForm() {
-  // Finds timer with an id of state.idOfTimerBeingEdited,
-  // and changes the input values to current values on database
   let chosenTimer = state.timers.find(timer => timer.id === state.idOfTimerBeingEdited);
   let defaultDate = new Date().toISOString().substr(0, 10);
   if (state.idOfTimerBeingEdited){
@@ -145,7 +146,7 @@ function clearForm() {
   $('.js-notes').val("");
 }
 
-// Then open a modal with user customization options,
+// Open a modal with user customization options,
 // hiding main content.
 function openModal(){
   populateForm();
@@ -155,6 +156,7 @@ function openModal(){
   $('footer').attr("aria-hidden", "true");
 }
 
+// Hide modal, clear form values, and show main content.
 function closeModal(){
   $('.js-modal').addClass("hidden");
   $('header').attr("aria-hidden", "false");
@@ -164,11 +166,11 @@ function closeModal(){
   $('.submit-button').addClass('save-changes');
   $('.submit-button').removeClass('js-change-existing-timer');
   state.idOfTimerBeingEdited="";
-  // $('.js-project-name').prop('required', 'false');
 }
 
 //listener for square timer button. on click, if it was off, it turns on timer and adds
-//1 to the totalTimeInSeconds and todaysTime every second. If it was on, it should stop the timer.
+//1 to the totalTimeInSeconds and session every second. If it was on, it should stop counting
+//and log the newest time count to the database.
 $('.js-timer-section').on('click', '.timer-button', function(event) {
   var start = new Date;
   let id = $(this).attr('data-id');
@@ -195,8 +197,9 @@ $('.js-timer-section').on('click', '.timer-button', function(event) {
   }
 })
 
+//on page load, save user authorization and name info,
+//render the user's timers, and setup event listeners.
 $(function(){
-
 
   state.token = localStorage.getItem("token");
   if(!state.token){
@@ -230,14 +233,11 @@ $(function(){
 
   //click to create a new timer object
   $('.js-new-timer-button').on('click', function() {
-    // $('.js-project-name').prop('required', 'true');
     openModal();
   })
 
-  //when the "save changes" button is pressed, make sure
-  //to only include truthy answers, then use them to
-  //generate a new timer object. last, clear the global
-  //variables for next time before closing modal.
+  //when the "save changes" button is pressed,
+  //send form values to database
   $('.edit-form').submit( function(event) {
     event.preventDefault()
     let timerData = {
@@ -252,32 +252,33 @@ $(function(){
     saveTimerToApi(timerData);
   })
 
-
+  //clicking delete timer icon will open delete menu
   $('.light').on('click','.js-delete-timer-button', function() {
     event.preventDefault();
     $('.js-delete-alert').removeClass('hidden');
   })
 
+  //clicking "yes, delete it" button will delete timer from db
   $('.light').on('click','.js-final-delete-it-button', function(event) {
     event.preventDefault();
     deleteTimerFromApi();
-    // TODO: ajax request to delete, on success.
-    //      state.timers.splice([indexOfTimerBeingEdited], 1);
-    //      renderTimers(state.timers);
-    //      closeModal();
   })
 
+  //clicking "no, cancel" will close delete menu
   $('.light').on('click','.js-cancel-delete-button', function() {
     event.preventDefault();
     $('.js-delete-alert').addClass('hidden');
   })
 
+  //clicking edit button opens modal
   $('.js-timer-section').on('click','.js-edit-icon-button', function(event) {
      let id = $(this).attr('data-id');
      state.idOfTimerBeingEdited = id;
      openModal();
   })
 
+  //clicking log out icon will remove user authentication token
+  //and load login page
   $('.log-out-button').on('click', function(event) {
     console.log("log out button clicked");
     state.token = "";

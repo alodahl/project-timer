@@ -9,11 +9,13 @@ function logUserIn(userData) {
     success: function(data) {
       localStorage.setItem('token', data.authToken);
       localStorage.setItem('user', userData.username);
-      console.log("You are logged in.", data);
+      console.log("You are logged in.");
       window.location.href = '/dashboard.html';
     },
     error: function(data) {
-      console.log("Error: user authentication failed.", data);
+      console.log("Error: user authentication failed.");
+      alert("Error: Incorrect name and password combination");
+      // alert("Error: " + data.responseJSON.message);
     }
   };
   $.ajax(settings);

@@ -3,7 +3,8 @@
 let timers = [];
 let indexOfTimerBeingEdited;
 
-//makes one new blank timer with an id of it's index in the timers array
+//makes one timer with timer object values
+//and an id which is its index in the timers array
 const renderTimerComponent = function (timer, index) {
   let part1ofTimer = `<div class="timer" data-index="${index}">
   <div class="timer-info">
@@ -152,19 +153,14 @@ $(function(){
     closeModal();
   })
 
-  //when "new timer" area is clicked, add a new object to timers array
-  //with newTimer function and re-render the whole array of timers.
-  // Then open a modal with user customization options,
-  // hiding main content.
+  //click "new timer" area to open modal
   $('.js-new-timer-button').on('click', function() {;
     openModal();
     populateNewForm();
   })
 
-  //when the "save changes" button is pressed, make sure
-  //to only include truthy answers, then use them to
-  //generate a new timer object. last, clear the global
-  //variables for next time before closing modal.
+  //click "save" button sends values to be rendered
+  //as a new timer
   $('.light').on('click', '.save-new', function(event) {
     console.log("save-new button ran");
     let projectTime = 0;
@@ -177,6 +173,8 @@ $(function(){
     closeModal();
   })
 
+  //click "new timer" area to open modal and populate with
+  //existing timer values
   $('.js-timer-section').on('click','.js-edit-icon-button', function(event) {
     console.log("edit timer function began");
     let index = $(this).attr('data-id');
@@ -188,6 +186,8 @@ $(function(){
     console.log("whole edit timer function ran");
   })
 
+  //click "save" to change existing timer values if added to form,
+  //then re-render timers so they are current
   $('.light').on('click', '.js-change-existing-timer', function(event) {
     console.log("js-change-existing-timer button ran");
     let projectName = $('.js-project-name').val();
