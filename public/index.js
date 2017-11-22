@@ -6,33 +6,26 @@ let indexOfTimerBeingEdited;
 //makes one timer with timer object values
 //and an id which is its index in the timers array
 const renderTimerComponent = function (timer, index) {
-  let part1ofTimer = `<div class="timer" data-index="${index}">
-  <div class="timer-info">
-  <h3 class="timer-label">${timer.label}</h3>
-  <div class="other-timer-stats-div">
-  <p class="timer-stats other-timer-stats">Category: ${timer.category}</p>
-  <p class="timer-stats other-timer-stats">Start Date: ${dateToString(timer.creationDate)}</p>
-  <p class="timer-stats other-timer-stats">Notes: ${timer.projectNotes}</p>
+  return `<div class="timer" data-index="${index}">
+    <div class="timer-info">
+    <h3 class="timer-label">${timer.label}</h3>
+    <div class="other-timer-stats-div">
+    <p class="timer-stats other-timer-stats">Category: ${timer.category}</p>
+    <p class="timer-stats other-timer-stats">Start Date: ${dateToString(timer.creationDate)}</p>
+    <p class="timer-stats other-timer-stats">Notes: ${timer.projectNotes}</p>
+    </div>
+    <div class="timer-stats-div">
+    <p class="timer-stats">Project Total: ${formatHoursAndMinutes(timer.totalTimeInSeconds)}</p>
+    <p class="timer-stats">Session Total: ${formatHoursAndMinutes(timer.currentEntryCount)}</p>
+    </div>
+    </div>
+    <button class="edit-icon-button js-edit-icon-button button" data-id="${index}"><img class="edit-icon-img" src="images/edit.gif" alt="edit this timer"></button>
+    <div class="timer-button button ${timer.isRunning? "green-button":"" }" data-id="${index}" role="button" aria-label="Click to ${timer.isRunning? "Stop":"Start" } Timer">
+      ${formatSeconds(timer.currentEntryCount)}
+      <img class="timer-icon" src="${timer.isRunning? "images/stop-timer.png":"images/start-timer.png" } ">
+    </div>
   </div>
-  <div class="timer-stats-div">
-  <p class="timer-stats">Project Total: ${formatHoursAndMinutes(timer.totalTimeInSeconds)}</p>
-  <p class="timer-stats">Session Total: ${formatHoursAndMinutes(timer.currentEntryCount)}</p>
-  </div>
-  </div>
-  <button class="edit-icon-button js-edit-icon-button button" data-id="${index}"><img class="edit-icon-img" src="images/edit.gif" alt="edit this timer"></button>
   `;
-  let part2ofStoppedTimer = `<div class="timer-button button" data-id="${index}" role="button" aria-label="Click to Start Timer">${formatSeconds(timer.currentEntryCount)}
-  <img class="timer-icon" src="images/start-timer.png"</div>
-  </div>`;
-  let part2ofRunningTimer = `<div class="timer-button button green-button" data-id="${index}" role="button" aria-label="Click to Stop Timer">${formatSeconds(timer.currentEntryCount)}
-  <img class="timer-icon" src="images/stop-timer.png"</div>
-  </div>`;
-
-  if (!timer.isRunning) {
-    return (`${part1ofTimer}${part2ofStoppedTimer}`);
-  } else {
-    return (`${part1ofTimer}${part2ofRunningTimer}`);
-  }
 }
 
 //calling newTimer pushes a new timer object
@@ -119,6 +112,7 @@ function closeModal(){
   $('main').attr("aria-hidden", "false");
   $('footer').attr("aria-hidden", "false");
   $('.js-delete-alert').addClass('hidden');
+  $('.js-delete-timer-section').removeClass('hidden');
   indexOfTimerBeingEdited = "";
   $('.submit-button').addClass('save-new');
   $('.submit-button').removeClass('js-change-existing-timer');
@@ -155,7 +149,7 @@ $(function(){
 
   //click "new timer" area to open modal
   $('.js-new-timer-button').on('click', function() {;
-    //hide delete button $('.js-delete-alert').addClass('hidden');
+    $('.js-delete-timer-section').addClass('hidden');
     openModal();
     populateNewForm();
   })

@@ -33,6 +33,13 @@ const renderTimerComponent = function (timer) {
   `;
 }
 
+const welcomeMessage = `
+ <div class="welcome-get-started-message">
+  <h2 class="cursive">Welcome to Project Timer!</h2>
+  <p>Click the "new timer" button above to get started.</p>
+ </div>
+ `;
+
 
 function getTimersFromApi() {
   const settings = {
@@ -125,15 +132,17 @@ function newLogEntry(newLog) {
   $.ajax(settings);
 }
 
-
-
-
 //render each object in timers array by passing values into a
 // html block and then appending that to the dom.
+// if there are no timers, add welcome message.
 function renderTimers(timers) {
   $('.js-timer-section').html('');
   for(let index=0; index < timers.length; index++) {
     $('.js-timer-section').append(renderTimerComponent(timers[index]));
+  }
+  if (!state.timers.length) {
+    $('.js-timer-section').html(welcomeMessage);
+    console.log(state.user);
   }
 }
 
@@ -179,6 +188,7 @@ function closeModal(){
   $('main').attr("aria-hidden", "false");
   $('footer').attr("aria-hidden", "false");
   $('.js-delete-alert').addClass('hidden');
+  $('.js-delete-timer-section').removeClass('hidden');
   $('.submit-button').addClass('save-changes');
   $('.submit-button').removeClass('js-change-existing-timer');
   state.idOfTimerBeingEdited="";
@@ -250,6 +260,7 @@ $(function(){
   //click to create a new timer object
   $('.js-new-timer-button').on('click', function() {
     state.idOfTimerBeingEdited="";
+    $('.js-delete-timer-section').addClass('hidden');
     openModal();
   })
 

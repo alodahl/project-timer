@@ -1,24 +1,12 @@
 # Project Timer To-do
 
-## Incomplete Tasks:
-
-Index
-- Fix login/signup icons so that text is also clickable.
-- Hide delete button when creating new timer.
-- Clicking on timers sometimes doesn't work. (Fix same way as on dashboard)
-
-Dashboard.
-- When dashboard is empty. Have a little message "click on new timer to get started!" That hides when you have timers / show when you delete all timers.
-- Hide delete timer when clicking on "new timer"
-
 ### AUTHENTICATION:
-- write auth tests
+- write auth tests, including api endpoint tests into /protected auth test file
 
 ### CLIENT-SIDE:
-- make text also clickable in links
+- make text also clickable in links (all htmls)
 
 ### SERVER-SIDE:
-- Travis tests don't pass (test db seems to be deleted when travis runs)
 - Add test db collection after showing mentor
 
 -----
@@ -61,7 +49,9 @@ Dashboard.
 - remove "data" from dashboard.js CRUD console logs
 - change "try-it-out-section" class to blue-nav-bar
 - Remove the alert when signing up. Just redirect to login.
-
+- Hide delete button when creating new timer.(dashboard, index)
+- Clicking on timers sometimes doesn't work. (Fix index.js same way as on dashboard.js)
+- When dashboard is empty, have message "click on new timer to get started!" That hides when you have timers / show when you delete all timers.
 
 ### SERVER SIDE:
 - check out a new branch. And start working on server.js.
