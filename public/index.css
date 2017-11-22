@@ -22,6 +22,18 @@ a:hover {
   color: var(--hotgreen);
 }
 
+.white-link {
+  color: white;
+}
+
+.gray-link {
+  color: var(--darkgray);
+}
+
+.gray-link:hover {
+  color: var(--blue);
+}
+
 .gray-background {
   background-color: var(--lightgray);
 }
@@ -226,6 +238,11 @@ margin-bottom: 30px;
 .nav-text{
   margin: 0;
   text-align: left;
+}
+
+.right-align {
+  float: right;
+  clear: both;
 }
 
 .nav-text-right {

@@ -4,7 +4,6 @@
 - write auth tests, including api endpoint tests into /protected auth test file
 
 ### CLIENT-SIDE:
-- make text also clickable in links (all htmls)
 
 ### SERVER-SIDE:
 - Add test db collection after showing mentor
@@ -52,6 +51,7 @@
 - Hide delete button when creating new timer.(dashboard, index)
 - Clicking on timers sometimes doesn't work. (Fix index.js same way as on dashboard.js)
 - When dashboard is empty, have message "click on new timer to get started!" That hides when you have timers / show when you delete all timers.
+- make text also clickable in links (all htmls)
 
 ### SERVER SIDE:
 - check out a new branch. And start working on server.js.

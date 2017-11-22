@@ -237,7 +237,7 @@ $(function(){
     window.location.href = '/login.html';
   }
 
-  $('.js-user-name').text(`Hi, ${state.user}`);
+  $('.js-user-name').text(`Hi, ${state.user}!`);
 
   //render existing db timers on page load
   getTimersFromApi();
@@ -306,7 +306,7 @@ $(function(){
 
   //clicking log out icon will remove user authentication token
   //and load login page
-  $('.log-out-button').on('click', function(event) {
+  $('.js-log-out-button').on('click', function(event) {
     console.log("log out button clicked");
     state.token = "";
     window.location.href = "login.html";
