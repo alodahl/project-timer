@@ -37,7 +37,7 @@ describe('Auth endpoints', function () {
     return User.remove({});
   });
 
-  describe('/api/auth/login', function () {
+  describe('/auth/login', function () {
     it('Should reject requests with no credentials', function () {
       return chai
         .request(app)
