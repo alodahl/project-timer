@@ -4,6 +4,7 @@
 - write auth tests, including api endpoint tests into /protected auth test file
 
 ### CLIENT-SIDE:
+- change landing photo to a shorter height so text can be seen on load
 
 ### SERVER-SIDE:
 - Add test db collection after showing mentor
