@@ -1,5 +1,5 @@
 'use strict';
-global.DATABASE_URL = 'mongodb://travis:travisandheroku@ds231715.mlab.com:31715/travis-testing';
+
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const jwt = require('jsonwebtoken');
@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 const { app, runServer, closeServer } = require('../server');
 const { User } = require('../users');
 const { JWT_SECRET } = require('../config');
+const { TEST.DATABASE_URL } = require('../config');
 
 const expect = chai.expect;
 
@@ -17,7 +18,7 @@ describe('Auth endpoints', function () {
   const password = 'examplePass';
 
   before(function () {
-    return runServer();
+    return runServer(TEST.DATABASE_URL);
   });
 
   after(function () {
