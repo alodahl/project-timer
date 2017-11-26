@@ -342,7 +342,6 @@ describe('Protected Timer API resource', function() {
 
       return Timer
       .findOne()
-      .set('authorization', `Bearer ${token}`)
       .then(function(timer) {
         updateData.id = timer.id;
 
@@ -350,11 +349,11 @@ describe('Protected Timer API resource', function() {
         // data we sent
         return chai.request(app)
         .put(`/timers/${timer.id}`)
+        .set('authorization', `Bearer ${token}`)
         .send(updateData);
       })
       .then(function(res) {
         res.should.have.status(204);
-
         return Timer.findById(updateData.id);
       })
       .then(function(timer) {
@@ -386,12 +385,12 @@ describe('Protected Timer API resource', function() {
 
       return Timer
       .findOne()
-      .set('authorization', `Bearer ${token}`)
       .then(function(_timer) {
         timer = _timer;
         newLogEntry.id = timer.id;
         return chai.request(app)
         .put(`/timers/${timer.id}/log`)
+        .set('authorization', `Bearer ${token}`)
         .send(newLogEntry);
       })
       .then(function(res) {
@@ -432,10 +431,11 @@ describe('Protected Timer API resource', function() {
 
       return Timer
       .findOne()
-      .set('authorization', `Bearer ${token}`)
       .then(function(_timer) {
         timer = _timer;
-        return chai.request(app).delete(`/timers/${timer.id}`);
+        return chai.request(app)
+        .delete(`/timers/${timer.id}`)
+        .set('authorization', `Bearer ${token}`)
       })
       .then(function(res) {
         res.should.have.status(204);

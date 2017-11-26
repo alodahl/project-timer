@@ -4,7 +4,7 @@ const chaiHttp = require('chai-http');
 
 const {app, runServer, closeServer} = require('../server');
 const {User} = require('../users');
-const {TEST.DATABASE_URL} = require('../config');
+const {TEST_DATABASE_URL} = require('../config');
 
 const expect = chai.expect;
 
@@ -13,11 +13,13 @@ chai.use(chaiHttp);
 describe('/users', function() {
   const username = 'exampleUser';
   const password = 'examplePass';
+  const usernameB = 'exampleUserB';
+  const passwordB = 'examplePassB';
   const id = '5t8g1b9c';
 
 
   before(function() {
-    return runServer(TEST.DATABASE_URL);
+    return runServer(TEST_DATABASE_URL);
   });
 
   after(function() {

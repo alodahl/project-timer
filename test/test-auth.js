@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const { app, runServer, closeServer } = require('../server');
 const { User } = require('../users');
 const { JWT_SECRET } = require('../config');
-const { TEST.DATABASE_URL } = require('../config');
+const { TEST_DATABASE_URL } = require('../config');
 
 const expect = chai.expect;
 
@@ -18,7 +18,7 @@ describe('Auth endpoints', function () {
   const password = 'examplePass';
 
   before(function () {
-    return runServer(TEST.DATABASE_URL);
+    return runServer(TEST_DATABASE_URL);
   });
 
   after(function () {
@@ -205,7 +205,7 @@ describe('Auth endpoints', function () {
 
       return chai
         .request(app)
-        .post('/api/auth/refresh')
+        .post('/auth/refresh')
         .set('authorization', `Bearer ${token}`)
         .then(res => {
           expect(res).to.have.status(200);

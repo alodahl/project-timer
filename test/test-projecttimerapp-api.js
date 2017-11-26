@@ -223,7 +223,7 @@
 //     it('deletes a timer by id', function() {
 //
 //       let timer;
-//
+// 
 //       return Timer
 //         .findOne()
 //         .then(function(_timer) {
