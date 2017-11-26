@@ -4,7 +4,6 @@
 - write auth tests, including api endpoint tests into /protected auth test file
 
 ### CLIENT-SIDE:
-- adjust line-height in timer data
 
 ### SERVER-SIDE:
 - Add test db collection after showing mentor
@@ -54,6 +53,7 @@
 - When dashboard is empty, have message "click on new timer to get started!" That hides when you have timers / show when you delete all timers.
 - make text also clickable in links (all htmls)
 - change landing photo to a shorter height so text can be seen on load
+- adjust line-height in timer data
 
 ### SERVER SIDE:
 - check out a new branch. And start working on server.js.
