@@ -86,6 +86,7 @@ h1, h2 {
 
 p {
   font-size: 0.8em;
+  /*line-height: 2.0;*/
 }
 
 input {
@@ -346,6 +347,11 @@ margin-bottom: 30px;
 
 .timer-stats {
   margin: 0;
+  line-height: 1.5;
+}
+
+.other-timer-stats-div, .timer-stats-div {
+  padding-top: 5px;
 }
 
 .edit-icon-button {
@@ -656,12 +662,12 @@ margin-bottom: 30px;
 
   .timer-stats-div {
     position: absolute;
-    left: 245px;
-    top: 43px;
+    left: 230px;
+    top: 44px;
   }
 
   .timer-info {
-    width: 430px;
+    width: 420px;
   }
 
   .timer-icon {
@@ -679,6 +685,7 @@ margin-bottom: 30px;
 
   .edit-icon-button {
     right: 170px;
+    bottom: 15px;
   }
 
 }

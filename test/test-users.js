@@ -17,7 +17,6 @@ describe('/users', function() {
   const passwordB = 'examplePassB';
   const id = '5t8g1b9c';
 
-
   before(function() {
     return runServer(TEST_DATABASE_URL);
   });

@@ -4,6 +4,7 @@
 - write auth tests, including api endpoint tests into /protected auth test file
 
 ### CLIENT-SIDE:
+- adjust line-height in timer data
 
 ### SERVER-SIDE:
 - Add test db collection after showing mentor

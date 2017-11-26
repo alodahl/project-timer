@@ -52,7 +52,7 @@ function getTimersFromApi() {
       renderTimers(state.timers);
     },
     error: function(data) {
-      console.log("Error: API could not answer your request.");
+      console.log("Error: API could not answer your get request.");
     }
   };
   $.ajax(settings);
@@ -84,7 +84,7 @@ function saveTimerToApi(timerData) {
       clearForm();
     },
     error: function(data) {
-      console.log("Error: API could not answer your request.");
+      console.log("Error: API could not answer your save request.");
     }
   };
   $.ajax(settings);
@@ -107,7 +107,7 @@ function deleteTimerFromApi() {
       closeModal();
     },
     error: function(data) {
-      console.log("Error: API could not answer your request.");
+      console.log("Error: API could not answer your delete request.");
       alert("Error: " + data.responseJSON.message);
     }
   };
@@ -142,7 +142,6 @@ function renderTimers(timers) {
   }
   if (!state.timers.length) {
     $('.js-timer-section').html(welcomeMessage);
-    console.log(state.user);
   }
 }
 
@@ -307,8 +306,10 @@ $(function(){
   //clicking log out icon will remove user authentication token
   //and load login page
   $('.js-log-out-button').on('click', function(event) {
-    console.log("log out button clicked");
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
     state.token = "";
+    state.user = "";
     window.location.href = "login.html";
   })
 })
