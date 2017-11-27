@@ -24,7 +24,6 @@ passport.use(jwtStrategy);
 app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 app.use('/timers', timersRouter)
-
 app.use('*', function(req, res) {
   res.status(404).json({message: 'Not Found'});
 });
