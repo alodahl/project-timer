@@ -353,7 +353,7 @@ describe('Protected Timer API resource', function() {
         .send(updateData);
       })
       .then(function(res) {
-        res.should.have.status(204);
+        res.should.have.status(200);
         return Timer.findById(updateData.id);
       })
       .then(function(timer) {

@@ -23,7 +23,7 @@ router.post('/', jsonParser, (req, res) => {
     }
 
     if (!(req.body.password && req.body.confirmPassword && req.body.confirmPassword === req.body.password)) {
-      res.status(400).json({
+      return res.status(422).json({
         error: `Request body password and confirm password must match + ${req}`
       });
     }
