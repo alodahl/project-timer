@@ -77,32 +77,33 @@ describe('/users', function() {
       expect(res.body.location).to.equal('password');
     });
   });
-  //   it('Should reject users with non-string username', function() {
-  //     return chai
-  //     .request(app)
-  //     .post('/users')
-  //     .send({
-  //       username: 1234,
-  //       password
-  //     })
-  //     .then(() =>
-  //     expect.fail(null, null, 'Request should not succeed')
-  //   )
-  //   .catch(err => {
-  //     if (err instanceof chai.AssertionError) {
-  //       throw err;
-  //     }
-  //
-  //     const res = err.response;
-  //     console.log(res)
-  //     expect(res).to.have.status(422);
-  //     expect(res.body.reason).to.equal('ValidationError');
-  //     expect(res.body.message).to.equal(
-  //       'Incorrect field type: expected string'
-  //     );
-  //     expect(res.body.location).to.equal('username');
-  //   });
-  // });
+    it('Should reject users with non-string username', function() {
+      return chai
+      .request(app)
+      .post('/users')
+      .send({
+        username: 1234,
+        password: "asdfghij",
+        confirmPassword: "asdfghij"
+      })
+      .then(() =>
+      expect.fail(null, null, 'Request should not succeed')
+    )
+    .catch(err => {
+      if (err instanceof chai.AssertionError) {
+        throw err;
+      }
+
+      const res = err.response;
+
+      expect(res).to.have.status(422);
+      expect(res.body.reason).to.equal('ValidationError');
+      expect(res.body.message).to.equal(
+        'Incorrect field type: expected string'
+      );
+      expect(res.body.location).to.equal('username');
+    });
+  });
   it('Should reject users with non-string password', function() {
     return chai
     .request(app)
