@@ -83,7 +83,8 @@ describe('/users', function() {
       .post('/users')
       .send({
         username: 1234,
-        password
+        password: "asdfghij",
+        confirmPassword: "asdfghij"
       })
       .then(() =>
       expect.fail(null, null, 'Request should not succeed')
@@ -94,7 +95,7 @@ describe('/users', function() {
       }
 
       const res = err.response;
-      console.log(res)
+
       expect(res).to.have.status(422);
       expect(res.body.reason).to.equal('ValidationError');
       expect(res.body.message).to.equal(
