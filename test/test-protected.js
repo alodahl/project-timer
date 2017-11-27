@@ -387,7 +387,7 @@ describe('Protected Timer API resource', function() {
       .findOne()
       .then(function(_timer) {
         timer = _timer;
-        newLogEntry.id = timer.id;
+        newLogEntry.timerId = timer.id;
         return chai.request(app)
         .put(`/timers/${timer.id}/log`)
         .set('authorization', `Bearer ${token}`)
@@ -398,10 +398,10 @@ describe('Protected Timer API resource', function() {
         return Timer.findById(timer.id);
       })
       .then(function(updatedTimer) {
-        updatedTimer.logs[timer.logs.length - 1].seconds.should.equal(newLogEntry.seconds);
+        updatedTimer.logs[updatedTimer.logs.length - 1].seconds.should.equal(newLogEntry.seconds);
         updatedTimer.logs.reduce(function(totalTimeInSeconds, log){
           return totalTimeInSeconds + log.seconds;
-        }, 0).should.equal(timer.totalTimeInSeconds);
+        }, 0).should.equal(timer.totalTimeInSeconds+newLogEntry.seconds);
       });
     });
   });
