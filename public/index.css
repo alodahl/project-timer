@@ -9,7 +9,7 @@
 }
 
 body {
-  font-family: "Shree Devanagari 714";
+  font-family:  "Shree Devanagari 714", Helvetica, Sans-serif;
   margin: 0;
   color: var(--darkgray);
 }
@@ -111,7 +111,7 @@ input {
 }
 
 input::placeholder {
-  font-family: "Shree Devanagari 714";
+  font-family: "Shree Devanagari 714", Helvetica, Sans-serif;
   font-weight: 100;
 }
 
@@ -175,7 +175,7 @@ margin-bottom: 30px;
     box-sizing: border-box;
     background-color: var(--green);
     color: white;
-    font-family: "Shree Devanagari 714";
+    font-family: "Shree Devanagari 714", Helvetica, Sans-serif;
     font-size: 1.2em;
     border: 1px solid var(--green);
     border-radius: 3px;
@@ -426,7 +426,7 @@ margin-bottom: 30px;
 
 .edit-form-input {
   margin: 0;
-  font-family: "Shree Devanagari 714";
+  font-family: "Shree Devanagari 714", Helvetica, Sans-serif;
   font-size: 1.0em;
   font-weight: 100;
 }
@@ -475,7 +475,7 @@ margin-bottom: 30px;
   background-color: var(--darkgray);
   border: 1px solid var(--darkgray);
   border-radius: 3px;
-  font-family: "Shree Devanagari 714";
+  font-family: "Shree Devanagari 714", Helvetica, Sans-serif;
   color: white;
   font-size: 1.0em;
   padding: 5px 0 3px 0;

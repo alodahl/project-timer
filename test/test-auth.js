@@ -190,8 +190,7 @@ describe('Auth endpoints', function () {
       const token = jwt.sign(
         {
           user: {
-            // username,
-            // id
+            username
           }
         },
         JWT_SECRET,
