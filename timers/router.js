@@ -100,11 +100,13 @@ passport.authenticate('jwt', {session: false}), (req, res) => {
 
 router.put('/:timerId/log',
 passport.authenticate('jwt', {session: false}), (req, res) => {
+
   if (!(req.params.timerId && req.body.timerId && req.params.timerId === req.body.timerId)) {
-    res.status(400).json({
+    return res.status(400).json({
       error: 'Request path id and request body id values must match'
     });
   }
+
 
   const requiredFields = ['seconds', 'endDate'];
 

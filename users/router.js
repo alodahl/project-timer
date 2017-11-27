@@ -23,8 +23,9 @@ router.post('/', jsonParser, (req, res) => {
     }
 
     if (!(req.body.password && req.body.confirmPassword && req.body.confirmPassword === req.body.password)) {
-      res.status(400).json({
-        error: `Request body password and confirm password must match + ${req}`
+      return res.status(422).json({
+        reason: 'ValidationError',
+        error: `Request body password and confirm password must match`
       });
     }
 
@@ -57,7 +58,6 @@ router.post('/', jsonParser, (req, res) => {
             location: nonTrimmedField
         });
     }
-
     const sizedFields = {
         username: {
             min: 1

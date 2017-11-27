@@ -190,7 +190,7 @@ describe('Auth endpoints', function () {
       const token = jwt.sign(
         {
           user: {
-            // username,
+             username
             // id
           }
         },
