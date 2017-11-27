@@ -2,20 +2,19 @@
 
 ## Incomplete Tasks:
 
-### CLIENT-SIDE
+### AUTHENTICATION:
+- write auth tests, including api endpoint tests into /protected auth test file
 
-### SERVER-SIDE
-- Travis tests don't pass
-- delete endpoint sends error object when trying to delete non-existent timer.  (solution: hide delete menu on new timer modal?)
+### CLIENT-SIDE:
 
-### DO LATER
-- do I need a user property in the timer -> later
+### SERVER-SIDE:
+- Add test db collection after showing mentor
 
 -----
 
 ## Completed Tasks:
 
-### CLIENT-SIDE
+### CLIENT-SIDE:
 - Make landing page responsive for large widths
 - use jquery to have timers display seconds, minutes, and hours.
 - base timer rendering on index
@@ -44,6 +43,20 @@
 - add timers/:id/log endpoint to dashboard.js
 - add session totals to dashboard and index files
 - fix CI test issue (test-...-api.js line 218 & 219)
+- fix input text size in signup and login.html
+- add user alerts for signup errors (!== passwords, existing user, spacing issues)
+- prevent user being posted if confirm password is not correct or in body
+- delete endpoint send error message
+- remove "data" from dashboard.js CRUD console logs
+- change "try-it-out-section" class to blue-nav-bar
+- Remove the alert when signing up. Just redirect to login.
+- Hide delete button when creating new timer.(dashboard, index)
+- Clicking on timers sometimes doesn't work. (Fix index.js same way as on dashboard.js)
+- When dashboard is empty, have message "click on new timer to get started!" That hides when you have timers / show when you delete all timers.
+- make text also clickable in links (all htmls)
+- change landing photo to a shorter height so text can be seen on load
+- adjust line-height in timer data
+
 
 ### SERVER SIDE:
 - check out a new branch. And start working on server.js.
@@ -58,3 +71,14 @@
 - Use postman from now on.
 - setup mongoose tests
 - add mongoose tests for timers/:id/log
+- do I need a user property in the timer -> later
+- show username in dashboard.html
+
+### AUTHENTICATION:
+- Add authentication files using lesson example
+- add endpoints to signup.html
+- add endpoints to login.html
+- test user authentication files in Postman
+- Change all ajax calls to have authToken
+- add a sign out button to delete token from local storage
+- refactor:  add comments and delete unnecessary code

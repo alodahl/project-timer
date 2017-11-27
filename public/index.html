@@ -5,20 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Project Timer</title>
   <link rel="stylesheet" href="index.css">
+  <link rel="icon" type="image/gif" href="../favicon.ico" />
 </head>
 <body>
   <header class="landing-page-header">
     <nav>
+      <a href="login.html" class="gray-link">
         <div class="leftnav">
-          <a href="login.html"><img class="icon-large" src="images/stopwatch-gray.svg" alt="Log In Stopwatch Icon"></a>
-          <span class="nav-text-left">log</span>
-          <span class="nav-text-left nav-text-left-line-two">in</span>
+          <img class="icon-large" src="images/stopwatch-gray.svg" alt="Log In Stopwatch Icon">
+          <div class="left-icon-text">
+            <p class="nav-text">log</p>
+            <p class="nav-text">in</p>
+          </div>
         </div>
+      </a>
+      <a href="index.html#tryitout" class="gray-link">
         <div class="rightnav">
           <span class="nav-text-right">try</span>
           <span class="nav-text-right-line-two">it out</span>
-          <a href="index.html#tryitout"><img class="icon-large" src="images/add-gray.svg" alt="Try Out App Icon"></a>
+          <img class="icon-large" src="images/add-gray.svg" alt="Try Out App Icon">
         </div>
+      </a>
     </nav>
     <h1 class="landing-title"><span class="cursive landing-title-project">Project</span><span class="landing-title-timer">timer</span></h1>
   </header>
@@ -35,14 +42,16 @@
     <h2 class="tagline"><span class="cursive header2">Know</span> HOW LONG IT TOOK, EVEN WHILE WORKING JUST A FEW MINUTES AT A TIME.</h2>
     <img class="project-example-photo" src="images/wednesdaycake.jpg" alt="frosted petite-fours cakes by @wednesdaycake on instagram">
     <img class="timer-example-photo" src="images/timer-example2.png" alt="Each timer allows the user to: Read or adjust project name, read today's total time, read the project's overall total.  Tap the timer button to start and stop your timer.">
-    <section class="try-it-out-section">
+    <section class="blue-nav-section">
+      <a href="signup.html" class="white-link">
         <div class="leftnav">
-          <a href="signup.html"><img class="icon-large stopwatch-for-sign-up" src="images/stopwatch-white.svg" alt="Sign Up Stopwatch Icon"></a>
+          <img class="icon-large stopwatch-for-sign-up" src="images/stopwatch-white.svg" alt="Sign Up Stopwatch Icon">
           <div class="left-icon-text">
             <p class="nav-text">sign</p>
             <p class="nav-text">up</p>
           </div>
         </div>
+      </a>
       <h2 class="cursive try-it-out-header" id="tryitout">Try it out!</h2>
       <div class="rightnav js-new-timer-button button">
         <div class="right-icon-text">
@@ -80,7 +89,7 @@
             </div>
             <button class="form-button save-new submit-button" type="button" role="submit" name="button">save</button>
             <button class="form-button cancel-button" type="button" name="button">cancel</button>
-            <div class="delete-timer-section">
+            <div class="delete-timer-section js-delete-timer-section">
               <button class="delete-timer-button js-delete-timer-button button" name="delete timer"><img class="delete-timer-icon" src="images/trashbin.png" alt="permanently delete this timer"></button>
               <label for="delete timer">permanently delete timer</label>
             </div>

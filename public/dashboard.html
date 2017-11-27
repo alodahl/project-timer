@@ -4,15 +4,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Project Timer Dashboard</title>
   <link rel="stylesheet" href="index.css">
+  <link rel="icon" type="image/gif" href="../favicon.ico" />
 </head>
 <body class="gray-background">
   <header>
-    <nav class="try-it-out-section">
-      <div class="leftnav">
+    <nav class="blue-nav-section">
+      <div class="leftnav js-log-out-button button" role="button">
         <img class="icon-large stopwatch-for-sign-up" src="images/stopwatch-white.svg" alt="Sign Up Stopwatch Icon">
         <div class="left-icon-text">
-          <p class="nav-text">my</p>
-          <p class="nav-text">projects</p>
+          <p class="nav-text js-user-name user-name"></p>
+          <p class="nav-text">log out</p>
         </div>
       </div>
       <h1 class="logo"><span class="cursive title-project">Project</span><span class="title-timer">timer</span></h1>
@@ -53,7 +54,7 @@
           <button class="form-button save-changes" type="submit" name="button">save</button>
 
           <button class="form-button cancel-button" type="button" name="button">cancel</button>
-          <div class="delete-timer-section">
+          <div class="delete-timer-section js-delete-timer-section">
             <button class="delete-timer-button js-delete-timer-button button" name="delete timer"><img class="delete-timer-icon" src="images/trashbin.png" alt="permanently delete this timer"></button>
             <label for="delete timer">permanently delete timer</label>
           </div>
