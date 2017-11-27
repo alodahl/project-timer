@@ -3,12 +3,10 @@
 ## Incomplete Tasks:
 
 ### AUTHENTICATION:
-- write auth tests, including api endpoint tests into /protected auth test file
 
 ### CLIENT-SIDE:
 
 ### SERVER-SIDE:
-- Add test db collection after showing mentor
 
 -----
 
@@ -56,7 +54,12 @@
 - make text also clickable in links (all htmls)
 - change landing photo to a shorter height so text can be seen on load
 - adjust line-height in timer data
-
+- post-normalize.css: auth-input spacing
+- post-normalize.css: blue nav bar Project Timer logo
+- post-normalize.css: remove body padding
+- post-normalize.css: timer label margins
+- post-normalize.css: timer button content spacing
+- post-normalize.css: other-timer-stats position
 
 ### SERVER SIDE:
 - check out a new branch. And start working on server.js.
@@ -82,3 +85,6 @@
 - Change all ajax calls to have authToken
 - add a sign out button to delete token from local storage
 - refactor:  add comments and delete unnecessary code
+
+###TESTS:
+- write auth tests, including api endpoint tests into /protected auth test file

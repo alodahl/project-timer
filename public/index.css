@@ -14,6 +14,10 @@ body {
   color: var(--darkgray);
 }
 
+h1, h2 {
+  text-align: center;
+}
+
 a {
   text-decoration: none;
 }
@@ -77,16 +81,11 @@ a:hover {
   width: 120px;
   height: 70px;
   margin: 0;
-  padding: 5px 0 5px 5px;
-}
-
-h1, h2 {
-  text-align: center;
+  font-size: 1.5em;
 }
 
 p {
   font-size: 0.8em;
-  /*line-height: 2.0;*/
 }
 
 input {
@@ -101,13 +100,17 @@ input {
 
 .auth-input {
   font-size: 1.2em;
-  padding-bottom: 10px;
+  padding: 9px 10px 7px 10px;
   color: var(--darkgray);
 }
 
 .auth-input:focus {
   decoration: none;
   border: 2px solid var(--hotgreen);
+}
+
+.auth-input::placeholder {
+  padding-top: 3px;
 }
 
 input::placeholder {
@@ -341,7 +344,7 @@ margin-bottom: 30px;
   font-weight: 100;
   font-size: 1.0em;
   color: var(--blue);
-  margin: 10px 0;
+  margin: 15px 0 10px 0;
   height: 25px;
 }
 
@@ -350,9 +353,9 @@ margin-bottom: 30px;
   line-height: 1.5;
 }
 
-.other-timer-stats-div, .timer-stats-div {
+/*.other-timer-stats-div, .timer-stats-div {
   padding-top: 5px;
-}
+}*/
 
 .edit-icon-button {
   width: 25px;
@@ -386,7 +389,7 @@ margin-bottom: 30px;
   border-radius: 3px;
   height: 92px;
   width: 92px;
-  padding: 20px 0;
+  padding: 21px 0;
   text-align: center;
   color: var(--blue);
   font-size: 1.0em;
@@ -405,14 +408,10 @@ margin-bottom: 30px;
   color: white;
 }
 
-.gray-background {
-  background-color: var(--lightgray);
-  padding: 5px 0 25px 0;
-}
-
 .save-timers-message {
   font-size: 1.1em;
   text-align: center;
+  padding-bottom: 20px;
 }
 
 .blue-sign-up {
@@ -571,7 +570,7 @@ margin-bottom: 30px;
     width: 120px;
     height: 70px;
     margin: 0;
-    padding: 5px 0;
+    padding: 0 0 5px 5px;
   }
 
   .edit-icon-button {
@@ -590,6 +589,7 @@ margin-bottom: 30px;
     height: 102px;
     width: 102px;
     font-size: 1.2em;
+    padding: 25px 0;
   }
 
 }
@@ -600,7 +600,7 @@ margin-bottom: 30px;
     font-weight: 100;
     font-size: 1.4em;
     color: var(--blue);
-    margin: 10px 0;
+    /*margin: 10px 0;*/
     height: 25px;
   }
 
@@ -663,7 +663,7 @@ margin-bottom: 30px;
   .timer-stats-div {
     position: absolute;
     left: 230px;
-    top: 44px;
+    top: 50px;
   }
 
   .timer-info {
@@ -680,7 +680,7 @@ margin-bottom: 30px;
     height: 118px;
     width: 118px;
     font-size: 1.4em;
-    padding: 25px 0;
+    padding: 31px 0;
   }
 
   .edit-icon-button {
