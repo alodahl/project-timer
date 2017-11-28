@@ -430,8 +430,23 @@ margin-bottom: 30px;
   font-size: 1.0em;
 }
 
-.edit-time-input {
-  width: 80px;
+.ui-datepicker {
+  background-color: white;
+  /*width: 216px;
+  height: auto;
+  margin: 5px auto 0;
+  font: 9pt Impact, sans-serif;*/
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+  padding: 20px;
+}
+
+.datepicker {
+  background-color: white;
+  font-family: "Shree Devanagari 714", Helvetica, Sans-serif;
+  font-size: 1.0em;
+  font-weight: 100;
 }
 
 .edit-form-item {

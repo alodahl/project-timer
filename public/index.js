@@ -213,6 +213,8 @@ $(function(){
 })
 
 //////////// TIME TO STRING   ////////////
+$(function() {$( '.js-start-date' ).datepicker();})
+
 //formats seconds into HOUR:MIN:SEC
 const formatSeconds = (seconds) => {
   var date = new Date(null);
