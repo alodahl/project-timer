@@ -146,6 +146,10 @@ $(function(){
     closeModal();
   })
 
+  $('.datepicker').on('click', function(event) {
+    $('.ui-datepicker').addClass("datepicker-add-padding");
+  })
+
   //click "new timer" area to open modal
   $('.js-new-timer-button').on('click', function() {;
     $('.js-delete-timer-section').addClass('hidden');

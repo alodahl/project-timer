@@ -241,6 +241,7 @@ $(function(){
   //render existing db timers on page load
   getTimersFromApi();
 
+
   //click cancel button to hide modal and show results page
   $('.light').on('click', '.cancel-button', function(event) {
     closeModal();
@@ -254,6 +255,10 @@ $(function(){
   //click outside of light modal to hide modal and return to results page
   $('.dark').on('click', function(event) {
     closeModal()
+  })
+
+  $('.datepicker').on('click', function(event) {
+    $('.ui-datepicker').addClass("datepicker-add-padding");
   })
 
   //click to create a new timer object
@@ -315,6 +320,8 @@ $(function(){
 })
 
 //////////// TIME TO STRING   ////////////
+$(function() {$( '.js-start-date' ).datepicker();})
+
 //formats seconds into HOUR:MIN:SEC
 const formatSeconds = (seconds) => {
   var date = new Date(null);
