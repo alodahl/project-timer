@@ -353,10 +353,6 @@ margin-bottom: 30px;
   line-height: 1.5;
 }
 
-/*.other-timer-stats-div, .timer-stats-div {
-  padding-top: 5px;
-}*/
-
 .edit-icon-button {
   width: 25px;
   height: 25px;
@@ -600,7 +596,6 @@ margin-bottom: 30px;
     font-weight: 100;
     font-size: 1.4em;
     color: var(--blue);
-    /*margin: 10px 0;*/
     height: 25px;
   }
 

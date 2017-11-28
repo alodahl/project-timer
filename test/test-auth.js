@@ -102,10 +102,6 @@ describe('Auth endpoints', function () {
           const payload = jwt.verify(token, JWT_SECRET, {
             algorithm: ['HS256']
           });
-          // expect(payload.user).to.deep.equal({
-          //   username,
-          //   id
-          // });
         });
     });
   });
@@ -214,10 +210,6 @@ describe('Auth endpoints', function () {
           const payload = jwt.verify(token, JWT_SECRET, {
             algorithm: ['HS256']
           });
-          // expect(payload.user).to.deep.equal({
-          //   username,
-          //   id
-          // });
           expect(payload.exp).to.be.at.least(decoded.exp);
         });
     });

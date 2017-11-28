@@ -90,7 +90,6 @@ function populateForm() {
   // TODO: 1.Find timer with an index equal to indexOfTimerBeingEdited,
   //       2. Use that one as the timer being edited
   let chosenTimer = timers[indexOfTimerBeingEdited];
-  console.log(`${chosenTimer.label}`);
 
    $('.js-project-name').val(`${chosenTimer.label}`);
    $('.js-category-name').val(`${chosenTimer.category}`);
@@ -157,7 +156,6 @@ $(function(){
   //click "save" button sends values to be rendered
   //as a new timer
   $('.light').on('click', '.save-new', function(event) {
-    console.log("save-new button ran");
     let projectTime = 0;
     let projectName = $('.js-project-name').val();
     let category = $('.js-category-name').val();
@@ -171,20 +169,17 @@ $(function(){
   //click "new timer" area to open modal and populate with
   //existing timer values
   $('.js-timer-section').on('click','.js-edit-icon-button', function(event) {
-    console.log("edit timer function began");
     let index = $(this).attr('data-id');
     $('.submit-button').removeClass('save-new');
     $('.submit-button').addClass('js-change-existing-timer');
     indexOfTimerBeingEdited = index;
     populateForm();
     openModal();
-    console.log("whole edit timer function ran");
   })
 
   //click "save" to change existing timer values if added to form,
   //then re-render timers so they are current
   $('.light').on('click', '.js-change-existing-timer', function(event) {
-    console.log("js-change-existing-timer button ran");
     let projectName = $('.js-project-name').val();
     let category = $('.js-category-name').val();
     let startDate = $('.js-start-date').val();
@@ -195,12 +190,13 @@ $(function(){
     closeModal();
   })
 
+  //when delete timer button is clicked, show delete menu
   $('.light').on('click','.js-delete-timer-button', function() {
     event.preventDefault();
     $('.js-delete-alert').removeClass('hidden');
-    console.log("delete timer button ran");
   })
 
+  //when "yes, delete it" is clicked, remove timer from db and DOM
   $('.light').on('click','.js-final-delete-it-button', function() {
     event.preventDefault();
     timers.splice([indexOfTimerBeingEdited], 1);
@@ -208,6 +204,7 @@ $(function(){
     closeModal();
   })
 
+  //when "no, cancel" is clicked, hide delete menu
   $('.light').on('click','.js-cancel-delete-button', function() {
     event.preventDefault();
     $('.js-delete-alert').addClass('hidden');

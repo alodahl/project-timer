@@ -11,7 +11,6 @@ const jsonParser = bodyParser.json();
 
 router.get('/',
 passport.authenticate('jwt', {session: false}), (req, res) => {
-  console.log(req.user);
   Timer
     .find({user: req.user.id})
     .then(timers => {
