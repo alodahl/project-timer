@@ -128,6 +128,16 @@ input::placeholder {
   height: 380px;
 }
 
+.demo {
+  background-color: white;
+  box-sizing: border-box;
+  border-radius: 5px;
+  text-align: center;
+  margin: 40px auto;
+  width: 300px;
+  padding: 15px;
+}
+
 .welcome-get-started-message {
   box-sizing: border-box;
   border-radius: 5px;
