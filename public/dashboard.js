@@ -27,7 +27,7 @@ const renderTimerComponent = function (timer) {
     </button>
     <div class="timer-button button ${timer.isRunning? "green-button":"" }" data-id="${timer.id}" role="button" aria-label="Click to ${timer.isRunning? "Stop":"Start" } Timer">
       ${formatSeconds(timer.currentEntryCount)}
-      <img class="timer-icon" src="${timer.isRunning? "images/stop-timer.png":"images/start-timer.png" } ">
+      <img class="timer-icon" src="${timer.isRunning? "images/stop-timer.png":"images/start-timer.png"} alt="${timer.isRunning? "Click to stop timer":"Click to start timer"} ">
     </div>
   </div>
   `;
